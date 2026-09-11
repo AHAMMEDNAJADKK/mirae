@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: mirae-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: STUDIO_BRAND
+        value: MIRAE arc studio
+      - key: STUDIO_LOCATION
+        value: Malappuram, Kerala
+      - key: STUDIO_PHONE
+        value: "+91 9388330033"
+      - key: STUDIO_EMAIL
+        value: miraearcstudio@gmail.com
+      - key: STUDIO_WEBSITE
+        value: miraearc.com

@@ -3,56 +3,56 @@ export const roomsData = [
     id: "living",
     number: "01 / 04",
     title: "LIVING ROOM",
-    subtitle: "Open Space, Natural Light & Restraint",
-    description: "Open spaces, natural light and refined materials create a sense of calm and comfort. Double-height ceilings frame views of the landscape while recessed linear lighting accentuates architectural volume.",
+    subtitle: "Open spaces, natural light and refined materials create a sense of calm and comfort.",
+    description: "Open spaces, natural light and refined materials create a sense of calm and comfort. Double-height ceilings frame views of the tropical landscape while recessed linear cove lighting accentuates architectural volume.",
     details: [
-      "Natural stone flooring with brass inlay joints",
-      "Full-height acoustic glazing framing garden vistas",
-      "Low-profile bespoke furnishings tailored for quiet conversations"
+      "Sunken architectural conversation lounge with low-profile seating",
+      "Floor-to-ceiling minimal glazing framing infinity pool reflections",
+      "Bespoke monolithic polished dark stone coffee table and slatted timber ceiling"
     ],
-    image: "/assets/images/interior/interior-living.webp",
-    fallbackImage: "/assets/images/interior/interior-living.jpg"
+    image: "/assets/images/interior/living-room.webp",
+    fallbackImage: "/assets/images/interior/living-room.jpg"
   },
   {
     id: "bedroom",
     number: "02 / 04",
-    title: "MASTER SUITE",
-    subtitle: "Sanctuary of Rest & Tactile Warmth",
-    description: "Conceived as an intimate sanctuary buffered from the outside world. Rich timber paneling, concealed climate registers, and gentle morning light filter through architectural louvers.",
+    title: "BEDROOM",
+    subtitle: "A private space designed for rest and tranquility.",
+    description: "A private space designed for rest and tranquility. Rich timber paneling, concealed climate registers, and gentle twilight filter through architectural glass walls.",
     details: [
-      "Fluted natural timber acoustic headboard wall",
-      "Concealed indirect perimeter illumination",
-      "Private walk-out terrace overlooking courtyard greenery"
+      "Fluted dark walnut acoustic headboard wall",
+      "Concealed perimeter warm LED cove lighting",
+      "Private walk-out cantilevered terrace overlooking courtyard greenery"
     ],
-    image: "/assets/images/interior/interior-bedroom.webp",
-    fallbackImage: "/assets/images/interior/interior-bedroom.jpg"
+    image: "/assets/images/interior/bedroom.webp",
+    fallbackImage: "/assets/images/interior/bedroom.jpg"
   },
   {
     id: "dining",
     number: "03 / 04",
-    title: "KITCHEN + DINING",
-    subtitle: "Purity of Material & Social Connection",
-    description: "A harmonious meeting of precision culinary functionality and sculptural dining elegance. Monolithic stone counters seamlessly integrate with concealed cabinetry and warm ambient lighting.",
+    title: "KITCHEN & DINING",
+    subtitle: "Where functionality meets elegance.",
+    description: "Where functionality meets elegance. A harmonious meeting of precision culinary functionality and sculptural dining elegance. Monolithic stone counters seamlessly integrate with concealed cabinetry.",
     details: [
-      "Seamless monolithic quartz and granite prep islands",
+      "Monolithic waterfall dark granite kitchen prep island",
       "Concealed architectural millwork with push-to-open flush hardware",
-      "Artisan dining pendant casting soft pools of ambient light"
+      "Slender linear designer dining pendant casting soft ambient illumination"
     ],
-    image: "/assets/images/interior/interior-dining.webp",
-    fallbackImage: "/assets/images/interior/interior-dining.jpg"
+    image: "/assets/images/interior/kitchen-dining.webp",
+    fallbackImage: "/assets/images/interior/kitchen-dining.jpg"
   },
   {
     id: "bathroom",
     number: "04 / 04",
-    title: "BATHROOM & SPA",
-    subtitle: "Tactile Silence & Restorative Water",
-    description: "A private wellness retreat composed of continuous natural stone, sunken soaking baths, and gentle skylight illumination designed to elevate daily restorative rituals.",
+    title: "BATHROOM",
+    subtitle: "Minimal, luxurious and thoughtfully designed.",
+    description: "Minimal, luxurious and thoughtfully designed. A private wellness retreat composed of continuous natural stone slabs, freestanding soaking baths, and gentle skylight illumination.",
     details: [
-      "Freestanding solid surface tub framed by frosted glass lightwells",
-      "Rainfall sensory showers integrated flush into stone ceilings",
-      "Brushed gunmetal and bronze tactile fixtures"
+      "Freestanding sculptural oval stone tub centered on river pebble bed",
+      "Floor-to-ceiling glass looking into private tropical courtyard lightwell",
+      "Brushed gunmetal floor-mounted fixtures with rainfall sensory shower"
     ],
-    image: "/assets/images/interior/interior-bath.webp",
-    fallbackImage: "/assets/images/interior/interior-bath.jpg"
+    image: "/assets/images/interior/bathroom.webp",
+    fallbackImage: "/assets/images/interior/bathroom.jpg"
   }
 ];

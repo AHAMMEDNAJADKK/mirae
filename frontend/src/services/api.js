@@ -3,13 +3,25 @@ import { materialsData } from '../data/materialsData';
 import { roomsData } from '../data/roomsData';
 
 /**
+ * Base API URL Normalization:
+ * - If VITE_API_URL is "https://mirae-api.onrender.com", resolves to "https://mirae-api.onrender.com/api"
+ * - If VITE_API_URL is "https://mirae-api.onrender.com/api", resolves to "https://mirae-api.onrender.com/api"
+ * - If VITE_API_URL is unset, defaults to "/api" (which proxies to localhost:5000 in dev via vite.config.js)
+ * Completely eliminates any chance of double /api/api pathing.
+ */
+const RAW_API_URL = (import.meta.env.VITE_API_URL || '').trim();
+const API_BASE = RAW_API_URL
+  ? RAW_API_URL.replace(/\/+$/, '').replace(/\/api$/, '') + '/api'
+  : '/api';
+
+/**
  * Centralized API Service for MIRAE Architecture
- * Queries the Express backend, with automatic graceful fallback to offline brochure data.
+ * Queries the Express backend on Render or Localhost, with automatic graceful fallback to offline brochure data.
  */
 export const api = {
   async getHealth() {
     try {
-      const res = await fetch('/api/health');
+      const res = await fetch(`${API_BASE}/health`);
       if (!res.ok) throw new Error('Health check failed');
       return await res.json();
     } catch (err) {
@@ -20,7 +32,7 @@ export const api = {
 
   async getProjects() {
     try {
-      const res = await fetch('/api/projects');
+      const res = await fetch(`${API_BASE}/projects`);
       if (!res.ok) throw new Error('Failed to fetch projects');
       const json = await res.json();
       return json.data || projectsData;
@@ -32,7 +44,7 @@ export const api = {
 
   async getMaterials() {
     try {
-      const res = await fetch('/api/materials');
+      const res = await fetch(`${API_BASE}/materials`);
       if (!res.ok) throw new Error('Failed to fetch materials');
       const json = await res.json();
       return json.data || materialsData;
@@ -44,7 +56,7 @@ export const api = {
 
   async getRooms() {
     try {
-      const res = await fetch('/api/rooms');
+      const res = await fetch(`${API_BASE}/rooms`);
       if (!res.ok) throw new Error('Failed to fetch rooms');
       const json = await res.json();
       return json.data || roomsData;
@@ -56,7 +68,7 @@ export const api = {
 
   async submitInquiry(payload) {
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(`${API_BASE}/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -77,3 +89,4 @@ export const api = {
     }
   }
 };
+

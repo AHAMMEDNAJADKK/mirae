@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production builds
+dist/
+frontend/dist/
+
+# Environment files and credentials (CRITICAL)
+.env
+.env.*
+.env.local
+.env.production
+!.env.example
+backend/.env
+frontend/.env
+
+# Vite / Cache
+.vite/
+frontend/.vite/
+
+# Logs
+*.log
+npm-debug.log*
+
+# System
+.DS_Store
+Thumbs.db

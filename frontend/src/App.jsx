@@ -4,6 +4,7 @@ import Preloader from './components/common/Preloader';
 import Navbar from './components/navigation/Navbar';
 import FullscreenMenu from './components/navigation/FullscreenMenu';
 import HeroExperience from './components/hero/HeroExperience';
+import ExteriorLayers from './components/exterior/ExteriorLayers';
 import InteriorJourney from './components/interior/InteriorJourney';
 import MaterialsSection from './components/materials/MaterialsSection';
 import ProjectsSection from './components/projects/ProjectsSection';
@@ -28,7 +29,7 @@ export default function App() {
       <CustomCursor />
       <ScrollProgress />
 
-      {/* Minimal Architectural Navbar */}
+      {/* Minimal Architectural Navbar (Matching Reference) */}
       <Navbar onOpenMenu={() => setIsMenuOpen(true)} />
 
       {/* Fullscreen Mobile / Desktop Overlay Navigation */}
@@ -37,24 +38,27 @@ export default function App() {
         onClose={() => setIsMenuOpen(false)} 
       />
 
-      {/* Continuous Architectural Cinematic Flow */}
+      {/* Continuous Architectural Cinematic Journey (Sections 01 through 07) */}
       <main className="w-full">
-        {/* 01 Hero Drone View -> 02 Camera Approach -> 03 Exterior Reveal -> 04 Entrance Threshold */}
+        {/* 01. Hero View (Drone Shot) & 02. Transition — Closer View (The MIRAE Signature) */}
         <HeroExperience />
 
-        {/* 05 Interior Spaces (Living, Bedroom, Dining, Bathroom) */}
+        {/* 03. Exterior Layers (Scrolling Cutaway Anatomical Sequence) */}
+        <ExteriorLayers />
+
+        {/* 04. Interior Rooms (Large Featured Display + 3 Supporting Cards) */}
         <InteriorJourney />
 
-        {/* 06 Tactile Materials & Craftsmanship */}
+        {/* 05. Project Details / Materials (Crafted with Timeless Materials & Swatches) */}
         <MaterialsSection />
 
-        {/* 07 Selected Works (Authentic Brochure Portfolio) */}
+        {/* Selected Works Portfolio */}
         <ProjectsSection />
 
-        {/* 08 The MIRAE Signature (Brand Philosophy) */}
+        {/* 06. Brand Story / About (More than buildings. We create experiences.) */}
         <BrandStory />
 
-        {/* 09 Closing Contact & Studio Coordinates */}
+        {/* 07. Footer / Contact (MIRAE brandmark, Design is thinking made visual, Coordinates) */}
         <ContactSection />
       </main>
     </div>

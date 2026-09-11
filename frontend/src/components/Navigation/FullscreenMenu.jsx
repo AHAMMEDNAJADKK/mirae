@@ -77,13 +77,13 @@ export default function FullscreenMenu({ isOpen, onClose }) {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 my-auto py-8">
         <div className="md:col-span-8 flex flex-col space-y-4 sm:space-y-6">
           {[
-            { label: '01 / DRONE & JOURNEY', target: 'journey' },
-            { label: '02 / EXTERIOR SPACES', target: 'exterior' },
-            { label: '03 / INTERIOR SANCTUARY', target: 'interior' },
-            { label: '04 / TACTILE MATERIALS', target: 'materials' },
+            { label: '01 / HOME & DRONE VIEW', target: 'hero' },
+            { label: '02 / EXTERIOR LAYERS', target: 'exterior-layers' },
+            { label: '03 / INTERIOR ROOMS', target: 'interior' },
+            { label: '04 / TIMELESS MATERIALS', target: 'materials' },
             { label: '05 / SELECTED PORTFOLIO', target: 'projects' },
-            { label: '06 / THE SIGNATURE', target: 'philosophy' },
-            { label: '07 / INITIATE CONTACT', target: 'contact' },
+            { label: '06 / BRAND STORY', target: 'about' },
+            { label: '07 / CONTACT & STUDIO', target: 'contact' },
           ].map((item, idx) => (
             <button
               key={idx}

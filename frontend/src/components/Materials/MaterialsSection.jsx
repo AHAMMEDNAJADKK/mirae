@@ -1,102 +1,103 @@
 import React, { useState } from 'react';
-import { materialsData } from '../../data/materialsData';
-import { Layers } from 'lucide-react';
+import { materialsOverview, materialsData } from '../../data/materialsData';
 
 export default function MaterialsSection() {
-  const [selectedMaterial, setSelectedMaterial] = useState(materialsData[0]);
+  const [activeMaterial, setActiveMaterial] = useState(materialsData[0]);
 
   return (
-    <section id="materials" className="relative w-full bg-[#0a0a0a] py-32 px-6 sm:px-12 md:px-20 text-[#f4f3ef] border-t border-white/[0.06]">
+    <section 
+      id="materials" 
+      className="relative w-full bg-[#0a0a0a] text-[#f4f3ef] py-16 sm:py-24 px-6 sm:px-12 md:px-16 lg:px-20 border-t border-white/[0.08]"
+    >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 border-b border-white/[0.08] pb-10">
-          <div>
-            <div className="flex items-center space-x-3 text-xs font-mono-subtle text-subtle uppercase mb-4 tracking-[0.3em]">
-              <Layers className="w-3.5 h-3.5 text-white/70" />
-              <span>HONEST TECTONICS & MATERIALITY</span>
-            </div>
-            <h2 className="font-architectural text-3xl sm:text-5xl md:text-6xl font-light tracking-wide text-white uppercase">
-              MATERIALS & CRAFT
-            </h2>
+        {/* Section Label */}
+        <div className="flex items-center justify-between mb-8 sm:mb-12">
+          <span className="text-xs font-mono-subtle text-white/50 tracking-[0.3em] uppercase">
+            05. PROJECT DETAILS / MATERIALS
+          </span>
+          <div className="hidden sm:block text-xs font-mono-subtle text-white/40">
+            TECTONIC HONESTY
           </div>
-          <p className="text-sm font-light text-subtle max-w-md mt-6 md:mt-0 leading-relaxed">
-            Quiet luxury is rooted in enduring craftsmanship, raw authenticity, and materials that weather with dignity over generations.
-          </p>
         </div>
 
-        {/* Interactive Material Selector Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 sm:gap-4 mb-12">
-          {materialsData.map((mat) => (
-            <button
-              key={mat.id}
-              onClick={() => setSelectedMaterial(mat)}
-              className={`text-left p-4 sm:p-6 border transition-all duration-300 ${
-                selectedMaterial.id === mat.id
-                  ? 'border-white bg-[#161616]'
-                  : 'border-white/[0.08] hover:border-white/30 bg-[#0d0d0d]'
-              }`}
-            >
-              <span className="text-xs font-mono-subtle text-subtle block mb-2">
-                {mat.num}
-              </span>
-              <span className="font-architectural text-sm sm:text-base font-light tracking-wider text-white block">
-                {mat.name.split(' ')[0]}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Main Material Detail Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-[#0d0d0d] border border-white/[0.08] p-6 sm:p-12">
-          {/* Large Material Imagery */}
-          <div className="lg:col-span-7 relative h-[380px] sm:h-[480px] md:h-[540px] overflow-hidden border border-white/[0.06]">
+        {/* Two-Column Editorial Composition (Matching Panel 05 Reference) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          
+          {/* Left: Monumental Architecture Feature Photo (Concrete & Shadow) */}
+          <div className="lg:col-span-6 relative aspect-[3/4] sm:aspect-[4/5] w-full overflow-hidden bg-black/60 border border-white/[0.08]">
             <img 
-              src={selectedMaterial.image} 
-              onError={(e) => { e.target.src = '/assets/images/material-stone.jpg'; }}
-              alt={selectedMaterial.name}
-              className="w-full h-full object-cover object-center transition-transform duration-1000 hover:scale-105"
+              src={materialsOverview.featuredImage}
+              onError={(e) => { e.target.src = materialsOverview.fallbackImage; }}
+              alt="MIRAE Material Architecture Detail"
+              className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
               loading="lazy"
-              decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-6 left-6 text-xs font-mono-subtle text-white/80">
-              SPECIFICATION: {selectedMaterial.num} / {materialsData.length}
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
           </div>
 
-          {/* Material Editorial Story & Properties */}
-          <div className="lg:col-span-5 space-y-8">
+          {/* Right: Editorial Narrative & Material Swatches */}
+          <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-8 text-left">
             <div>
-              <span className="text-xs font-mono-subtle text-subtle tracking-[0.25em] block uppercase mb-2">
-                {selectedMaterial.subtitle}
-              </span>
-              <h3 className="font-architectural text-2xl sm:text-4xl text-white font-light uppercase tracking-wider mb-4">
-                {selectedMaterial.name}
-              </h3>
-              <p className="text-sm sm:text-base font-light text-[#c0c0c0] leading-relaxed">
-                {selectedMaterial.description}
+              <h2 className="font-architectural text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-[0.06em] uppercase mb-6 leading-tight">
+                {materialsOverview.title}
+              </h2>
+              <p className="text-xs sm:text-sm font-light text-[#b0b0b0] leading-relaxed max-w-lg mb-8">
+                {materialsOverview.description}
               </p>
-            </div>
-
-            <div className="space-y-3 pt-6 border-t border-white/[0.08]">
-              <span className="text-xs font-mono-subtle text-subtle uppercase tracking-widest block">
-                MATERIAL INTEGRATION ATTRIBUTES
-              </span>
-              {selectedMaterial.properties.map((prop, idx) => (
-                <div key={idx} className="flex items-center space-x-3 text-sm text-[#d4d4d4]">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
-                  <span>{prop}</span>
+              
+              {/* Active Material Detail Card */}
+              <div className="bg-[#111111] p-5 sm:p-6 border border-white/[0.08] mb-8">
+                <div className="flex items-center space-x-3 mb-2">
+                  <span className="text-[11px] font-mono-subtle text-white/50">{activeMaterial.num}</span>
+                  <span className="text-sm font-architectural text-white uppercase tracking-wider">{activeMaterial.name}</span>
                 </div>
-              ))}
+                <p className="text-xs text-[#9c9c9c] leading-relaxed">
+                  {activeMaterial.description}
+                </p>
+              </div>
             </div>
 
-            <div className="pt-4">
-              <span className="text-xs font-mono-subtle text-white/50 block">
-                MIRAE ARCHITECTURAL MATERIAL STANDARDS • CRAFTED WITHOUT ARTIFICE
+            {/* Bottom 4 Swatches Row (Panel 05 Reference) */}
+            <div>
+              <span className="text-[10px] font-mono-subtle text-white/40 tracking-[0.25em] uppercase block mb-3">
+                SELECT MATERIAL SWATCH
               </span>
+              <div className="grid grid-cols-4 gap-3 sm:gap-4">
+                {materialsData.map((mat) => {
+                  const isSelected = activeMaterial.id === mat.id;
+                  return (
+                    <button
+                      key={mat.id}
+                      onClick={() => setActiveMaterial(mat)}
+                      className={`group flex flex-col items-center text-center transition-all duration-300 focus:outline-none ${
+                        isSelected ? 'scale-105' : 'opacity-70 hover:opacity-100'
+                      }`}
+                    >
+                      <div className={`relative aspect-square w-full overflow-hidden border transition-all duration-300 mb-2 ${
+                        isSelected ? 'border-white shadow-[0_0_12px_rgba(255,255,255,0.2)]' : 'border-white/10 group-hover:border-white/40'
+                      }`}>
+                        <img 
+                          src={mat.image}
+                          onError={(e) => { e.target.src = mat.fallbackImage; }}
+                          alt={mat.name}
+                          className="w-full h-full object-cover object-center"
+                          loading="lazy"
+                        />
+                      </div>
+                      <span className={`text-[11px] font-mono-subtle tracking-wider uppercase transition-colors ${
+                        isSelected ? 'text-white font-medium' : 'text-subtle'
+                      }`}>
+                        {mat.name}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
+
           </div>
+
         </div>
 
       </div>

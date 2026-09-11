@@ -38,7 +38,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             <div className="aspect-[16/10] overflow-hidden border border-white/[0.08]">
               <img 
                 src={project.image} 
-                onError={(e) => { e.target.src = '/assets/images/project-resort-01.jpg'; }}
+                onError={(e) => { e.target.src = '/assets/images/projects/project-resort-01.jpg'; }}
                 alt={project.title}
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -50,10 +50,10 @@ export default function ProjectDetailModal({ project, onClose }) {
             {project.gallery && project.gallery.length > 1 && (
               <div className="grid grid-cols-2 gap-4">
                 {project.gallery.slice(1).map((img, i) => (
-                  <div key={i} className="aspect-[4/3] overflow-hidden border border-white/[0.06]">
+                  <div key={i} className="aspect-[16/10] overflow-hidden border border-white/[0.06]">
                     <img 
                       src={img} 
-                      onError={(e) => { e.target.src = '/assets/images/project-resort-02.jpg'; }}
+                      onError={(e) => { e.target.src = '/assets/images/projects/project-resort-02.jpg'; }}
                       alt={`${project.title} detail ${i+1}`}
                       className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                       loading="lazy"
@@ -80,7 +80,32 @@ export default function ProjectDetailModal({ project, onClose }) {
                 </p>
               )}
 
-              {/* Architectural Features */}
+              {/* Architectural Spec Sheet */}
+              <div className="pt-6 border-t border-white/[0.08]">
+                <h4 className="text-xs font-mono-subtle text-subtle tracking-widest uppercase mb-3">
+                  PROJECT SPECIFICATIONS
+                </h4>
+                <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-xs font-mono-subtle">
+                  <div>
+                    <span className="text-[#777] block text-[10px] uppercase">YEAR</span>
+                    <span className="text-white">{project.year || '2024'}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#777] block text-[10px] uppercase">LOCATION</span>
+                    <span className="text-white">{project.location || 'Kerala, India'}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#777] block text-[10px] uppercase">TOTAL AREA</span>
+                    <span className="text-white">{project.area || 'Bespoke Scale'}</span>
+                  </div>
+                  <div>
+                    <span className="text-[#777] block text-[10px] uppercase">SCOPE</span>
+                    <span className="text-white truncate block">{project.scope || 'Architecture'}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Architectural Signatures */}
               <div className="pt-6 border-t border-white/[0.08]">
                 <h4 className="text-xs font-mono-subtle text-subtle tracking-widest uppercase mb-4">
                   ARCHITECTURAL SIGNATURES

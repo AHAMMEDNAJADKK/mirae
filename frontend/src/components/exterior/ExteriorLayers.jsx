@@ -1,0 +1,207 @@
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { preloadSingleImage } from '../../utils/imagePreloader';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const layersData = [
+  {
+    id: 'roof',
+    title: 'Roof Level',
+    subtitle: 'Overhanging cantilevered concrete slabs & warm soffit illumination',
+    image: '/assets/images/exterior/exterior-roof.webp',
+    fallbackImage: '/assets/images/exterior/exterior-roof.jpg'
+  },
+  {
+    id: 'upper',
+    title: 'Upper Floor',
+    subtitle: 'Cantilevered master suites & seamless frameless glass balustrades',
+    image: '/assets/images/exterior/exterior-upper-floor.webp',
+    fallbackImage: '/assets/images/exterior/exterior-upper-floor.jpg'
+  },
+  {
+    id: 'entrance',
+    title: 'Entrance',
+    subtitle: 'Floating stone steps, pivot glass entry & board-formed concrete portals',
+    image: '/assets/images/exterior/exterior-entrance.webp',
+    fallbackImage: '/assets/images/exterior/exterior-entrance.jpg'
+  },
+  {
+    id: 'pool',
+    title: 'Landscape & Pool',
+    subtitle: 'Sunken firepit conversation lounge & crystalline infinity reflection pool',
+    image: '/assets/images/exterior/exterior-pool.webp',
+    fallbackImage: '/assets/images/exterior/exterior-pool.jpg'
+  }
+];
+
+export default function ExteriorLayers() {
+  const containerRef = useRef(null);
+  const layerRefs = useRef([]);
+  const [activeLayerIndex, setActiveLayerIndex] = useState(0);
+
+  useEffect(() => {
+    // Pre-warm exterior layer images
+    layersData.forEach((layer) => preloadSingleImage(layer.image));
+  }, []);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const total = layersData.length;
+
+      // Master ScrollTrigger tracking progress
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: 'top top',
+        end: 'bottom bottom',
+        scrub: 0.8,
+        onUpdate: (self) => {
+          const idx = Math.min(total - 1, Math.floor(self.progress * total));
+          setActiveLayerIndex(idx);
+        }
+      });
+
+      // Layer Transition Timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 1.0
+        }
+      });
+
+      for (let i = 1; i < total; i++) {
+        const prev = layerRefs.current[i - 1];
+        const curr = layerRefs.current[i];
+        const step = i * 2;
+
+        if (prev && curr) {
+          tl.to(prev, {
+            opacity: 0,
+            scale: 0.96,
+            ease: 'power2.inOut',
+            duration: 1.2
+          }, step - 0.5)
+          .fromTo(curr, {
+            opacity: 0,
+            scale: 1.1
+          }, {
+            opacity: 1,
+            scale: 1.0,
+            ease: 'power2.out',
+            duration: 1.2
+          }, step - 0.4);
+        }
+      }
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section 
+      id="exterior-layers" 
+      ref={containerRef} 
+      className="relative w-full h-[320vh] bg-[#080808]"
+    >
+      {/* Sticky Viewport Scene */}
+      <div className="sticky top-0 w-full h-screen h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-between select-none">
+        
+        {/* Background Visual Layers */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden">
+          {layersData.map((layer, idx) => (
+            <div
+              key={layer.id}
+              ref={(el) => (layerRefs.current[idx] = el)}
+              className={`absolute inset-0 w-full h-full will-change-transform ${
+                idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-10'
+              }`}
+            >
+              <img 
+                src={layer.image}
+                onError={(e) => { e.target.src = layer.fallbackImage; }}
+                alt={layer.title}
+                className="w-full h-full object-cover object-center"
+                loading={idx === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-black/80 pointer-events-none" />
+              <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+            </div>
+          ))}
+          <div className="absolute inset-0 architectural-vignette pointer-events-none" />
+        </div>
+
+        {/* Top Header HUD */}
+        <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 pt-6 sm:pt-10 flex items-center justify-between text-xs font-mono-subtle">
+          <div className="flex items-center space-x-3">
+            <span className="text-white/50 tracking-[0.3em] uppercase">03. EXTERIOR LAYERS (SCROLLING)</span>
+          </div>
+          <div className="text-white/40 tracking-widest hidden sm:block">
+            ARCHITECTURAL ANATOMY • LEVEL 0{activeLayerIndex + 1}
+          </div>
+        </div>
+
+        {/* Center / Right Layer Navigation Indicators */}
+        <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          
+          {/* Left: Active Level Description */}
+          <div className="max-w-md bg-black/75 backdrop-blur-md p-6 sm:p-8 border-l-2 border-white/70">
+            <span className="text-[10px] font-mono-subtle text-white/50 tracking-[0.3em] uppercase block mb-2">
+              LEVEL 0{activeLayerIndex + 1} / 04
+            </span>
+            <h3 className="font-architectural text-2xl sm:text-4xl text-white font-light tracking-[0.08em] uppercase mb-3">
+              {layersData[activeLayerIndex].title}
+            </h3>
+            <p className="text-xs sm:text-sm font-light text-[#c8c8c8] leading-relaxed">
+              {layersData[activeLayerIndex].subtitle}
+            </p>
+          </div>
+
+          {/* Right: Architectural Cutaway Callout Indicators (Matching Reference) */}
+          <div className="flex flex-col space-y-4 sm:space-y-6 bg-black/60 backdrop-blur-md p-5 sm:p-8 border border-white/[0.08]">
+            {layersData.map((layer, idx) => {
+              const isActive = activeLayerIndex === idx;
+              return (
+                <div 
+                  key={layer.id}
+                  className={`flex items-center space-x-4 transition-all duration-300 ${
+                    isActive ? 'opacity-100 translate-x-1' : 'opacity-40 hover:opacity-70'
+                  }`}
+                >
+                  {/* Indicator Dot & Line */}
+                  <div className="flex items-center space-x-2">
+                    <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      isActive ? 'bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)] scale-125' : 'bg-white/40'
+                    }`} />
+                    <div className={`h-[1px] transition-all duration-300 ${
+                      isActive ? 'w-8 bg-white' : 'w-4 bg-white/20'
+                    }`} />
+                  </div>
+
+                  {/* Level Label */}
+                  <span className={`text-xs sm:text-sm font-architectural tracking-wider uppercase ${
+                    isActive ? 'text-white font-medium' : 'text-[#a0a0a0]'
+                  }`}>
+                    {layer.title}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+        </div>
+
+        {/* Bottom Bar Info */}
+        <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 pb-6 sm:pb-8 flex justify-between items-center text-[10px] sm:text-xs font-mono-subtle text-white/40">
+          <span>PROGRESSIVE TECTONIC SEQUENCE</span>
+          <span>{layersData[activeLayerIndex].title.toUpperCase()}</span>
+        </div>
+
+      </div>
+    </section>
+  );
+}

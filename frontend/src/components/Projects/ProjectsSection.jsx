@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { projectsData } from '../../data/projectsData';
-import { ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import ProjectDetailModal from './ProjectDetailModal';
 
+const FILTERS = ['All', 'Residential', 'Hospitality', 'Commercial', 'Interior'];
+
 export default function ProjectsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const current = projectsData[currentIndex];
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % projectsData.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + projectsData.length) % projectsData.length);
-  };
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'All') return projectsData;
+    return projectsData.filter((p) => p.filterCategories && p.filterCategories.includes(activeFilter));
+  }, [activeFilter]);
 
   return (
     <section id="projects" className="relative w-full bg-[#080808] py-32 px-6 sm:px-12 md:px-20 text-[#f4f3ef] border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto">
         
         {/* Editorial Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 border-b border-white/[0.08] pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-white/[0.08] pb-8">
           <div>
             <span className="text-xs font-mono-subtle text-subtle uppercase mb-3 block tracking-[0.3em]">
               SELECTED WORKS • ARCHIVE
@@ -31,115 +28,98 @@ export default function ProjectsSection() {
               BROCHURE PORTFOLIO
             </h2>
           </div>
-          <div className="flex items-center space-x-6 mt-6 md:mt-0">
-            <span className="font-mono text-sm text-subtle">
-              {String(currentIndex + 1).padStart(2, '0')} / {String(projectsData.length).padStart(2, '0')}
-            </span>
-            <div className="flex space-x-2">
-              <button 
-                onClick={handlePrev}
-                aria-label="Previous project"
-                className="w-12 h-12 border border-white/20 hover:border-white flex items-center justify-center text-white transition-colors"
-              >
-                <ArrowLeft className="w-4 h-4" />
-              </button>
-              <button 
-                onClick={handleNext}
-                aria-label="Next project"
-                className="w-12 h-12 border border-white/20 hover:border-white flex items-center justify-center text-white transition-colors"
-              >
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
+
+          {/* Project Counter */}
+          <div className="mt-6 md:mt-0 text-xs font-mono-subtle text-subtle tracking-widest uppercase">
+            <span>SHOWING {filteredProjects.length} OF {projectsData.length} MONOGRAPHS</span>
           </div>
         </div>
 
-        {/* Active Project Presentation */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-16">
-          
-          {/* Main Architectural Image with Click to Zoom */}
-          <div 
-            onClick={() => setSelectedProject(current)}
-            className="lg:col-span-8 relative aspect-[16/10] overflow-hidden group cursor-pointer border border-white/[0.06]"
-          >
-            <img 
-              src={current.image} 
-              onError={(e) => { e.target.src = '/assets/images/project-resort-01.jpg'; }}
-              alt={current.title}
-              key={current.id}
-              className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
-            
-            {/* Hover overlay hint */}
-            <div className="absolute bottom-6 right-6 hidden sm:flex items-center space-x-2 bg-black/60 backdrop-blur-sm px-4 py-2 text-xs font-mono-subtle text-white border border-white/20 group-hover:border-white transition-all">
-              <span>EXPLORE PROJECT GALLERY</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </div>
-
-            <div className="absolute top-6 left-6 text-xs font-mono-subtle text-white/70 bg-black/50 backdrop-blur-sm px-3 py-1">
-              PROJECT {current.num}
-            </div>
-          </div>
-
-          {/* Project Details */}
-          <div className="lg:col-span-4 space-y-6">
-            <span className="text-xs font-mono-subtle text-white/50 tracking-widest uppercase block">
-              {current.category}
-            </span>
-            <h3 className="font-architectural text-3xl sm:text-4xl md:text-5xl font-light text-white uppercase tracking-wide">
-              {current.title}
-            </h3>
-            <p className="font-architectural text-lg text-[#dedede] font-light italic">
-              {current.subtitle}
-            </p>
-            <p className="text-sm font-light text-[#b8b8b8] leading-relaxed">
-              {current.description}
-            </p>
-
-            <div className="pt-4 border-t border-white/[0.08]">
+        {/* Filter Navigation Tabs */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-12">
+          {FILTERS.map((filter) => {
+            const isActive = activeFilter === filter;
+            return (
               <button
-                onClick={() => setSelectedProject(current)}
-                className="inline-flex items-center space-x-3 text-xs font-mono-subtle text-white hover:text-white border-b border-white pb-1 tracking-widest uppercase transition-all hover:pr-2"
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-5 py-2 text-xs font-mono-subtle tracking-widest uppercase transition-all duration-300 border ${
+                  isActive
+                    ? 'border-white bg-white text-black font-medium'
+                    : 'border-white/10 text-white/60 hover:text-white hover:border-white/30 bg-transparent'
+                }`}
               >
-                <span>VIEW COMPLETE BROCHURE STUDY</span>
-                <ArrowUpRight className="w-4 h-4" />
+                {filter}
               </button>
-            </div>
-          </div>
+            );
+          })}
         </div>
 
-        {/* Project Thumbnail Navigation Strip */}
-        <div className="grid grid-cols-4 sm:grid-cols-8 gap-2 pt-6 border-t border-white/[0.08]">
-          {projectsData.map((p, idx) => (
-            <button
-              key={p.id}
-              onClick={() => setCurrentIndex(idx)}
-              className={`text-left p-2 border transition-all duration-300 ${
-                currentIndex === idx
-                  ? 'border-white bg-[#1a1a1a]'
-                  : 'border-white/[0.08] hover:border-white/30 bg-[#0c0c0c] opacity-60 hover:opacity-100'
-              }`}
+        {/* Responsive Architectural Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {filteredProjects.map((project) => (
+            <div
+              key={project.id}
+              onClick={() => setSelectedProject(project)}
+              className="group cursor-pointer border border-white/[0.08] bg-[#0f0f0f] hover:border-white/30 transition-all duration-500 overflow-hidden flex flex-col"
             >
-              <div className="aspect-[4/3] overflow-hidden mb-2">
-                <img 
-                  src={p.image} 
-                  onError={(e) => { e.target.src = '/assets/images/project-resort-01.jpg'; }}
-                  alt={p.title} 
-                  className="w-full h-full object-cover" 
+              {/* 16:10 Standard Aspect Ratio Image Container */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-black/40">
+                <img
+                  src={project.image}
+                  onError={(e) => {
+                    e.target.src = project.fallbackImage || '/assets/images/projects/project-resort-01.jpg';
+                  }}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
                   loading="lazy"
                   decoding="async"
                 />
+                
+                {/* Vignette Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/10 opacity-70 group-hover:opacity-50 transition-opacity duration-500" />
+
+                {/* Top Metadata Badges */}
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-xs font-mono-subtle">
+                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 text-white/80 border border-white/10">
+                    PROJECT {project.num}
+                  </span>
+                  <span className="bg-black/60 backdrop-blur-md px-2.5 py-1 text-white/60 border border-white/10">
+                    {project.year}
+                  </span>
+                </div>
+
+                {/* Hover Action Badge */}
+                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:flex items-center space-x-1.5 bg-white text-black px-3 py-1.5 text-[11px] font-mono-subtle tracking-wider uppercase">
+                  <span>VIEW STUDY</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </div>
               </div>
-              <span className="text-[10px] font-mono-subtle text-subtle block">
-                {p.num}
-              </span>
-              <span className="font-architectural text-xs text-white block truncate">
-                {p.title}
-              </span>
-            </button>
+
+              {/* Card Editorial Info */}
+              <div className="p-6 flex flex-col justify-between flex-grow">
+                <div>
+                  <div className="flex items-center justify-between text-xs font-mono-subtle text-subtle uppercase tracking-widest mb-2">
+                    <span>{project.category}</span>
+                    <span>{project.location}</span>
+                  </div>
+                  <h3 className="font-architectural text-2xl sm:text-3xl font-light text-white uppercase tracking-wide group-hover:text-[#f0ece1] transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm font-light text-[#9e9e9e] line-clamp-2 mt-2 leading-relaxed">
+                    {project.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 mt-6 border-t border-white/[0.06] flex items-center justify-between text-xs font-mono-subtle text-white/70 group-hover:text-white transition-colors">
+                  <span className="tracking-widest uppercase">AREA: {project.area}</span>
+                  <div className="flex items-center space-x-1">
+                    <span className="tracking-widest uppercase text-[11px]">DETAILS</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 
