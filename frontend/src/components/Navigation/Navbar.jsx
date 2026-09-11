@@ -58,6 +58,12 @@ export default function Navbar({ onOpenMenu }) {
               Projects
             </button>
             <button 
+              onClick={() => scrollToSection('studio')}
+              className="hover:text-white transition-colors tracking-widest uppercase"
+            >
+              Atelier
+            </button>
+            <button 
               onClick={() => scrollToSection('materials')}
               className="hover:text-white transition-colors tracking-widest uppercase"
             >

@@ -82,8 +82,9 @@ export default function FullscreenMenu({ isOpen, onClose }) {
             { label: '03 / INTERIOR ROOMS', target: 'interior' },
             { label: '04 / TIMELESS MATERIALS', target: 'materials' },
             { label: '05 / SELECTED PORTFOLIO', target: 'projects' },
-            { label: '06 / BRAND STORY', target: 'about' },
-            { label: '07 / CONTACT & STUDIO', target: 'contact' },
+            { label: '06 / THE ATELIER & STUDIO', target: 'studio' },
+            { label: '07 / BRAND STORY', target: 'about' },
+            { label: '08 / CONTACT & COMMISSIONS', target: 'contact' },
           ].map((item, idx) => (
             <button
               key={idx}

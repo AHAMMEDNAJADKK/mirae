@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { projectsData } from '../../data/projectsData';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Download, FileText } from 'lucide-react';
+
 import ProjectDetailModal from './ProjectDetailModal';
 
 const FILTERS = ['All', 'Residential', 'Hospitality', 'Commercial', 'Interior'];
@@ -121,6 +122,61 @@ export default function ProjectsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Architectural Monograph & Brochure Compendium Card */}
+        <div className="mt-16 sm:mt-20 border border-white/[0.12] bg-gradient-to-b from-[#121212] to-[#0a0a0a] p-8 sm:p-12 md:p-14 relative overflow-hidden">
+          {/* Subtle architectural grid pattern in background */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none" />
+          
+          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
+            <div className="max-w-2xl">
+              <div className="flex items-center space-x-2 text-xs font-mono-subtle text-white/50 tracking-[0.3em] uppercase mb-3">
+                <FileText className="w-3.5 h-3.5 text-white/60" />
+                <span>OFFICIAL MONOGRAPH • PUBLICATION</span>
+              </div>
+              <h3 className="font-architectural text-2xl sm:text-4xl lg:text-5xl font-light text-white uppercase tracking-wide leading-tight">
+                MIRAE — ARCHITECTURE PORTFOLIO
+              </h3>
+              <p className="text-xs sm:text-sm font-light text-[#9e9e9e] mt-3 sm:mt-4 leading-relaxed max-w-xl">
+                The comprehensive architectural compendium containing full portfolio monographs, detailed spatial plates, technical specifications, and masterplanning studies across our landmark projects.
+              </p>
+              
+              {/* Monograph Details Specs */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 mt-6 text-xs font-mono-subtle text-white/50">
+                <span className="flex items-center space-x-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>COMPLETE 22-PAGE EDITION</span>
+                </span>
+                <span>•</span>
+                <span>ORIGINAL PDF DOCUMENT</span>
+                <span>•</span>
+                <span>PMR INFRA LLP ARCHIVE</span>
+              </div>
+            </div>
+
+            {/* Action CTAs */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0">
+              <a
+                href="/brochure/mirae-brochure.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center space-x-2.5 px-6 sm:px-8 py-3.5 text-xs font-mono-subtle tracking-[0.2em] uppercase border border-white/30 text-white hover:border-white hover:bg-white/5 transition-all duration-300"
+              >
+                <span>View Brochure</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="/brochure/mirae-brochure.pdf"
+                download="MIRAE-Architecture-Portfolio.pdf"
+                className="inline-flex items-center justify-center space-x-2.5 px-6 sm:px-8 py-3.5 text-xs font-mono-subtle tracking-[0.2em] uppercase bg-white text-black font-medium hover:bg-[#e6e4dd] transition-all duration-300 shadow-lg"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Brochure</span>
+              </a>
+            </div>
+          </div>
         </div>
 
       </div>
