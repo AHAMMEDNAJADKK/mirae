@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-surface: #121212;
+    --text-primary: #f4f3ef;
+    --text-muted: #8e8e8e;
+    --accent-border: rgba(255, 255, 255, 0.08);
+  }
+
+  html,
+  body,
+  #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    background-color: #0a0a0a;
+    color: #f4f3ef;
+  }
+
+  html {
+    font-family: 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Do NOT set scroll-behavior: smooth here to avoid fighting Lenis */
+  }
+
+  body {
+    /* overflow-x: clip avoids creating a scrolling context that breaks position: sticky */
+    overflow-x: clip;
+    position: relative;
+  }
+
+  /* Lenis recommended styling */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Custom subtle architectural scrollbar */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #262626;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444444;
+  }
+}
+
+/* Editorial Architectural Typography */
+.font-architectural {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.08em;
+}
+
+.font-editorial {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.font-mono-subtle {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+/* Subtle architectural vignetting & gradients */
+.architectural-vignette {
+  background: radial-gradient(circle at center, transparent 35%, rgba(10, 10, 10, 0.5) 80%, rgba(10, 10, 10, 0.92) 100%);
+}
+
+.editorial-mask {
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
