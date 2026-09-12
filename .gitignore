@@ -1,10 +1,10 @@
 # Dependencies
 node_modules/
-*/node_modules/
+**/node_modules/
 
 # Production builds
 dist/
-frontend/dist/
+**/dist/
 
 # Environment files and credentials (CRITICAL)
 .env
