@@ -24,15 +24,14 @@ export default function ContactSection() {
           </span>
         </div>
 
-        {/* Huge Architectural Brand Mark (Matching Panel 07 Reference) */}
-        <div className="w-full text-center my-6">
-          <h2 className="font-architectural text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] tracking-[0.25em] font-light text-white select-none leading-none">
-            MIRAE
-          </h2>
-          <div className="mt-3 text-xs sm:text-sm font-mono-subtle text-amber-400/90 tracking-[0.3em] uppercase">
-            MIRAE | arc (by PMR INFRA LLP)
-          </div>
-          <div className="mt-1 text-[11px] font-mono-subtle text-white/50 tracking-[0.25em] uppercase">
+        {/* Architectural Brand Mark */}
+        <div className="w-full text-center my-8 flex flex-col items-center justify-center">
+          <img 
+            src="/assets/images/mirae-logo.png" 
+            alt="MIRAE Arc Studio by PMR INFRA LLP" 
+            className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain filter invert brightness-125 mix-blend-screen mx-auto mb-4" 
+          />
+          <div className="text-xs sm:text-sm font-mono-subtle text-amber-400/90 tracking-[0.3em] uppercase">
             50+ Years Of Real Construction Expertise
           </div>
         </div>
