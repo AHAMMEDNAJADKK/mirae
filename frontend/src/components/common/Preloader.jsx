@@ -74,10 +74,12 @@ export default function Preloader({ onComplete }) {
           <span>EST. PMR INFRA</span>
         </div>
 
-        <div className="text-center my-auto">
-          <h1 className="font-architectural text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-[0.25em] font-light mb-4">
-            MIRAE
-          </h1>
+        <div className="text-center my-auto flex flex-col items-center justify-center">
+          <img 
+            src="/assets/images/mirae-logo.png" 
+            alt="MIRAE Arc Studio" 
+            className="h-12 sm:h-16 md:h-20 w-auto object-contain filter invert brightness-125 mix-blend-screen mb-4" 
+          />
           <p className="text-xs sm:text-sm tracking-[0.35em] text-subtle uppercase">
             Architecture Shaped By Experience
           </p>

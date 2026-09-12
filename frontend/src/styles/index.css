@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Pilcrow Global Typography System */
+@font-face {
+  font-family: 'Pilcrow';
+  src: local('Pilcrow'), local('Pilcrow Rounded'), local('Pilcrow Soft'), local('Pilcrow-Regular'), local('PilcrowRounded-Regular');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow';
+  src: local('Pilcrow Medium'), local('Pilcrow Rounded Medium'), local('Pilcrow Soft Medium'), local('Pilcrow-Medium'), local('PilcrowRounded-Medium');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow';
+  src: local('Pilcrow SemiBold'), local('Pilcrow Rounded SemiBold'), local('Pilcrow Soft SemiBold'), local('Pilcrow-SemiBold'), local('PilcrowRounded-SemiBold');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow';
+  src: local('Pilcrow Bold'), local('Pilcrow Rounded Bold'), local('Pilcrow Soft Bold'), local('Pilcrow-Bold'), local('PilcrowRounded-Bold');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --bg-primary: #0a0a0a;
@@ -9,6 +42,7 @@
     --text-primary: #f4f3ef;
     --text-muted: #8e8e8e;
     --accent-border: rgba(255, 255, 255, 0.08);
+    --font-pilcrow: 'Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
   html,
@@ -20,10 +54,11 @@
     min-height: 100%;
     background-color: #0a0a0a;
     color: #f4f3ef;
+    font-family: var(--font-pilcrow);
   }
 
   html {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-pilcrow);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,6 +69,7 @@
     /* overflow-x: clip avoids creating a scrolling context that breaks position: sticky */
     overflow-x: clip;
     position: relative;
+    font-family: var(--font-pilcrow);
   }
 
   /* Lenis recommended styling */
@@ -72,15 +108,15 @@
   }
 }
 
-/* Editorial Architectural Typography */
+/* Editorial Architectural Typography using Pilcrow */
 .font-architectural {
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.08em;
+  font-family: var(--font-pilcrow);
+  letter-spacing: 0.04em;
 }
 
 .font-editorial {
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.16em;
+  font-family: var(--font-pilcrow);
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
