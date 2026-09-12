@@ -29,6 +29,12 @@ export default function ContactSection() {
           <h2 className="font-architectural text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] tracking-[0.25em] font-light text-white select-none leading-none">
             MIRAE
           </h2>
+          <div className="mt-3 text-xs sm:text-sm font-mono-subtle text-amber-400/90 tracking-[0.3em] uppercase">
+            MIRAE | arc (by PMR INFRA LLP)
+          </div>
+          <div className="mt-1 text-[11px] font-mono-subtle text-white/50 tracking-[0.25em] uppercase">
+            50+ Years Of Real Construction Expertise
+          </div>
         </div>
 
         {/* Center Row: Editorial Statement (Left) and Contact Coordinates (Right) */}
@@ -47,7 +53,7 @@ export default function ContactSection() {
           <div className="md:col-span-6 flex flex-col sm:items-end space-y-4 text-xs font-mono-subtle text-[#c8c8c8]">
             <div className="flex items-center space-x-3">
               <Phone className="w-3.5 h-3.5 text-white/60" />
-              <a href="tel:+919388330033" className="hover:text-white transition-colors">
+              <a href="tel:+919388330033" className="hover:text-white transition-colors tracking-wider">
                 +91 9388330033
               </a>
             </div>
@@ -62,6 +68,10 @@ export default function ContactSection() {
             <div className="flex items-center space-x-3">
               <MapPin className="w-3.5 h-3.5 text-white/60" />
               <span>Malappuram, Kerala, India</span>
+            </div>
+
+            <div className="text-[10px] text-white/40 tracking-widest uppercase pt-1">
+              50+ Years Of Real Construction Expertise • PMR INFRA LLP
             </div>
           </div>
 
@@ -109,7 +119,7 @@ export default function ContactSection() {
 
         {/* Copyright / Infra Info */}
         <div className="pt-4 text-center sm:text-left text-[10px] font-mono-subtle text-white/30">
-          <span>© {new Date().getFullYear()} MIRAE ARC STUDIO BY PMR INFRA LLP. ALL RIGHTS RESERVED.</span>
+          <span>© {new Date().getFullYear()} MIRAE | arc (by PMR INFRA LLP). ALL RIGHTS RESERVED.</span>
         </div>
 
       </div>

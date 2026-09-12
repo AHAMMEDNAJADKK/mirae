@@ -8,29 +8,29 @@ gsap.registerPlugin(ScrollTrigger);
 const layersData = [
   {
     id: 'roof',
-    title: 'Roof Level',
-    subtitle: 'Overhanging cantilevered concrete slabs & warm soffit illumination',
+    title: 'Roof Level & Cantilevers',
+    subtitle: 'Sculptural terracotta pitched rooflines, overhanging eaves & deep shade buttress geometry',
     image: '/assets/images/exterior/exterior-roof.webp',
     fallbackImage: '/assets/images/exterior/exterior-roof.jpg'
   },
   {
     id: 'upper',
-    title: 'Upper Floor',
-    subtitle: 'Cantilevered master suites & seamless frameless glass balustrades',
+    title: 'Upper Floor & Louvers',
+    subtitle: 'Curvilinear architectural brise-soleil, cantilevered perimeter planters & warm interior glow',
     image: '/assets/images/exterior/exterior-upper-floor.webp',
     fallbackImage: '/assets/images/exterior/exterior-upper-floor.jpg'
   },
   {
     id: 'entrance',
-    title: 'Entrance',
-    subtitle: 'Floating stone steps, pivot glass entry & board-formed concrete portals',
+    title: 'Entrance & Arrival',
+    subtitle: 'Board-formed concrete portals, cantilevered teak soffits & floating entryway thresholds',
     image: '/assets/images/exterior/exterior-entrance.webp',
     fallbackImage: '/assets/images/exterior/exterior-entrance.jpg'
   },
   {
     id: 'pool',
-    title: 'Landscape & Pool',
-    subtitle: 'Sunken firepit conversation lounge & crystalline infinity reflection pool',
+    title: 'Landscape & Infinity Pool',
+    subtitle: 'Illuminated bamboo pavilion canopy, multi-tiered cascading pools & lush tropical flora',
     image: '/assets/images/exterior/exterior-pool.webp',
     fallbackImage: '/assets/images/exterior/exterior-pool.jpg'
   }

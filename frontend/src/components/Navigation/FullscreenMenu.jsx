@@ -41,7 +41,13 @@ export default function FullscreenMenu({ isOpen, onClose }) {
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const navbarOffset = 76;
+        const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+        const offsetPosition = id === 'hero' ? 0 : elementPosition - navbarOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     }, 400);
   };
@@ -77,13 +83,14 @@ export default function FullscreenMenu({ isOpen, onClose }) {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-12 my-auto py-8">
         <div className="md:col-span-8 flex flex-col space-y-4 sm:space-y-6">
           {[
-            { label: '01 / HOME & DRONE VIEW', target: 'hero' },
-            { label: '02 / EXTERIOR LAYERS', target: 'exterior-layers' },
-            { label: '03 / INTERIOR ROOMS', target: 'interior' },
-            { label: '04 / TIMELESS MATERIALS', target: 'materials' },
-            { label: '05 / SELECTED PORTFOLIO', target: 'projects' },
-            { label: '06 / BRAND STORY', target: 'about' },
-            { label: '07 / CONTACT & STUDIO', target: 'contact' },
+            { label: '01 / HOME', target: 'hero' },
+            { label: '02 / ARCHITECTURE', target: 'exterior-layers' },
+            { label: '03 / INTERIORS', target: 'interior' },
+            { label: '04 / MATERIALS', target: 'materials' },
+            { label: '05 / PORTFOLIO', target: 'projects' },
+            { label: '06 / ATELIER', target: 'studio' },
+            { label: '07 / ABOUT', target: 'about' },
+            { label: '08 / CONTACT', target: 'contact' },
           ].map((item, idx) => (
             <button
               key={idx}
