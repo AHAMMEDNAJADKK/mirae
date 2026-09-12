@@ -62,10 +62,14 @@ export default function Navbar({ onOpenMenu }) {
         <div className="flex items-center space-x-8 lg:space-x-12">
           <button 
             onClick={() => scrollToSection('hero')}
-            className="font-architectural text-xl sm:text-2xl tracking-[0.25em] text-white focus:outline-none uppercase font-light hover:text-amber-200 transition-colors"
+            className="flex items-center focus:outline-none group transition-opacity hover:opacity-85 py-1"
             aria-label="MIRAE Architecture Home"
           >
-            MIRAE
+            <img 
+              src="/assets/images/mirae-logo.png" 
+              alt="MIRAE Arc Studio" 
+              className="h-8 sm:h-9 md:h-10 w-auto object-contain filter invert brightness-125 mix-blend-screen transition-transform duration-300 group-hover:scale-[1.02]" 
+            />
           </button>
 
           {/* Desktop Navigation Links — Strictly Following Scroll Order with About as Final Main Item */}

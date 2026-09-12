@@ -18,8 +18,9 @@ export default {
         cream: '#f4f3ef',
       },
       fontFamily: {
-        display: ['Cinzel', 'Playfair Display', 'serif'],
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        pilcrow: ['Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       letterSpacing: {

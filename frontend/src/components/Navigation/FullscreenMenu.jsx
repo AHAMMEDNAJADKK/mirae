@@ -59,13 +59,12 @@ export default function FullscreenMenu({ isOpen, onClose }) {
     >
       {/* Top Header inside menu */}
       <div className="flex justify-between items-center border-b border-white/[0.08] pb-6">
-        <div>
-          <span className="font-architectural text-2xl tracking-[0.25em] text-[#f4f3ef]">
-            MIRAE
-          </span>
-          <span className="text-[10px] tracking-[0.3em] text-subtle block uppercase">
-            arc studio • by PMR INFRA LLP
-          </span>
+        <div className="flex items-center">
+          <img 
+            src="/assets/images/mirae-logo.png" 
+            alt="MIRAE Arc Studio by PMR INFRA LLP" 
+            className="h-8 sm:h-9 md:h-10 w-auto object-contain filter invert brightness-125 mix-blend-screen" 
+          />
         </div>
         <button 
           onClick={onClose}
