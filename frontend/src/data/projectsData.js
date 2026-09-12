@@ -135,7 +135,7 @@ export const PORTFOLIO_MONOGRAPHS = [
     aspectRatio: "aspect-[16/10]",
     gallery: [
       "/assets/portfolio/04-wellness-spa-interior.webp",
-      "/assets/images/projects/project-salon-04.webp",
+      "/assets/images/projects/project-salon-01.webp",
       "/assets/images/projects/project-salon-02.webp",
       "/assets/images/projects/project-salon-03.webp"
     ],

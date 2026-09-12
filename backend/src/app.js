@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import apiRoutes from './routes/api.js';
 
@@ -57,14 +58,38 @@ app.use(express.urlencoded({ extended: true }));
 // API Routes
 app.use('/api', apiRoutes);
 
-// In production, serve frontend dist
+// In production or monolithic deployment, serve frontend dist if available
 const distPath = path.join(__dirname, '../../frontend/dist');
-app.use(express.static(distPath));
+const indexPath = path.join(distPath, 'index.html');
+const hasFrontendDist = fs.existsSync(indexPath);
 
-// SPA Catch-all fallback for client-side routing in Express 5
+if (hasFrontendDist) {
+  app.use(express.static(distPath));
+}
+
+// Root endpoint for API service
+app.get('/', (req, res) => {
+  if (hasFrontendDist) {
+    return res.sendFile(indexPath);
+  }
+  res.json({
+    brand: 'MIRAE arc studio',
+    service: 'backend-api',
+    status: 'online',
+    health: '/api/health'
+  });
+});
+
+// SPA Catch-all fallback for client-side routing
 app.use((req, res, next) => {
   if (req.method === 'GET' && !req.path.startsWith('/api')) {
-    return res.sendFile(path.join(distPath, 'index.html'));
+    if (hasFrontendDist) {
+      return res.sendFile(indexPath);
+    }
+    return res.status(404).json({
+      success: false,
+      message: 'API route not found. Refer to /api/health'
+    });
   }
   next();
 });
