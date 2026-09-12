@@ -1,317 +1,234 @@
-export const PORTFOLIO_MONOGRAPHS = [
+export const projectsData = [
   {
-    id: "PROJECT 01",
+    id: "01",
     num: "01",
-    category: "Hospitality",
+    title: "RESORT",
+    subtitle: "A quiet retreat shaped by nature.",
+    tagline: "Where Luxury Meets the Landscape",
+    category: "Hospitality & Landscape",
     primaryCategory: "Hospitality",
-    filterCategory: "Hospitality",
     filterCategories: ["Hospitality"],
-    title: "THE WELLNESS SANCTUARY & SKY PAVILION",
-    tagline: "Architecture & Leadership • Private Executive Atelier",
-    subtitle: "A Private World Dedicated to Restoration",
-    description: "Where warm thermal waters, sculpted stone, and immersive views create complete tranquility. Perched above the valley, the organic Sky Pavilion frames panoramic views.",
-    secondaryText: "A private retreat shaped by nature, where tranquil waters, lush greenery and refined architecture exist in perfect harmony.",
-    monographPlate: "MONOGRAPH PLATE 01",
-    imageAsset: "/assets/portfolio/01-wellness-sky-pavilion.jpg",
-    image: "/assets/portfolio/01-wellness-sky-pavilion.webp",
-    fallbackImage: "/assets/portfolio/01-wellness-sky-pavilion.jpg",
-    aspectRatio: "aspect-[16/10]",
+    year: "2024",
+    location: "Wayanad, Kerala",
+    area: "48,000 SQ.FT",
+    scope: "Architecture & Masterplanning",
+    description: "Timeless architecture, tropical landscapes and refined details come together to create an experience of effortless luxury. A private retreat shaped by nature, where tranquil waters, lush greenery and refined architecture exist in perfect harmony.",
+    secondaryText: "Every detail is designed to create a sense of calm, exclusivity and effortless luxury — a space where you can slow down, unwind and experience the beauty of living surrounded by nature.",
+    image: "/assets/images/projects/project-resort-01.webp",
+    fallbackImage: "/assets/images/projects/project-resort-01.jpg",
     gallery: [
-      "/assets/portfolio/01-wellness-sky-pavilion.webp",
       "/assets/images/projects/project-resort-01.webp",
-      "/assets/images/projects/project-resort-02.webp"
+      "/assets/images/projects/project-resort-02.webp",
+      "/assets/images/projects/project-resort-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "THE WELLNESS SANCTUARY",
-        text: "A private world dedicated to restoration, where warm thermal waters, sculpted stone and immersive views create an atmosphere of complete tranquillity. Every element is thoughtfully composed to transform wellness into an elevated sensory experience."
-      },
-      {
-        title: "THE SKY PAVILION",
-        text: "Perched above the valley, its organic form and natural materials frame the surrounding landscape, creating an intimate setting for relaxation, contemplation and connection."
-      }
-    ],
-    signatures: [
-      "Natural thermal pools & water channels",
-      "Organic bamboo cantilever sky pavilion",
-      "Seamless tropical valley panorama",
-      "Native rainforest landscape integration"
+    features: [
+      "Natural Geothermal Pools & Stone Stepping Decks",
+      "Organic Bamboo Cantilever Observation Deck",
+      "Seamless Mountain Valley Panorama & Water Channels",
+      "Native Rainforest Landscape Integration"
     ]
   },
   {
-    id: "PROJECT 02",
+    id: "02",
     num: "02",
-    category: "Residential",
+    title: "TOWER",
+    subtitle: "Elevated by design.",
+    tagline: "Striking Vertical Expression",
+    category: "Residential High-Rise",
     primaryCategory: "Residential",
-    filterCategory: "Residential",
-    filterCategories: ["Residential"],
-    title: "TROPICAL COURTYARD RESIDENCE",
-    tagline: "Residential Architecture • Crafted With Intention",
-    subtitle: "50+ Years Construction Legacy Meets Modern Design",
-    description: "Slatted timber louvers, terracotta pitched roofs, and integrated tropical greenery engineered for long-term buildability and quiet luxury.",
-    secondaryText: "A harmonious dialogue between traditional coastal craftsmanship and contemporary tropical living, anchored around a central botanical courtyard.",
-    monographPlate: "MONOGRAPH PLATE 02",
-    imageAsset: "/assets/portfolio/02-tropical-courtyard-villa.jpg",
-    image: "/assets/portfolio/02-tropical-courtyard-villa.webp",
-    fallbackImage: "/assets/portfolio/02-tropical-courtyard-villa.jpg",
-    aspectRatio: "aspect-[16/10]",
+    filterCategories: ["Residential", "Commercial"],
+    year: "2023",
+    location: "Bangalore, Karnataka",
+    area: "125,000 SQ.FT",
+    scope: "Facade & High-Rise Architecture",
+    description: "A striking vertical expression where contemporary form, elegant proportions and panoramic living meet. Composed with an intricate envelope of warm architectural louvers, cantilevered sky gardens, and double-height arrival portals.",
+    secondaryText: "The tower commands an imposing yet refined silhouette, balancing glass transparency with the solidity of tactile bronze finishes and integrated vertical greenery.",
+    image: "/assets/images/projects/project-tower-01.webp",
+    fallbackImage: "/assets/images/projects/project-tower-01.jpg",
     gallery: [
-      "/assets/portfolio/02-tropical-courtyard-villa.webp",
-      "/assets/images/projects/project-pureform-02.webp",
-      "/assets/images/projects/project-pureform-03.webp"
+      "/assets/images/projects/project-tower-01.webp",
+      "/assets/images/projects/project-tower-02.webp",
+      "/assets/images/projects/project-tower-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "THE CENTRAL COURTYARD",
-        text: "A microclimate regulating oasis drawing cool cross-breezes and daylight into deep living volumes while celebrating tropical rainfall."
-      },
-      {
-        title: "TIMBER SCREENING FACADE",
-        text: "Precision-engineered teak louvers providing thermal protection, privacy, and an ever-changing interplay of shadow and light throughout the day."
-      }
-    ],
-    signatures: [
-      "Climate-adaptive slatted teak screening",
-      "Indigenous terracotta roof tile detailing",
-      "Rainwater collection reflecting pool",
-      "Seamless indoor-outdoor courtyard transitions"
+    features: [
+      "Double-Height Grand Port-Cochère Arrival",
+      "Climate-Adaptive Exterior Curved Louvers",
+      "Cascading Vertical Sky Terraces & Gardens",
+      "Floor-To-Ceiling Acoustic Thermal Glass"
     ]
   },
   {
-    id: "PROJECT 03",
+    id: "03",
     num: "03",
-    category: "Commercial",
+    title: "CHAIWALAH",
+    subtitle: "Where character meets comfort.",
+    tagline: "The Warm Cup & Brew & Belong",
+    category: "Commercial & Hospitality",
     primaryCategory: "Commercial",
-    filterCategory: "Commercial",
-    filterCategories: ["Commercial"],
-    title: "THE ART OF EVERYDAY INDULGENCE • CAFÉ & DINING",
-    tagline: "Commercial & Hospitality • Indian Charm & Modern Comfort",
-    subtitle: "Warm Textures & Curated Courtyard Dining",
-    description: "A refined cafe experience defined by brickwork, intimate lighting, and open-air seating designed for slow moments and soulful conversations.",
-    secondaryText: "Inspired by timeless Indian charm, exposed terracotta textures, and contemporary communal hospitality.",
-    monographPlate: "MONOGRAPH PLATE 03",
-    imageAsset: "/assets/portfolio/03-chaiwalah-cafe-courtyard.jpg",
-    image: "/assets/portfolio/03-chaiwalah-cafe-courtyard.webp",
-    fallbackImage: "/assets/portfolio/03-chaiwalah-cafe-courtyard.jpg",
-    aspectRatio: "aspect-[16/10]",
+    filterCategories: ["Commercial", "Hospitality"],
+    year: "2024",
+    location: "Calicut, Kerala",
+    area: "6,500 SQ.FT",
+    scope: "Architecture & Interior",
+    description: "A sophisticated residence and public courtyard defined by warm materials, refined detailing and spaces designed to feel effortlessly luxurious. Chaiwala brings together earthy tones, refined textures and relaxed seating.",
+    secondaryText: "A thoughtfully curated café interior where design and comfort exist in harmony, framed by traditional pitched clay tile roofs and lush tropical gardens.",
+    image: "/assets/images/projects/project-chaiwalah-01.webp",
+    fallbackImage: "/assets/images/projects/project-chaiwalah-01.jpg",
     gallery: [
-      "/assets/portfolio/03-chaiwalah-cafe-courtyard.webp",
+      "/assets/images/projects/project-chaiwalah-01.webp",
       "/assets/images/projects/project-chaiwalah-02.webp",
       "/assets/images/projects/project-chaiwalah-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "THE WARM CUP",
-        text: "Earthy tones, refined textures and relaxed seating come together to create an inviting atmosphere where design and comfort exist in harmony."
-      },
-      {
-        title: "BREW & BELONG",
-        text: "A thoughtfully curated café interior where every corner is designed for slow moments, conversations, and the communal warmth of tea culture."
-      }
-    ],
-    signatures: [
-      "Traditional clay tile pitched roof canopy",
-      "Artisan terracotta breeze blocks & jali screens",
-      "Integrated curved concrete planter topography",
-      "Open-air garden courtyard dining sequence"
+    features: [
+      "Traditional Clay Tile Pitched Roof Canopy",
+      "Integrated Curved Concrete Planter Topography",
+      "Artisan Terracotta Jali Breeze Block Screens",
+      "Open-Air Garden Courtyard Dining Sequenced Spaces"
     ]
   },
   {
-    id: "PROJECT 04",
+    id: "04",
     num: "04",
-    category: "Interior",
+    title: "CAFÉ INTERIOR",
+    subtitle: "Crafted for moments.",
+    tagline: "Rich Textures & Ambient Light",
+    category: "Interior Architecture",
     primaryCategory: "Interior",
-    filterCategory: "Interior",
-    filterCategories: ["Interior"],
-    title: "CURVED WELLNESS LOUNGE & SPA INTERIOR",
-    tagline: "Interior Architecture • Spatial Visualization",
-    subtitle: "Organic Forms & Ambient Daylight Architecture",
-    description: "Sculptural white walls, daylight skylights, and lush foliage forming an intimate interior spa sanctuary where every line is intentional.",
-    secondaryText: "Sculpted interior envelopes that shield the senses from external chaos, cultivating meditative restoration through tactile plaster and indirect daylight.",
-    monographPlate: "MONOGRAPH PLATE 04",
-    imageAsset: "/assets/portfolio/04-wellness-spa-interior.jpg",
-    image: "/assets/portfolio/04-wellness-spa-interior.webp",
-    fallbackImage: "/assets/portfolio/04-wellness-spa-interior.jpg",
-    aspectRatio: "aspect-[16/10]",
+    filterCategories: ["Interior", "Hospitality"],
+    year: "2023",
+    location: "Kochi, Kerala",
+    area: "3,200 SQ.FT",
+    scope: "Bespoke Hospitality Interior",
+    description: "Rich textures, ambient lighting and thoughtful detailing create an intimate interior where every corner feels considered. Soft billowing fabrics, natural woven wicker, and sculpted plaster niches invoke warmth and serenity.",
+    secondaryText: "An elevated hospitality environment carefully sequenced from bright open daylight terrace dining to intimate arched alcoves.",
+    image: "/assets/images/projects/project-cafe-01.webp",
+    fallbackImage: "/assets/images/projects/project-cafe-01.jpg",
     gallery: [
-      "/assets/portfolio/04-wellness-spa-interior.webp",
       "/assets/images/projects/project-cafe-01.webp",
+      "/assets/images/projects/project-cafe-02.webp",
       "/assets/images/projects/project-cafe-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "SCULPTURAL PLASTER VOLUMES",
-        text: "Hand-applied lime plaster surfaces forming seamless flowing contours without rigid corners, enhancing acoustics and tactile tranquility."
-      },
-      {
-        title: "OCULUS SKYLIGHT APERTURES",
-        text: "Carefully positioned overhead daylight penetrations that wash contoured vertical planes with soft, natural illumination."
-      }
-    ],
-    signatures: [
-      "Monolithic seamless microcement & lime plaster finishes",
-      "Recessed architectural perimeter ambient lighting",
-      "Integrated botanical alcoves and living stone planters",
-      "Acoustic dampening spatial geometry"
+    features: [
+      "Custom Billowing Fabric Ceiling Canopy",
+      "Sculptural Hand-Finished Plaster Niches",
+      "Central Water Basin Courtyard Installation",
+      "Natural Woven Rattan & Teak Furnishings"
     ]
   },
   {
-    id: "PROJECT 05",
+    id: "05",
     num: "05",
-    category: "Residential",
+    title: "PURE FORM",
+    subtitle: "Modernity, beautifully composed.",
+    tagline: "Clean Architectural Lines",
+    category: "Private Residence",
     primaryCategory: "Residential",
-    filterCategory: "Residential",
     filterCategories: ["Residential"],
-    title: "CONTEMPORARY HERITAGE VILLA",
-    tagline: "Private Residence • Quiet. Refined. Intentional.",
-    subtitle: "Effortless Proportion & Authentic Materiality",
-    description: "Expansive glass elevations, warm ambient illumination, timber accents, and reflection pools integrating indoor living with nature.",
-    secondaryText: "A master study in architectural restraint, celebrating the elemental luxury of clean sightlines, natural stone, and water reflections.",
-    monographPlate: "MONOGRAPH PLATE 05",
-    imageAsset: "/assets/portfolio/05-heritage-villa-reflection.jpg",
-    image: "/assets/portfolio/05-heritage-villa-reflection.webp",
-    fallbackImage: "/assets/portfolio/05-heritage-villa-reflection.jpg",
-    aspectRatio: "aspect-[16/10]",
+    year: "2024",
+    location: "Malappuram, Kerala",
+    area: "9,800 SQ.FT",
+    scope: "Architecture & Landscape",
+    description: "Clean architectural lines, natural materials and generous spaces create a home that feels both contemporary and timeless. A masterclass in proportion, where stark minimalist planes are softened by warm interior wood and reflective water planes.",
+    secondaryText: "Every room opens onto expansive verandas and private courtyards, blurring the boundary between interior tranquility and exterior landscape.",
+    image: "/assets/images/projects/project-pureform-01.webp",
+    fallbackImage: "/assets/images/projects/project-pureform-01.jpg",
     gallery: [
-      "/assets/portfolio/05-heritage-villa-reflection.webp",
-      "/assets/images/projects/project-pool-03.webp",
-      "/assets/images/projects/project-pureform-01.webp"
+      "/assets/images/projects/project-pureform-01.webp",
+      "/assets/images/projects/project-pureform-02.webp",
+      "/assets/images/projects/project-pureform-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "THE WATER REFLECTION PLANE",
-        text: "A linear shallow pool that reflects the villa facade by day and acts as an illuminated mirror surface under ambient night lighting."
-      },
-      {
-        title: "CONTINUOUS GLASS SIGHTLINES",
-        text: "Slender thermal-break aluminum profiles maximizing visual continuity from the master living suites out to the private garden enclave."
-      }
-    ],
-    signatures: [
-      "Full-height structural glass wall elevations",
-      "Honed basalt and riverstone reflection waterways",
-      "Warm cedar wood ceiling soffit extensions",
-      "Concealed architectural architectural linear diffusers"
+    features: [
+      "Twin Gabled Timber Pavilion Geometry",
+      "Central Reflecting Lap Pool & Water Courtyard",
+      "Floor-To-Ceiling Acoustic Glazing Systems",
+      "Deep Shaded Verandas with Integrated Planters"
     ]
   },
   {
-    id: "PROJECT 06",
+    id: "06",
     num: "06",
-    category: "Residential",
+    title: "FARM HOUSE",
+    subtitle: "Luxury, rooted in nature.",
+    tagline: "Seamless Connection to the Landscape",
+    category: "Luxury Estate",
     primaryCategory: "Residential",
-    filterCategory: "Residential",
     filterCategories: ["Residential"],
-    title: "GRAND ESTATE COURTYARD",
-    tagline: "Luxury Estate • Intentionally Selective Architecture",
-    subtitle: "Seamless Connection to the Landscape",
-    description: "Colonial-inspired arches, stone-paved courtyards, tile roofing, and expansive motor courts designed for timeless grandeur.",
-    secondaryText: "A legacy family estate commanding expansive acreage, organized around colonnaded courtyards, cobblestone grounds, and noble proportions.",
-    monographPlate: "MONOGRAPH PLATE 06",
-    imageAsset: "/assets/portfolio/06-grand-estate-courtyard.jpg",
-    image: "/assets/portfolio/06-grand-estate-courtyard.webp",
-    fallbackImage: "/assets/portfolio/06-grand-estate-courtyard.jpg",
-    aspectRatio: "aspect-[16/10]",
+    year: "2023",
+    location: "Coimbatore, Tamil Nadu",
+    area: "14,500 SQ.FT",
+    scope: "Estate Architecture & Planning",
+    description: "Organic textures, expansive spaces and a seamless connection to the landscape create a retreat of quiet sophistication. Built with indigenous stone, reclaimed timber rafters, and contemporary open planning.",
+    secondaryText: "Suspended wooden decks float effortlessly over reflection pools, connecting living pavilions with surrounding orchards and serene tropical sky.",
+    image: "/assets/images/projects/project-farmhouse-01.webp",
+    fallbackImage: "/assets/images/projects/project-farmhouse-01.jpg",
     gallery: [
-      "/assets/portfolio/06-grand-estate-courtyard.webp",
+      "/assets/images/projects/project-farmhouse-01.webp",
       "/assets/images/projects/project-farmhouse-02.webp",
       "/assets/images/projects/project-farmhouse-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "COLONNADED VERANDAH ARCADES",
-        text: "Rhythmic classical arched openings offering shaded transitional circulation suited for tropical climate while retaining regal formality."
-      },
-      {
-        title: "HAND-DRESSED COBBLESTONE COURT",
-        text: "Granite paved motor courts framing mature specimen trees and architectural water fountains."
-      }
-    ],
-    signatures: [
-      "Symmetrical monumental arrival portico",
-      "Handmade clay roof shingles with decorative ridge copings",
-      "Solid granite columns and arches",
-      "Panoramic estate landscape gardens"
+    features: [
+      "Floating Teak Pool Decks & Living Platform",
+      "Traditional Mangalore Clay Roofing & Timber Rafters",
+      "Stepping Stone Water Walkways across Reflecting Pool",
+      "Seamless Indoor-Outdoor Living Pavilion"
     ]
   },
   {
-    id: "PROJECT 07",
+    id: "07",
     num: "07",
-    category: "Hospitality",
+    title: "POOL AREA",
+    subtitle: "Into The Blue.",
+    tagline: "Architecture, Water and Landscape",
+    category: "Landscape & Water Architecture",
     primaryCategory: "Hospitality",
-    filterCategory: "Hospitality",
     filterCategories: ["Hospitality"],
-    title: "BAMBOO POOL PAVILION & WATER LANDSCAPE",
-    tagline: "Landscape & Water Architecture • Into The Blue",
-    subtitle: "Architecture, Water, and Landscape Merged",
-    description: "Illuminated bamboo pavilion over multi-tiered infinity pools, surrounded by lush tropical vegetation for nighttime relaxation.",
-    secondaryText: "A nocturnal oasis combining natural tensile bamboo joinery, aquatic luminescence, and dense tropical foliage.",
-    monographPlate: "MONOGRAPH PLATE 07",
-    imageAsset: "/assets/portfolio/07-bamboo-pool-pavilion.jpg",
-    image: "/assets/portfolio/07-bamboo-pool-pavilion.webp",
-    fallbackImage: "/assets/portfolio/07-bamboo-pool-pavilion.jpg",
-    aspectRatio: "aspect-[16/10]",
+    year: "2024",
+    location: "Goa",
+    area: "16,000 SQ.FT",
+    scope: "Landscape & Pool Pavilion Architecture",
+    description: "A sophisticated poolside residence where architecture, water and landscape merge into one serene composition. Cascading multi-tiered pools reflect the evening sky, accompanied by custom organic timber pavilions.",
+    secondaryText: "Subtle underwater lighting and softly illuminated stone pathways transform the water sanctuary into an ethereal twilight retreat.",
+    image: "/assets/images/projects/project-pool-01.webp",
+    fallbackImage: "/assets/images/projects/project-pool-01.jpg",
     gallery: [
-      "/assets/portfolio/07-bamboo-pool-pavilion.webp",
       "/assets/images/projects/project-pool-01.webp",
+      "/assets/images/projects/project-pool-02.webp",
       "/assets/images/projects/project-pool-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "ORGANIC BAMBOO CANOPY",
-        text: "Sculpted sustainable treated bamboo framing that hovers lightly over the aquatic terrace, blending architectural shelter with natural lightness."
-      },
-      {
-        title: "MULTI-TIERED INFINITY EDGE",
-        text: "Cascading stone pools that create the acoustic sensation of gentle moving water throughout the resort lounge grounds."
-      }
-    ],
-    signatures: [
-      "Parametric bamboo pavilion geometry",
-      "Submerged volcanic slate pool tiles",
-      "Warm 2700K indirect underwater and landscape illumination",
-      "Floating timber daybed platforms"
+    features: [
+      "Tiered Cascading Multi-Level Infinity Edge",
+      "Custom Bamboo Structural Pavilion Arch",
+      "Precision Granite Pathway Pavers",
+      "Architectural Dusk Lighting Design"
     ]
   },
   {
-    id: "PROJECT 08",
+    id: "08",
     num: "08",
-    category: "Interior",
+    title: "SALON INTERIOR",
+    subtitle: "Where beauty meets design.",
+    tagline: "Refined Beauty & Tactile Warmth",
+    category: "Commercial & Retail Interior",
     primaryCategory: "Interior",
-    filterCategory: "Interior",
-    filterCategories: ["Interior"],
-    title: "ORGANIC DINING ARCH & TROPICAL LOUNGE",
-    tagline: "Interior & Hospitality • Refined Comfort",
-    subtitle: "Where Form, Light, and Material Unite",
-    description: "A skylit curved dining alcove overlooking tropical palms, featuring custom timber joinery, warm lighting, and organic curvature.",
-    secondaryText: "An intimate culinary sanctuary balancing curved bespoke cabinetry, ambient brass lighting, and panoramic garden fenestration.",
-    monographPlate: "MONOGRAPH PLATE 08",
-    imageAsset: "/assets/portfolio/08-organic-dining-arch.jpg",
-    image: "/assets/portfolio/08-organic-dining-arch.webp",
-    fallbackImage: "/assets/portfolio/08-organic-dining-arch.jpg",
-    aspectRatio: "aspect-[16/10]",
+    filterCategories: ["Interior", "Commercial"],
+    year: "2024",
+    location: "Dubai, UAE",
+    area: "4,200 SQ.FT",
+    scope: "Commercial & Retail Interior Architecture",
+    description: "An elevated salon environment designed to feel warm, luxurious and immersive. Sculptural fluted terracotta partitions, monolithic curved concrete counters, and brass geometric arches create an editorial haven.",
+    secondaryText: "Thoughtful acoustic zoning and soft diffused illumination ensure every client experiences total privacy and restorative calm.",
+    image: "/assets/images/projects/project-salon-01.webp",
+    fallbackImage: "/assets/images/projects/project-salon-01.jpg",
     gallery: [
-      "/assets/portfolio/08-organic-dining-arch.webp",
-      "/assets/images/projects/project-cafe-02.webp",
-      "/assets/images/interior/kitchen-dining.webp"
+      "/assets/images/projects/project-salon-01.webp",
+      "/assets/images/projects/project-salon-02.webp",
+      "/assets/images/projects/project-salon-03.webp"
     ],
-    distinctBlocks: [
-      {
-        title: "CURVILINEAR DINING NOOK",
-        text: "Custom upholstered banquet seating integrated within arched architectural wall niches, fostering warmth and acoustic intimacy."
-      },
-      {
-        title: "SKYLIGHT CANOPY ENCLOSURE",
-        text: "Glass roof apertures filtering daylight through tropical palm fronds, casting soft shifting patterns across the dining tables."
-      }
-    ],
-    signatures: [
-      "Handcrafted solid walnut furniture and curved joinery",
-      "Architectural plaster wall arches with warm backlight wash",
-      "Acoustically tuned slatted timber ceilings",
-      "Curated tropical indoor botanical curation"
+    features: [
+      "Fluted Terracotta Acoustic Dividing Partitions",
+      "Bespoke Suspended Ambient Ceiling Ribbons",
+      "Monolithic Curved Terrazzo Service Counter",
+      "Architectural Brass Geometric Arch Portals"
     ]
   }
 ];
-
-// Backwards-compatible export for existing components
-export const projectsData = PORTFOLIO_MONOGRAPHS;
