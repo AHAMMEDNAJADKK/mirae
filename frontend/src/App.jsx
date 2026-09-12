@@ -8,6 +8,7 @@ import ExteriorLayers from './components/exterior/ExteriorLayers';
 import InteriorJourney from './components/interior/InteriorJourney';
 import MaterialsSection from './components/materials/MaterialsSection';
 import ProjectsSection from './components/projects/ProjectsSection';
+import StudioScrollSection from './components/studio/StudioScrollSection';
 import BrandStory from './components/about/BrandStory';
 import ContactSection from './components/contact/ContactSection';
 import ScrollProgress from './components/common/ScrollProgress';
@@ -52,10 +53,13 @@ export default function App() {
         {/* 05. Project Details / Materials (Crafted with Timeless Materials & Swatches) */}
         <MaterialsSection />
 
-        {/* Selected Works Portfolio */}
+        {/* Selected Works Portfolio & Brochure Monograph */}
         <ProjectsSection />
 
-        {/* 06. Brand Story / About (More than buildings. We create experiences.) */}
+        {/* 06. Studio Experience — 6-Image Architectural Scroll Sequence */}
+        <StudioScrollSection />
+
+        {/* 07. Brand Story / About (More than buildings. We create experiences.) */}
         <BrandStory />
 
         {/* 07. Footer / Contact (MIRAE brandmark, Design is thinking made visual, Coordinates) */}
