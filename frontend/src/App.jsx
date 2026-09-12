@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import Preloader from './components/common/Preloader';
-import Navbar from './components/navigation/Navbar';
-import FullscreenMenu from './components/navigation/FullscreenMenu';
-import HeroExperience from './components/hero/HeroExperience';
+import Navbar from './components/Navigation/Navbar';
+import FullscreenMenu from './components/Navigation/FullscreenMenu';
+import HeroExperience from './components/Hero/HeroExperience';
 import ExteriorLayers from './components/exterior/ExteriorLayers';
-import InteriorJourney from './components/interior/InteriorJourney';
-import MaterialsSection from './components/materials/MaterialsSection';
-import ProjectsSection from './components/projects/ProjectsSection';
+import InteriorJourney from './components/Interior/InteriorJourney';
+import MaterialsSection from './components/Materials/MaterialsSection';
+import ProjectsSection from './components/Projects/ProjectsSection';
 import StudioScrollSection from './components/studio/StudioScrollSection';
 import BrandStory from './components/about/BrandStory';
-import ContactSection from './components/contact/ContactSection';
+import ContactSection from './components/Contact/ContactSection';
 import ScrollProgress from './components/common/ScrollProgress';
 import CustomCursor from './components/common/CustomCursor';
 
