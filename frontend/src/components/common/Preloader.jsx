@@ -13,20 +13,34 @@ export default function Preloader({ onComplete }) {
       // Stage 1: Off-thread decode of primary hero image
       const primaryHero = '/assets/images/hero/hero-drone.webp';
       
-      // Steady progress counter
-      let current = 0;
+      // Steady, mathematically smooth progress counter over ~1.9s for a cinematic feel
+      let startTime = Date.now();
+      const targetDuration = 1900;
       const timer = setInterval(() => {
-        current = Math.min(92, current + Math.floor(Math.random() * 12) + 6);
+        const elapsed = Date.now() - startTime;
+        const ratio = Math.min(1, elapsed / targetDuration);
+        const easeOut = 1 - Math.pow(1 - ratio, 2);
+        const current = Math.min(99, Math.round(easeOut * 99));
         if (!isCancelled) setProgress(current);
-      }, 35);
+      }, 30);
 
-      // Strict 2.5s safety race: decode or timeout, guaranteed to settle
-      const timeoutSafeguard = new Promise((resolve) => setTimeout(resolve, 2500));
-      await Promise.race([preloadSingleImage(primaryHero, 2400), timeoutSafeguard]);
+      // Smooth visual duration safeguard: ensure the luxury branding is appreciated
+      // while allowing background hero image decode to run concurrently
+      const visualPacing = new Promise((resolve) => setTimeout(resolve, 2000));
+      const timeoutSafeguard = new Promise((resolve) => setTimeout(resolve, 2800));
+      
+      await Promise.all([
+        visualPacing,
+        Promise.race([preloadSingleImage(primaryHero, 2600), timeoutSafeguard])
+      ]);
       clearInterval(timer);
 
       if (isCancelled) return;
       setProgress(100);
+
+      // Brief 200ms pause at 100% so the completion registers before curtain lifts
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      if (isCancelled) return;
 
       // Smooth curtain reveal
       const tl = gsap.timeline({
