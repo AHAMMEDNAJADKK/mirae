@@ -136,33 +136,33 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Top Header HUD */}
-        <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 pt-6 sm:pt-10 flex items-center justify-between text-xs font-mono-subtle">
+        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pt-5 sm:pt-10 flex items-center justify-between text-xs font-mono-subtle">
           <div className="flex items-center space-x-3">
-            <span className="text-white/50 tracking-[0.3em] uppercase">03. EXTERIOR LAYERS (SCROLLING)</span>
+            <span className="text-white/70 tracking-[0.3em] uppercase font-medium">03. EXTERIOR LAYERS (SCROLLING)</span>
           </div>
-          <div className="text-white/40 tracking-widest hidden sm:block">
+          <div className="text-white/50 tracking-widest hidden sm:block">
             ARCHITECTURAL ANATOMY • LEVEL 0{activeLayerIndex + 1}
           </div>
         </div>
 
         {/* Center / Right Layer Navigation Indicators */}
-        <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-8">
           
           {/* Left: Active Level Description */}
-          <div className="max-w-md bg-black/75 backdrop-blur-md p-6 sm:p-8 border-l-2 border-white/70">
-            <span className="text-[10px] font-mono-subtle text-white/50 tracking-[0.3em] uppercase block mb-2">
+          <div className="w-full md:max-w-md bg-black/85 backdrop-blur-md p-4 sm:p-6 md:p-8 border-l-2 border-amber-400 shadow-2xl">
+            <span className="text-[10px] font-mono-subtle text-amber-300 font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
               LEVEL 0{activeLayerIndex + 1} / 04
             </span>
-            <h3 className="font-architectural text-2xl sm:text-4xl text-white font-light tracking-[0.08em] uppercase mb-3">
+            <h3 className="font-architectural text-xl sm:text-3xl md:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-2 sm:mb-3">
               {layersData[activeLayerIndex].title}
             </h3>
-            <p className="text-xs sm:text-sm font-light text-[#c8c8c8] leading-relaxed">
+            <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed">
               {layersData[activeLayerIndex].subtitle}
             </p>
           </div>
 
-          {/* Right: Architectural Cutaway Callout Indicators (Matching Reference) */}
-          <div className="flex flex-col space-y-4 sm:space-y-6 bg-black/60 backdrop-blur-md p-5 sm:p-8 border border-white/[0.08]">
+          {/* Right: Architectural Cutaway Callout Indicators (Desktop / Tablet) */}
+          <div className="hidden md:flex flex-col space-y-4 sm:space-y-6 bg-black/75 backdrop-blur-md p-6 sm:p-8 border border-white/[0.1] shadow-2xl">
             {layersData.map((layer, idx) => {
               const isActive = activeLayerIndex === idx;
               return (
@@ -175,18 +175,42 @@ export default function ExteriorLayers() {
                   {/* Indicator Dot & Line */}
                   <div className="flex items-center space-x-2">
                     <div className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      isActive ? 'bg-white shadow-[0_0_10px_rgba(255,255,255,0.8)] scale-125' : 'bg-white/40'
+                      isActive ? 'bg-amber-400 shadow-[0_0_10px_rgba(251,191,36,0.8)] scale-125' : 'bg-white/40'
                     }`} />
                     <div className={`h-[1px] transition-all duration-300 ${
-                      isActive ? 'w-8 bg-white' : 'w-4 bg-white/20'
+                      isActive ? 'w-8 bg-amber-400' : 'w-4 bg-white/20'
                     }`} />
                   </div>
 
                   {/* Level Label */}
                   <span className={`text-xs sm:text-sm font-architectural tracking-wider uppercase ${
-                    isActive ? 'text-white font-medium' : 'text-[#a0a0a0]'
+                    isActive ? 'text-white font-semibold' : 'text-[#a0a0a0]'
                   }`}>
                     {layer.title}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile Horizontal Level Switch Strip (< md) */}
+          <div className="flex md:hidden w-full items-center justify-between bg-black/80 backdrop-blur-md px-4 py-2.5 border border-white/[0.08]">
+            {layersData.map((layer, idx) => {
+              const isActive = activeLayerIndex === idx;
+              return (
+                <div 
+                  key={layer.id}
+                  className={`flex items-center space-x-1.5 transition-all duration-300 ${
+                    isActive ? 'opacity-100' : 'opacity-40'
+                  }`}
+                >
+                  <div className={`w-2 h-2 rounded-full transition-all ${
+                    isActive ? 'bg-amber-400 scale-125 shadow-[0_0_8px_rgba(251,191,36,0.8)]' : 'bg-white/40'
+                  }`} />
+                  <span className={`text-[10px] font-mono-subtle uppercase tracking-wider ${
+                    isActive ? 'text-white font-semibold' : 'text-neutral-400'
+                  }`}>
+                    0{idx + 1}
                   </span>
                 </div>
               );
@@ -196,9 +220,9 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Bottom Bar Info */}
-        <div className="relative z-20 w-full px-6 sm:px-12 md:px-16 pb-6 sm:pb-8 flex justify-between items-center text-[10px] sm:text-xs font-mono-subtle text-white/40">
+        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pb-5 sm:pb-8 flex justify-between items-center text-[10px] sm:text-xs font-mono-subtle text-white/50">
           <span>PROGRESSIVE TECTONIC SEQUENCE</span>
-          <span>{layersData[activeLayerIndex].title.toUpperCase()}</span>
+          <span className="font-medium text-white/70">{layersData[activeLayerIndex].title.toUpperCase()}</span>
         </div>
 
       </div>
