@@ -180,22 +180,22 @@ export default function HeroExperience() {
 
           {/* Architectural Vignette & Atmospheric Contrast Gradients */}
           <div className="absolute inset-0 architectural-vignette pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/60 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/25 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-black/70 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent lg:max-w-[70%] pointer-events-none" />
         </div>
 
         {/* --- 01. HERO VIEW CONTENT --- */}
         <div 
           ref={heroContentRef}
-          className="relative z-20 w-full h-full flex flex-col justify-between p-6 sm:p-10 md:p-12 lg:p-16 xl:p-20 pointer-events-none"
+          className="relative z-20 w-full h-full flex flex-col justify-between p-5 sm:p-8 md:p-12 lg:p-16 xl:p-20 pointer-events-none"
         >
           {/* Top HUD Telemetry Bar */}
-          <div className="w-full pt-16 sm:pt-20 lg:pt-24 flex items-center justify-between pointer-events-auto">
-            <div className="flex items-center space-x-2.5 text-[10px] sm:text-xs font-mono-subtle text-white/75 tracking-[0.25em] uppercase">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
-              <span>ATELIER LIVE • 11.0510° N, 76.0711° E</span>
+          <div className="w-full pt-20 sm:pt-24 lg:pt-28 flex items-center justify-between pointer-events-auto">
+            <div className="flex items-center space-x-2 text-[9px] sm:text-xs font-mono-subtle text-white/80 tracking-[0.18em] sm:tracking-[0.25em] uppercase font-medium">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)] shrink-0" />
+              <span className="whitespace-nowrap">ATELIER LIVE • 11.0510° N, 76.0711° E</span>
             </div>
-            <div className="hidden md:flex items-center space-x-3 text-[10px] font-mono-subtle text-white/45 tracking-[0.3em] uppercase">
+            <div className="hidden md:flex items-center space-x-3 text-[10px] font-mono-subtle text-white/50 tracking-[0.3em] uppercase">
               <span>KERALA, INDIA</span>
               <span className="w-1 h-1 rounded-full bg-white/30" />
               <span>SPATIAL ARCHITECTURE</span>
@@ -203,29 +203,29 @@ export default function HeroExperience() {
           </div>
 
           {/* Center-Left Editorial Headline & Hierarchy */}
-          <div className="max-w-2xl my-auto text-left pointer-events-auto py-4">
+          <div className="max-w-2xl my-auto text-left pointer-events-auto py-3 sm:py-4">
             {/* Small Architectural Eyebrow / Label */}
-            <div className="hero-kicker inline-flex items-center space-x-2.5 text-[10px] sm:text-xs font-mono-subtle tracking-[0.28em] sm:tracking-[0.35em] text-amber-300/90 uppercase mb-2">
+            <div className="hero-kicker inline-flex items-center space-x-2.5 text-[10px] sm:text-xs font-mono-subtle tracking-[0.28em] sm:tracking-[0.35em] text-amber-300 font-medium uppercase mb-2">
               <span className="w-5 sm:w-7 h-[1px] bg-amber-400/80" />
               <span>01 / ATELIER MONOGRAPH ARCHIVE</span>
             </div>
 
             {/* Brand / Studio Identity */}
-            <div className="hero-brand text-xs sm:text-sm font-mono-subtle tracking-[0.35em] text-white/70 uppercase mb-3 sm:mb-4">
+            <div className="hero-brand text-xs sm:text-sm font-mono-subtle font-semibold tracking-[0.35em] text-white/80 uppercase mb-3 sm:mb-4">
               MIRAE ARCSTUDIO
             </div>
 
-            {/* Controlled Architectural Statement / Heading */}
-            <h1 className="font-architectural text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4rem] leading-[1.08] tracking-[0.02em] font-light text-white mb-4 sm:mb-5 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]">
-              <span className="hero-title-line block">Architecture</span>
-              <span className="hero-title-line block italic font-normal font-editorial tracking-[0.04em] text-[#f3ede2]">
+            {/* Bold, Dominant Architectural Statement / Heading */}
+            <h1 className="font-architectural text-3xl sm:text-5xl md:text-6xl lg:text-[4.25rem] xl:text-[4.75rem] leading-[1.04] tracking-tight font-bold text-white mb-4 sm:mb-6 drop-shadow-[0_4px_32px_rgba(0,0,0,0.95)]">
+              <span className="hero-title-line block font-bold text-white tracking-[-0.02em]">Architecture</span>
+              <span className="hero-title-line block italic font-editorial font-normal tracking-[0.03em] text-[#f4eee4] my-0.5 sm:my-1">
                 Shaped By
               </span>
-              <span className="hero-title-line block">Experience.</span>
+              <span className="hero-title-line block font-bold text-white tracking-[-0.02em]">Experience.</span>
             </h1>
 
             {/* Refined Supporting Statement */}
-            <p className="hero-sub font-light text-xs sm:text-sm md:text-base text-neutral-300/90 tracking-wide max-w-lg leading-relaxed mb-6 sm:mb-8 drop-shadow-md">
+            <p className="hero-sub font-normal text-xs sm:text-base md:text-lg text-neutral-200/95 tracking-wide max-w-xl leading-relaxed mb-6 sm:mb-8 drop-shadow-md">
               Where 50+ years of real construction mastery converges with quiet tropical luxury. Every space composed with intention, proportion, and enduring materiality.
             </p>
 
@@ -233,16 +233,16 @@ export default function HeroExperience() {
             <div className="hero-cta">
               <button 
                 onClick={scrollToExterior}
-                className="group inline-flex items-center space-x-3 text-[11px] sm:text-xs font-mono-subtle tracking-[0.25em] uppercase text-white hover:text-amber-200 transition-colors duration-300 py-2 border-b border-white/20 hover:border-amber-400"
+                className="group inline-flex items-center space-x-3 text-xs sm:text-sm font-mono-subtle font-medium tracking-[0.22em] uppercase text-white bg-white/[0.08] hover:bg-white hover:text-black border border-white/25 hover:border-white transition-all duration-300 px-5 sm:px-6 py-3 sm:py-3.5 backdrop-blur-md rounded-sm shadow-xl"
               >
                 <span>Explore Spatial Sequence</span>
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 text-sm text-amber-400">———→</span>
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 text-sm text-amber-400 group-hover:text-black">———→</span>
               </button>
             </div>
           </div>
 
           {/* Bottom Telemetry & Controls */}
-          <div className="hero-telemetry w-full flex items-end justify-between pt-4 pb-2 sm:pb-4 text-xs font-mono-subtle text-white/70">
+          <div className="hero-telemetry w-full flex items-end justify-between pt-3 pb-2 sm:pb-4 text-xs font-mono-subtle text-white/70">
             <div className="hidden sm:flex items-center space-x-2 text-[11px] text-white/60 tracking-widest uppercase">
               <span className="text-amber-400 font-mono">SCENE 01 •</span>
               <span>HILLSIDE RESORT & INFINITY SANCTUARY</span>
@@ -276,24 +276,24 @@ export default function HeroExperience() {
         {/* --- 02. TRANSITION — CLOSER VIEW CONTENT (The MIRAE Signature) --- */}
         <div 
           ref={signatureContentRef}
-          className="absolute inset-0 z-20 flex items-center justify-end p-6 sm:p-12 md:p-16 lg:p-20 pointer-events-none opacity-0"
+          className="absolute inset-0 z-20 flex items-center justify-end p-4 sm:p-8 md:p-14 lg:p-20 pointer-events-none opacity-0"
         >
-          <div className="max-w-xl bg-black/85 backdrop-blur-md p-8 sm:p-12 border border-white/[0.12] text-left pointer-events-auto shadow-2xl">
-            <span className="text-[10px] sm:text-xs font-mono-subtle text-amber-400/90 tracking-[0.35em] uppercase block mb-3">
+          <div className="max-w-xl bg-black/90 backdrop-blur-md p-6 sm:p-10 md:p-12 border border-white/[0.14] text-left pointer-events-auto shadow-2xl">
+            <span className="text-[10px] sm:text-xs font-mono-subtle text-amber-400 font-medium tracking-[0.35em] uppercase block mb-3">
               02. THE MIRAE SIGNATURE • 50+ YEARS LEGACY
             </span>
-            <h2 className="font-architectural text-2xl sm:text-4xl text-white font-light tracking-[0.08em] uppercase mb-4 sm:mb-6">
+            <h2 className="font-architectural text-2xl sm:text-3xl md:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-4 sm:mb-6">
               Quiet Luxury & Enduring Craftsmanship
             </h2>
-            <p className="text-xs sm:text-sm font-light text-[#c8c8c8] leading-relaxed mb-6 sm:mb-8">
+            <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed mb-6 sm:mb-8">
               Mirae creates architecture where quiet luxury, refined design and enduring craftsmanship come together. From private residences and contemporary homes to resorts, hospitality spaces and landmark developments, every project is composed with a discerning eye for proportion, material, light and detail.
             </p>
             <button 
               onClick={scrollToExterior}
-              className="group inline-flex items-center space-x-3 text-xs font-mono-subtle tracking-[0.25em] uppercase text-white hover:text-amber-200 transition-colors duration-300 border-b border-white/20 hover:border-amber-400 pb-1"
+              className="group inline-flex items-center space-x-3 text-xs font-mono-subtle font-medium tracking-[0.22em] uppercase text-white bg-white/[0.08] hover:bg-white hover:text-black border border-white/25 hover:border-white transition-all duration-300 px-5 py-3 backdrop-blur-md rounded-sm"
             >
               <span>Discover Architectural Anatomy</span>
-              <span className="inline-block transition-transform duration-300 group-hover:translate-x-2 text-sm text-amber-400">———→</span>
+              <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 text-sm text-amber-400 group-hover:text-black">———→</span>
             </button>
           </div>
         </div>

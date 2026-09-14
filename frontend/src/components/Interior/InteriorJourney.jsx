@@ -25,13 +25,13 @@ export default function InteriorJourney() {
   return (
     <section 
       id="interior" 
-      className="relative w-full bg-[#080808] text-[#f4f3ef] py-16 sm:py-24 px-6 sm:px-12 md:px-16 lg:px-20 border-t border-white/[0.08]"
+      className="relative w-full bg-[#080808] text-[#f4f3ef] py-16 sm:py-20 md:py-24 px-5 sm:px-10 md:px-16 lg:px-20 border-t border-white/[0.08]"
     >
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="flex items-center justify-between mb-8 sm:mb-12">
-          <span className="text-xs font-mono-subtle text-white/50 tracking-[0.3em] uppercase">
+          <span className="text-xs font-mono-subtle text-white/60 tracking-[0.3em] uppercase font-medium">
             04. INTERIOR ROOMS (ONE BY ONE)
           </span>
           <div className="hidden sm:flex items-center space-x-2 text-xs font-mono-subtle text-white/40">
@@ -40,7 +40,7 @@ export default function InteriorJourney() {
         </div>
 
         {/* --- TOP: LARGE FEATURED ROOM DISPLAY --- */}
-        <div className="relative w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-[#0d0d0d] border border-white/[0.08] p-6 sm:p-10 mb-10 sm:mb-14">
+        <div className="relative w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center bg-[#0d0d0d] border border-white/[0.1] p-5 sm:p-8 md:p-10 mb-8 sm:mb-14 shadow-2xl">
           
           {/* Featured Image (Large 8 Cols) */}
           <div className="lg:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden bg-black/50">
@@ -56,22 +56,22 @@ export default function InteriorJourney() {
           </div>
 
           {/* Featured Room Metadata (Right 4 Cols) */}
-          <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6 text-left">
+          <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-4 sm:space-y-6 text-left">
             <div>
-              <span className="text-xs font-mono-subtle text-white/50 tracking-[0.3em] block mb-3">
+              <span className="text-xs font-mono-subtle text-amber-400 font-medium tracking-[0.3em] block mb-2 sm:mb-3">
                 FEATURED SPACE
               </span>
-              <h3 className="font-architectural text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-[0.06em] uppercase mb-4 leading-tight">
+              <h3 className="font-architectural text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-[0.04em] uppercase mb-3 sm:mb-4 leading-tight">
                 {activeRoom.title}
               </h3>
-              <p className="text-xs sm:text-sm font-light text-[#c8c8c8] leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed mb-4 sm:mb-6">
                 {activeRoom.subtitle || activeRoom.description}
               </p>
             </div>
 
             {/* Room Number & Navigation Arrows */}
-            <div className="pt-6 border-t border-white/[0.08] flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-mono-subtle text-white tracking-[0.25em]">
+            <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between">
+              <span className="text-xs sm:text-sm font-mono-subtle text-white font-medium tracking-[0.25em]">
                 {activeRoom.number}
               </span>
 
@@ -79,14 +79,14 @@ export default function InteriorJourney() {
                 <button 
                   onClick={handlePrev}
                   aria-label="Previous room"
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all"
                 >
                   <ArrowLeft className="w-4 h-4" />
                 </button>
                 <button 
                   onClick={handleNext}
                   aria-label="Next room"
-                  className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all"
                 >
                   <ArrowRight className="w-4 h-4" />
                 </button>
@@ -97,12 +97,12 @@ export default function InteriorJourney() {
         </div>
 
         {/* --- BOTTOM: 3 SUPPORTING ROOM CARDS (Panel 04 Reference) --- */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {supportingRooms.map((room) => (
             <div 
               key={room.id}
               onClick={() => setSelectedId(room.id)}
-              className="group cursor-pointer bg-[#0e0e0e] border border-white/[0.08] hover:border-white/30 transition-all duration-300 p-5 flex flex-col justify-between"
+              className="group cursor-pointer bg-[#0e0e0e] border border-white/[0.08] hover:border-white/30 transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between shadow-lg"
             >
               {/* Thumbnail Image */}
               <div className="relative aspect-[16/10] w-full overflow-hidden mb-4 bg-black/40">
@@ -116,11 +116,11 @@ export default function InteriorJourney() {
               </div>
 
               {/* Room Card Title & Subtitle */}
-              <div className="text-left space-y-2 mb-4">
-                <h4 className="font-architectural text-lg sm:text-xl text-white font-light tracking-[0.08em] uppercase group-hover:text-white transition-colors">
+              <div className="text-left space-y-1.5 mb-4">
+                <h4 className="font-architectural text-base sm:text-lg text-white font-semibold tracking-[0.06em] uppercase group-hover:text-amber-200 transition-colors">
                   {room.title}
                 </h4>
-                <p className="text-xs font-light text-[#9e9e9e] line-clamp-2 leading-relaxed">
+                <p className="text-xs font-normal text-neutral-400 line-clamp-2 leading-relaxed">
                   {room.subtitle}
                 </p>
               </div>

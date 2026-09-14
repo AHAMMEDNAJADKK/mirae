@@ -26,29 +26,29 @@ export default function ProjectDetailModal({ project, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-[#080808]/95 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-[#080808]/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-project-title"
     >
       <div 
-        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-6 sm:p-10 md:p-12 my-auto shadow-2xl overflow-hidden"
+        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-5 sm:p-8 md:p-12 my-auto shadow-2xl overflow-hidden max-h-[92vh] overflow-y-auto rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close project study"
-          className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2.5 rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 z-20 focus:outline-none focus:ring-1 focus:ring-white"
+          className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2.5 min-w-[44px] min-h-[44px] rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 z-20 focus:outline-none flex items-center justify-center"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="mb-8 sm:mb-10 border-b border-white/[0.08] pb-6 pr-12">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono-subtle text-subtle mb-2.5 uppercase tracking-widest">
-            <span className="text-amber-400/90">{project.id || `PROJECT ${project.num}`}</span>
+        <div className="mb-6 sm:mb-10 border-b border-white/[0.08] pb-5 sm:pb-6 pr-12">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono-subtle text-amber-400 font-medium mb-2.5 uppercase tracking-widest">
+            <span>{project.id || `PROJECT ${project.num}`}</span>
             <span>•</span>
             <span className="text-white/80">{project.category}</span>
             {project.monographPlate && (
@@ -60,10 +60,10 @@ export default function ProjectDetailModal({ project, onClose }) {
             <span>•</span>
             <span className="text-white/40">MIRAE MONOGRAPH ARCHIVE</span>
           </div>
-          <h2 id="modal-project-title" className="font-architectural text-3xl sm:text-4xl md:text-5xl font-light text-white uppercase tracking-wider">
+          <h2 id="modal-project-title" className="font-architectural text-2xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-wider">
             {project.title}
           </h2>
-          <p className="text-sm sm:text-base font-editorial italic text-white/75 tracking-wide mt-2">
+          <p className="text-sm sm:text-base font-editorial italic text-white/85 tracking-wide mt-2">
             {project.subtitle}
           </p>
         </div>
@@ -202,7 +202,7 @@ export default function ProjectDetailModal({ project, onClose }) {
                   const contactEl = document.getElementById('contact');
                   if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full py-3.5 px-6 border border-white text-xs font-mono-subtle tracking-[0.2em] uppercase text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center space-x-2.5 shadow-lg"
+                className="w-full py-3.5 px-6 border border-white text-xs font-mono-subtle font-medium tracking-[0.2em] uppercase text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center space-x-2.5 shadow-lg"
               >
                 <span>INQUIRE ABOUT THIS WORK</span>
                 <ArrowRight className="w-3.5 h-3.5" />

@@ -17,13 +17,13 @@ export default function MaterialsSection() {
   return (
     <section 
       id="materials" 
-      className="relative w-full bg-[#0a0a0a] text-[#f4f3ef] py-16 sm:py-24 px-6 sm:px-12 md:px-16 lg:px-20 border-t border-white/[0.08]"
+      className="relative w-full bg-[#0a0a0a] text-[#f4f3ef] py-16 sm:py-20 md:py-24 px-5 sm:px-10 md:px-16 lg:px-20 border-t border-white/[0.08]"
     >
       <div className="max-w-7xl mx-auto">
         
         {/* Section Label */}
         <div className="flex items-center justify-between mb-8 sm:mb-12">
-          <span className="text-xs font-mono-subtle text-white/50 tracking-[0.3em] uppercase">
+          <span className="text-xs font-mono-subtle text-white/60 tracking-[0.3em] uppercase font-medium">
             05. PROJECT DETAILS / MATERIALS
           </span>
           <div className="hidden sm:block text-xs font-mono-subtle text-white/40">
@@ -35,7 +35,7 @@ export default function MaterialsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
           {/* Left: Dynamic Material Feature Photo with smooth crossfade */}
-          <div className="lg:col-span-6 relative aspect-[4/5] w-full overflow-hidden bg-neutral-950 border border-white/[0.1] rounded-sm group shadow-2xl">
+          <div className="lg:col-span-6 relative aspect-[4/3] sm:aspect-[4/5] w-full overflow-hidden bg-neutral-950 border border-white/[0.1] rounded-sm group shadow-2xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeMaterial.id}
@@ -77,23 +77,23 @@ export default function MaterialsSection() {
           </div>
 
           {/* Right: Editorial Narrative & Material Swatches */}
-          <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-8 text-left">
+          <div className="lg:col-span-6 flex flex-col justify-between h-full space-y-6 sm:space-y-8 text-left">
             <div>
-              <h2 className="font-architectural text-3xl sm:text-4xl lg:text-5xl font-light text-white tracking-[0.06em] uppercase mb-4 sm:mb-6 leading-tight">
+              <h2 className="font-architectural text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[0.04em] uppercase mb-3 sm:mb-5 leading-tight">
                 {materialsOverview.title}
               </h2>
-              <p className="text-xs sm:text-sm font-light text-[#b0b0b0] leading-relaxed max-w-lg mb-6 sm:mb-8">
+              <p className="text-xs sm:text-sm font-normal text-[#b8b8b8] leading-relaxed max-w-lg mb-6 sm:mb-8">
                 {materialsOverview.description}
               </p>
               
               {/* Active Material Detail Card */}
-              <div className="bg-[#111111] p-5 sm:p-6 border border-white/[0.12] mb-8 transition-all duration-300">
+              <div className="bg-[#111111] p-4 sm:p-6 border border-white/[0.12] mb-6 sm:mb-8 transition-all duration-300 shadow-xl">
                 <div className="flex items-center justify-between mb-3 border-b border-white/[0.08] pb-2.5">
                   <div className="flex items-center space-x-3">
                     <span className="text-[11px] font-mono-subtle text-amber-400 font-medium tracking-widest">
                       {activeMaterial.num} / 04
                     </span>
-                    <span className="text-base sm:text-lg font-architectural text-white uppercase tracking-wider font-normal">
+                    <span className="text-base sm:text-lg font-architectural text-white uppercase tracking-wider font-semibold">
                       {activeMaterial.name}
                     </span>
                   </div>
@@ -101,11 +101,11 @@ export default function MaterialsSection() {
                     AUTHENTIC SPECIFICATION
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-[#c4c4c4] font-light leading-relaxed mb-2">
+                <p className="text-xs sm:text-sm text-[#d4d4d4] font-normal leading-relaxed mb-2">
                   {activeMaterial.description}
                 </p>
-                <div className="text-[11px] font-mono-subtle text-white/50 tracking-wide mt-2">
-                  Key Attribute: <span className="text-white/80">{activeMaterial.subtitle}</span>
+                <div className="text-[11px] font-mono-subtle text-white/60 tracking-wide mt-2">
+                  Key Attribute: <span className="text-amber-300/90">{activeMaterial.subtitle}</span>
                 </div>
               </div>
             </div>
@@ -120,7 +120,7 @@ export default function MaterialsSection() {
                   CLICK TO PREVIEW SPECIFICATION
                 </span>
               </div>
-              <div className="grid grid-cols-4 gap-3 sm:gap-4">
+              <div className="grid grid-cols-4 gap-2.5 sm:gap-4">
                 {materialsData.map((mat) => {
                   const isSelected = activeMaterial.id === mat.id;
                   return (
