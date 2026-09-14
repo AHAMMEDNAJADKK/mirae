@@ -55,32 +55,32 @@ export default function FullscreenMenu({ isOpen, onClose }) {
   return (
     <div 
       ref={menuRef}
-      className="fixed inset-0 z-50 bg-[#080808]/98 backdrop-blur-2xl opacity-0 pointer-events-none flex flex-col justify-between p-8 sm:p-12 md:p-16 transition-opacity"
+      className="fixed inset-0 z-50 bg-[#080808]/98 backdrop-blur-2xl opacity-0 pointer-events-none flex flex-col justify-between p-6 sm:p-10 md:p-14 lg:p-16 overflow-y-auto max-h-screen transition-opacity"
     >
       {/* Top Header inside menu */}
-      <div className="flex justify-between items-center border-b border-white/[0.08] pb-6">
+      <div className="flex justify-between items-center border-b border-white/[0.08] pb-4 sm:pb-6">
         <div className="flex items-center">
           <img 
             src="/assets/images/mirae-logo.png" 
             alt="MIRAE Arc Studio by PMR INFRA LLP" 
-            className="h-8 sm:h-9 md:h-10 w-auto object-contain filter invert brightness-125 mix-blend-screen" 
+            className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
           />
         </div>
         <button 
           onClick={onClose}
           aria-label="Close navigation overlay"
-          className="group flex items-center space-x-2 text-xs font-mono-subtle text-subtle hover:text-white transition-colors"
+          className="group flex items-center space-x-2 text-xs font-mono-subtle text-subtle hover:text-white transition-colors p-2"
         >
-          <span>CLOSE</span>
-          <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-colors">
+          <span className="hidden sm:inline">CLOSE</span>
+          <div className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-colors">
             <X className="w-4 h-4 text-white" />
           </div>
         </button>
       </div>
 
       {/* Main Nav Links Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 my-auto py-8">
-        <div className="md:col-span-8 flex flex-col space-y-4 sm:space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 my-auto py-6 sm:py-8">
+        <div className="md:col-span-8 flex flex-col space-y-2.5 sm:space-y-4 md:space-y-5">
           {[
             { label: '01 / HOME', target: 'hero' },
             { label: '02 / ARCHITECTURE', target: 'exterior-layers' },
@@ -94,12 +94,12 @@ export default function FullscreenMenu({ isOpen, onClose }) {
             <button
               key={idx}
               onClick={() => handleLinkClick(item.target)}
-              className="menu-item group text-left flex items-baseline justify-between py-2 border-b border-white/[0.04] hover:border-white/30 transition-all duration-300"
+              className="menu-item group text-left flex items-baseline justify-between py-1.5 sm:py-2 border-b border-white/[0.04] hover:border-white/30 transition-all duration-300"
             >
-              <span className="font-architectural text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.08em] text-[#b5b5b5] group-hover:text-white transition-colors duration-300">
+              <span className="font-architectural text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-[0.05em] text-[#d4d4d4] group-hover:text-white transition-colors duration-300">
                 {item.label}
               </span>
-              <ArrowUpRight className="w-6 h-6 text-subtle opacity-0 group-hover:opacity-100 group-hover:text-white -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+              <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-subtle opacity-0 group-hover:opacity-100 group-hover:text-white -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
             </button>
           ))}
         </div>
@@ -142,7 +142,7 @@ export default function FullscreenMenu({ isOpen, onClose }) {
       </div>
 
       {/* Footer Inside Menu */}
-      <div className="flex flex-col sm:flex-row justify-between items-center text-xs font-mono-subtle text-subtle border-t border-white/[0.08] pt-6">
+      <div className="flex flex-col sm:flex-row justify-between items-center text-xs font-mono-subtle text-subtle border-t border-white/[0.08] pt-4 sm:pt-6 mt-4 sm:mt-0">
         <span>© {new Date().getFullYear()} MIRAE ARC STUDIO. ALL RIGHTS RESERVED.</span>
         <span className="mt-2 sm:mt-0 tracking-widest">MIRAEARC.COM</span>
       </div>

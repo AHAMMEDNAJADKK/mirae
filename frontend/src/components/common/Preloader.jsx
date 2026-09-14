@@ -78,9 +78,9 @@ export default function Preloader({ onComplete }) {
           <img 
             src="/assets/images/mirae-logo.png" 
             alt="MIRAE Arc Studio" 
-            className="h-12 sm:h-16 md:h-20 w-auto object-contain filter invert brightness-125 mix-blend-screen mb-4" 
+            className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain mb-4 sm:mb-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]" 
           />
-          <p className="text-xs sm:text-sm tracking-[0.35em] text-subtle uppercase">
+          <p className="text-xs sm:text-sm tracking-[0.35em] text-neutral-300 uppercase font-medium">
             Architecture Shaped By Experience
           </p>
         </div>
@@ -89,7 +89,7 @@ export default function Preloader({ onComplete }) {
           <div className="text-xs text-subtle font-mono-subtle">
             <span>50+ YEARS OF REAL CONSTRUCTION EXPERTISE</span>
           </div>
-          <div className="font-mono text-3xl sm:text-4xl font-light text-[#f4f3ef]">
+          <div className="font-mono text-3xl sm:text-4xl font-normal text-white">
             {String(progress).padStart(2, '0')}%
           </div>
         </div>
