@@ -31,7 +31,7 @@ export default function App() {
       <ScrollProgress />
 
       {/* Minimal Architectural Navbar (Matching Reference) */}
-      <Navbar onOpenMenu={() => setIsMenuOpen(true)} />
+      <Navbar isLoaded={isLoaded} onOpenMenu={() => setIsMenuOpen(true)} />
 
       {/* Fullscreen Mobile / Desktop Overlay Navigation */}
       <FullscreenMenu 
