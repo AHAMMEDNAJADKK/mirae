@@ -52,35 +52,36 @@ export default function Navbar({ onOpenMenu }) {
     <header 
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
         scrolled 
-          ? 'bg-black/95 backdrop-blur-md border-b border-white/[0.08] py-3 sm:py-4' 
-          : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-4 sm:py-6'
+          ? 'bg-black/95 backdrop-blur-md border-b border-white/[0.08] py-1 sm:py-1.5' 
+          : 'bg-gradient-to-b from-black/85 via-black/40 to-transparent py-1.5 sm:py-2.5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         
         {/* Brand Logo */}
-        <div className="flex items-center space-x-6 lg:space-x-10">
+        <div className="flex items-center space-x-4 lg:space-x-6 xl:space-x-8">
           <button 
             onClick={() => scrollToSection('hero')}
             className="flex items-center focus:outline-none group transition-opacity hover:opacity-90 py-0.5"
             aria-label="MIRAE Architecture Home"
           >
             <img 
-              src="/assets/images/mirae-logo.png" 
+              src="/assets/images/mirae-navbar-logo.webp" 
               alt="MIRAE Arc Studio" 
-              className="h-8 sm:h-9 md:h-10 lg:h-11 xl:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+              className="h-16 sm:h-18 md:h-20 lg:h-24 xl:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+              style={{ filter: 'invert(1) hue-rotate(180deg)' }}
             />
           </button>
 
           {/* Desktop Navigation Links — Strictly Following Scroll Order with About as Final Main Item */}
-          <nav className="hidden lg:flex items-center space-x-5 xl:space-x-7 text-xs font-mono-subtle" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-3.5 xl:space-x-6 text-xs font-mono-subtle" aria-label="Main Navigation">
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
               return (
                 <button 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative py-1 transition-colors duration-300 tracking-[0.2em] uppercase text-[11px] xl:text-xs ${
+                  className={`relative py-1 transition-colors duration-300 tracking-[0.16em] xl:tracking-[0.2em] uppercase text-[11px] xl:text-xs ${
                     isActive ? 'text-white font-medium' : 'text-white/60 hover:text-white'
                   }`}
                 >
