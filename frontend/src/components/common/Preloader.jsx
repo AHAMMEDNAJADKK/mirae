@@ -11,7 +11,7 @@ export default function Preloader({ onComplete }) {
 
     async function initPreload() {
       // Stage 1: Off-thread decode of primary hero image
-      const primaryHero = '/assets/images/hero/downloads-2.png';
+      const primaryHero = '/assets/images/hero/mirae-hero-bg.jpg';
       
       // Steady, mathematically smooth progress counter over ~1.9s for a cinematic feel
       let startTime = Date.now();

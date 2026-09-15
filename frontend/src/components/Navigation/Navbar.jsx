@@ -53,8 +53,9 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
-      // Center of viewport for initial brand introduction state
-      const targetCenterX = vw / 2;
+      // Target center of viewport for initial brand introduction state (subtly shifted left for architectural balance)
+      const leftShift = isMobile ? 14 : (isTablet ? 28 : 52);
+      const targetCenterX = (vw / 2) - leftShift;
       const targetCenterY = vh * 0.48; // Optical vertical center
 
       const deltaX = targetCenterX - dockCenterX;
@@ -206,8 +207,8 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
     >
       <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
         
-        {/* Brand Logo Dock Container (Left) — Single Continuous New Logo */}
-        <div className="flex items-center">
+        {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (subtly shifted left) */}
+        <div className="flex items-center -translate-x-0 sm:-translate-x-2 md:-translate-x-2 lg:-translate-x-8 xl:-translate-x-10">
           <button 
             ref={logoBtnRef}
             onClick={() => scrollToSection('hero')}

@@ -11,7 +11,7 @@ export default function HeroExperience() {
   const heroContentRef = useRef(null);
 
   useEffect(() => {
-    preloadSingleImage('/assets/images/hero/downloads-2.png');
+    preloadSingleImage('/assets/images/hero/mirae-hero-bg.jpg');
     preloadSingleImage('/assets/images/exterior/exterior-roof.webp');
   }, []);
 
@@ -100,15 +100,14 @@ export default function HeroExperience() {
       {/* Sticky Fullscreen Cinematic Architectural Stage */}
       <div className="sticky top-0 w-full h-screen h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-end select-none">
         
-        {/* Dominant Architectural Focus Visual: downloads-2.png */}
+        {/* Dominant Architectural Focus Visual: mirae-hero-bg.jpg */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           <div 
             ref={imageLayerRef} 
             className="absolute inset-0 w-full h-full will-change-transform"
           >
             <img 
-              src="/assets/images/hero/downloads-2.png"
-              onError={(e) => { e.target.src = '/assets/images/hero/downloads 2.png'; }}
+              src="/assets/images/hero/mirae-hero-bg.jpg"
               alt="MIRAE Architectural Atelier Interior"
               className="w-full h-full object-cover object-[center_35%] transform-gpu"
               loading="eager"
@@ -116,18 +115,17 @@ export default function HeroExperience() {
             />
           </div>
 
-          {/* Atmospheric Architecture Vignettes for Flawless Editorial Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/60 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/20 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+          {/* Subtle Atmospheric Vignettes for Natural Brightness & Editorial Legibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Left-Aligned Editorial Headline + Explore Projects CTA */}
         <div 
           ref={heroContentRef}
-          className="relative z-20 w-full max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 pb-14 sm:pb-18 md:pb-22 lg:pb-26 pointer-events-auto"
+          className="relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-18 md:pb-22 lg:pb-26 pointer-events-auto"
         >
-          <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-left">
+          <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6">
             <h1 className="font-cormorant font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem] text-neutral-100 leading-[1.08] tracking-[-0.015em] drop-shadow-[0_4px_36px_rgba(0,0,0,0.95)]">
               Architecture<br />
               Shaped by Experience
