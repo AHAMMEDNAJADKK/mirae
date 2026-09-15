@@ -197,7 +197,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           {/* Desktop Navigation Links — Start hidden at scroll 0 to avoid collision with centered logo, smoothly fade in as logo docks */}
           <nav 
             ref={desktopNavRef}
-            className="hidden lg:flex items-center space-x-3.5 xl:space-x-6 text-xs font-mono-subtle" 
+            className="hidden lg:flex items-center space-x-3.5 xl:space-x-6 text-xs font-pencrow font-medium" 
             aria-label="Main Navigation"
           >
             {navItems.map((item) => {
@@ -206,8 +206,8 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
                 <button 
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative py-1 transition-colors duration-300 tracking-[0.16em] xl:tracking-[0.2em] uppercase text-[11px] xl:text-xs ${
-                    isActive ? 'text-white font-medium' : 'text-white/60 hover:text-white'
+                  className={`relative py-1 transition-colors duration-300 tracking-[0.16em] xl:tracking-[0.2em] uppercase text-[11px] xl:text-xs font-pencrow ${
+                    isActive ? 'text-white font-semibold' : 'text-white/70 hover:text-white font-medium'
                   }`}
                 >
                   <span>{item.label}</span>
@@ -224,7 +224,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
         <div className="flex items-center space-x-4 sm:space-x-5">
           <button 
             onClick={() => scrollToSection('contact')}
-            className={`hidden sm:inline-flex items-center text-[11px] font-mono-subtle tracking-[0.2em] uppercase transition-all duration-300 py-2 px-4 border ${
+            className={`hidden sm:inline-flex items-center text-[11px] font-pencrow font-medium tracking-[0.2em] uppercase transition-all duration-300 py-2 px-4 border ${
               activeSection === 'contact' 
                 ? 'border-amber-400 text-amber-300 bg-amber-400/10 shadow-[0_0_12px_rgba(251,191,36,0.15)]' 
                 : 'border-white/20 text-white/80 hover:text-white hover:border-white'

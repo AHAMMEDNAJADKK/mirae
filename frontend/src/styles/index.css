@@ -2,10 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Pilcrow Global Typography System */
+/* Pencrow Architectural Global Typography System */
+@font-face {
+  font-family: 'Pencrow';
+  src: url('/fonts/Pencrow-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pencrow';
+  src: url('/fonts/Pencrow-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pencrow';
+  src: url('/fonts/Pencrow-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pencrow';
+  src: url('/fonts/Pencrow-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Backward compatibility aliases for Pilcrow / Pilcrow Rounded */
 @font-face {
   font-family: 'Pilcrow';
-  src: local('Pilcrow'), local('Pilcrow Rounded'), local('Pilcrow Soft'), local('Pilcrow-Regular'), local('PilcrowRounded-Regular');
+  src: url('/fonts/Pencrow-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -13,7 +46,7 @@
 
 @font-face {
   font-family: 'Pilcrow';
-  src: local('Pilcrow Medium'), local('Pilcrow Rounded Medium'), local('Pilcrow Soft Medium'), local('Pilcrow-Medium'), local('PilcrowRounded-Medium');
+  src: url('/fonts/Pencrow-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -21,7 +54,7 @@
 
 @font-face {
   font-family: 'Pilcrow';
-  src: local('Pilcrow SemiBold'), local('Pilcrow Rounded SemiBold'), local('Pilcrow Soft SemiBold'), local('Pilcrow-SemiBold'), local('PilcrowRounded-SemiBold');
+  src: url('/fonts/Pencrow-Semibold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -29,7 +62,39 @@
 
 @font-face {
   font-family: 'Pilcrow';
-  src: local('Pilcrow Bold'), local('Pilcrow Rounded Bold'), local('Pilcrow Soft Bold'), local('Pilcrow-Bold'), local('PilcrowRounded-Bold');
+  src: url('/fonts/Pencrow-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow Rounded';
+  src: url('/fonts/Pencrow-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow Rounded';
+  src: url('/fonts/Pencrow-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow Rounded';
+  src: url('/fonts/Pencrow-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pilcrow Rounded';
+  src: url('/fonts/Pencrow-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -42,7 +107,8 @@
     --text-primary: #f4f3ef;
     --text-muted: #8e8e8e;
     --accent-border: rgba(255, 255, 255, 0.08);
-    --font-pilcrow: 'Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-pencrow: 'Pencrow', 'Pilcrow', 'Pilcrow Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-pilcrow: var(--font-pencrow);
   }
 
   html,
@@ -54,11 +120,11 @@
     min-height: 100%;
     background-color: #0a0a0a;
     color: #f4f3ef;
-    font-family: var(--font-pilcrow);
+    font-family: var(--font-pencrow);
   }
 
   html {
-    font-family: var(--font-pilcrow);
+    font-family: var(--font-pencrow);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -69,7 +135,7 @@
     /* overflow-x: clip avoids creating a scrolling context that breaks position: sticky */
     overflow-x: clip;
     position: relative;
-    font-family: var(--font-pilcrow);
+    font-family: var(--font-pencrow);
   }
 
   /* Lenis recommended styling */
@@ -108,14 +174,18 @@
   }
 }
 
-/* Editorial Architectural Typography using Pilcrow */
+/* Editorial Architectural Typography using Pencrow */
+.font-pencrow {
+  font-family: var(--font-pencrow);
+}
+
 .font-architectural {
-  font-family: var(--font-pilcrow);
+  font-family: var(--font-pencrow);
   letter-spacing: 0.04em;
 }
 
 .font-editorial {
-  font-family: var(--font-pilcrow);
+  font-family: var(--font-pencrow);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }

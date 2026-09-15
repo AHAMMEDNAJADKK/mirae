@@ -31,10 +31,10 @@ export default function InteriorJourney() {
         
         {/* Section Header */}
         <div className="flex items-center justify-between mb-8 sm:mb-12">
-          <span className="text-xs font-mono-subtle text-white/60 tracking-[0.3em] uppercase font-medium">
+          <span className="text-xs font-pencrow text-white/60 tracking-[0.3em] uppercase font-medium">
             04. INTERIOR ROOMS (ONE BY ONE)
           </span>
-          <div className="hidden sm:flex items-center space-x-2 text-xs font-mono-subtle text-white/40">
+          <div className="hidden sm:flex items-center space-x-2 text-xs font-pencrow text-white/40 font-medium tracking-widest">
             <span>RESIDENTIAL SANCTUARY</span>
           </div>
         </div>
@@ -58,20 +58,20 @@ export default function InteriorJourney() {
           {/* Featured Room Metadata (Right 4 Cols) */}
           <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-4 sm:space-y-6 text-left">
             <div>
-              <span className="text-xs font-mono-subtle text-amber-400 font-medium tracking-[0.3em] block mb-2 sm:mb-3">
+              <span className="text-xs font-pencrow text-amber-400 font-medium tracking-[0.3em] block mb-2 sm:mb-3">
                 FEATURED SPACE
               </span>
               <h3 className="font-architectural text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-[0.04em] uppercase mb-3 sm:mb-4 leading-tight">
                 {activeRoom.title}
               </h3>
-              <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed mb-4 sm:mb-6">
+              <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed mb-4 sm:mb-6 font-pencrow">
                 {activeRoom.subtitle || activeRoom.description}
               </p>
             </div>
 
             {/* Room Number & Navigation Arrows */}
             <div className="pt-5 border-t border-white/[0.08] flex items-center justify-between">
-              <span className="text-xs sm:text-sm font-mono-subtle text-white font-medium tracking-[0.25em]">
+              <span className="text-xs sm:text-sm font-pencrow text-white font-medium tracking-[0.25em]">
                 {activeRoom.number}
               </span>
 
@@ -120,13 +120,13 @@ export default function InteriorJourney() {
                 <h4 className="font-architectural text-base sm:text-lg text-white font-semibold tracking-[0.06em] uppercase group-hover:text-amber-200 transition-colors">
                   {room.title}
                 </h4>
-                <p className="text-xs font-normal text-neutral-400 line-clamp-2 leading-relaxed">
+                <p className="text-xs font-normal text-neutral-400 line-clamp-2 leading-relaxed font-pencrow">
                   {room.subtitle}
                 </p>
               </div>
 
               {/* Room Number & Click Arrow */}
-              <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs font-mono-subtle text-white/50 group-hover:text-white transition-colors">
+              <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs font-pencrow font-medium text-white/50 group-hover:text-white transition-colors">
                 <span>{room.number}</span>
                 <span className="text-sm transition-transform duration-300 group-hover:translate-x-1">→</span>
               </div>

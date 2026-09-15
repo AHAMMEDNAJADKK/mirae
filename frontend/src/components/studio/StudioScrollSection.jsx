@@ -158,7 +158,7 @@ export default function StudioScrollSection() {
         {/* Top Editorial Bar */}
         <div className="relative z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-b border-white/[0.08] pb-3 sm:pb-5">
           <div>
-            <div className="flex items-center space-x-2 text-xs font-mono-subtle text-amber-400 font-medium tracking-[0.25em] uppercase mb-1">
+            <div className="flex items-center space-x-2 text-xs font-pencrow text-amber-400 font-medium tracking-[0.25em] uppercase mb-1">
               <Compass className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
               <span>THE ATELIER • SPATIAL SEQUENCE</span>
             </div>
@@ -170,10 +170,10 @@ export default function StudioScrollSection() {
           {/* Dynamic Index & Progress Bar */}
           <div className="flex items-center space-x-5 sm:space-x-8">
             <div className="flex flex-col items-end">
-              <span className="text-xs font-mono-subtle text-white/50 uppercase tracking-widest">
+              <span className="text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
                 SEQUENCE
               </span>
-              <span className="text-sm sm:text-base font-mono-subtle font-semibold text-white tracking-widest">
+              <span className="text-sm sm:text-base font-pencrow font-semibold text-white tracking-widest">
                 {activeItem.num} <span className="text-white/30">/ 06</span>
               </span>
             </div>
@@ -214,7 +214,7 @@ export default function StudioScrollSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
 
                 {/* Badge Tag */}
-                <div className="absolute top-4 left-4 z-10 bg-black/70 backdrop-blur-md px-3 py-1 border border-white/15 text-[11px] font-mono-subtle font-medium tracking-[0.2em] text-white/90 uppercase">
+                <div className="absolute top-4 left-4 z-10 bg-black/70 backdrop-blur-md px-3 py-1 border border-white/15 text-[11px] font-pencrow font-medium tracking-[0.2em] text-white/90 uppercase">
                   {item.tag}
                 </div>
               </div>
@@ -225,18 +225,18 @@ export default function StudioScrollSection() {
         {/* Bottom Editorial Caption Panel */}
         <div className="relative z-20 max-w-6xl mx-auto w-full pt-3 sm:pt-4 border-t border-white/[0.08] flex flex-col md:flex-row items-start md:items-end justify-between gap-3 sm:gap-4">
           <div className="max-w-2xl">
-            <div className="text-xs font-mono-subtle text-amber-400 font-medium tracking-widest uppercase mb-1">
+            <div className="text-xs font-pencrow text-amber-400 font-medium tracking-widest uppercase mb-1">
               {activeItem.category} • {activeItem.subtitle}
             </div>
             <h3 className="font-architectural text-lg sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide">
               {activeItem.title}
             </h3>
-            <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed">
+            <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed font-pencrow">
               {activeItem.description}
             </p>
           </div>
 
-          <div className="flex items-center space-x-2 text-xs font-mono-subtle text-white/50 uppercase tracking-widest">
+          <div className="flex items-center space-x-2 text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
             <span>SCROLL TO ADVANCE</span>
             <ArrowRight className="w-3.5 h-3.5 animate-pulse text-amber-400" />
           </div>

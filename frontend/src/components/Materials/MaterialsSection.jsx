@@ -23,10 +23,10 @@ export default function MaterialsSection() {
         
         {/* Section Label */}
         <div className="flex items-center justify-between mb-8 sm:mb-12">
-          <span className="text-xs font-mono-subtle text-white/60 tracking-[0.3em] uppercase font-medium">
+          <span className="text-xs font-pencrow text-white/60 tracking-[0.3em] uppercase font-medium">
             05. PROJECT DETAILS / MATERIALS
           </span>
-          <div className="hidden sm:block text-xs font-mono-subtle text-white/40">
+          <div className="hidden sm:block text-xs font-pencrow text-white/40 font-medium tracking-widest">
             TECTONIC HONESTY
           </div>
         </div>
@@ -64,15 +64,15 @@ export default function MaterialsSection() {
             {/* Architectural Material Plate Badge */}
             <div className="absolute top-4 left-4 z-10 bg-black/75 backdrop-blur-md px-3 py-1.5 border border-white/10 flex items-center space-x-2.5">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span className="text-[10px] font-mono-subtle text-white tracking-[0.25em] uppercase font-medium">
+              <span className="text-[10px] font-pencrow text-white tracking-[0.25em] uppercase font-medium">
                 PLATE {activeMaterial.num} • {activeMaterial.name.toUpperCase()}
               </span>
             </div>
 
             {/* Subtitle bottom banner */}
-            <div className="absolute bottom-4 left-4 right-4 z-10 bg-black/65 backdrop-blur-md px-4 py-3 border border-white/10 flex items-center justify-between text-xs font-mono-subtle text-white/90">
-              <span className="tracking-wider uppercase font-light text-[11px] sm:text-xs">{activeMaterial.subtitle}</span>
-              <span className="text-[10px] text-white/50 tracking-widest hidden sm:inline-block">TECTONIC STUDY</span>
+            <div className="absolute bottom-4 left-4 right-4 z-10 bg-black/65 backdrop-blur-md px-4 py-3 border border-white/10 flex items-center justify-between text-xs font-pencrow text-white/90">
+              <span className="tracking-wider uppercase font-light text-[11px] sm:text-xs font-pencrow">{activeMaterial.subtitle}</span>
+              <span className="text-[10px] text-white/50 tracking-widest hidden sm:inline-block font-pencrow">TECTONIC STUDY</span>
             </div>
           </div>
 
@@ -82,7 +82,7 @@ export default function MaterialsSection() {
               <h2 className="font-architectural text-2xl sm:text-4xl lg:text-5xl font-bold text-white tracking-[0.04em] uppercase mb-3 sm:mb-5 leading-tight">
                 {materialsOverview.title}
               </h2>
-              <p className="text-xs sm:text-sm font-normal text-[#b8b8b8] leading-relaxed max-w-lg mb-6 sm:mb-8">
+              <p className="text-xs sm:text-sm font-normal text-[#b8b8b8] leading-relaxed max-w-lg mb-6 sm:mb-8 font-pencrow">
                 {materialsOverview.description}
               </p>
               
@@ -90,21 +90,21 @@ export default function MaterialsSection() {
               <div className="bg-[#111111] p-4 sm:p-6 border border-white/[0.12] mb-6 sm:mb-8 transition-all duration-300 shadow-xl">
                 <div className="flex items-center justify-between mb-3 border-b border-white/[0.08] pb-2.5">
                   <div className="flex items-center space-x-3">
-                    <span className="text-[11px] font-mono-subtle text-amber-400 font-medium tracking-widest">
+                    <span className="text-[11px] font-pencrow text-amber-400 font-medium tracking-widest">
                       {activeMaterial.num} / 04
                     </span>
                     <span className="text-base sm:text-lg font-architectural text-white uppercase tracking-wider font-semibold">
                       {activeMaterial.name}
                     </span>
                   </div>
-                  <span className="text-[10px] font-mono-subtle text-white/40 tracking-widest uppercase">
+                  <span className="text-[10px] font-pencrow text-white/40 tracking-widest uppercase font-medium">
                     AUTHENTIC SPECIFICATION
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm text-[#d4d4d4] font-normal leading-relaxed mb-2">
+                <p className="text-xs sm:text-sm text-[#d4d4d4] font-normal leading-relaxed mb-2 font-pencrow">
                   {activeMaterial.description}
                 </p>
-                <div className="text-[11px] font-mono-subtle text-white/60 tracking-wide mt-2">
+                <div className="text-[11px] font-pencrow text-white/60 tracking-wide mt-2">
                   Key Attribute: <span className="text-amber-300/90">{activeMaterial.subtitle}</span>
                 </div>
               </div>
@@ -113,10 +113,10 @@ export default function MaterialsSection() {
             {/* Bottom 4 Swatches Row */}
             <div>
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] font-mono-subtle text-white/50 tracking-[0.25em] uppercase block">
+                <span className="text-[10px] font-pencrow text-white/50 tracking-[0.25em] uppercase block font-medium">
                   SELECT MATERIAL SWATCH
                 </span>
-                <span className="text-[10px] font-mono-subtle text-amber-400/80 tracking-widest uppercase">
+                <span className="text-[10px] font-pencrow text-amber-400/80 tracking-widest uppercase font-medium">
                   CLICK TO PREVIEW SPECIFICATION
                 </span>
               </div>
@@ -153,7 +153,7 @@ export default function MaterialsSection() {
                           <div className="absolute inset-0 bg-amber-400/10 pointer-events-none" />
                         )}
                       </div>
-                      <span className={`text-[11px] font-mono-subtle tracking-wider uppercase transition-colors ${
+                      <span className={`text-[11px] font-pencrow tracking-wider uppercase transition-colors ${
                         isSelected ? 'text-amber-300 font-medium' : 'text-[#a0a0a0]'
                       }`}>
                         {mat.name}
