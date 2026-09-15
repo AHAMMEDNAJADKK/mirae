@@ -136,11 +136,11 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Top Header HUD */}
-        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pt-5 sm:pt-10 flex items-center justify-between text-xs font-mono-subtle">
+        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pt-5 sm:pt-10 flex items-center justify-between text-xs font-pencrow">
           <div className="flex items-center space-x-3">
-            <span className="text-white/70 tracking-[0.3em] uppercase font-medium">03. EXTERIOR LAYERS (SCROLLING)</span>
+            <span className="text-white/70 tracking-[0.3em] uppercase font-medium font-pencrow">03. EXTERIOR LAYERS (SCROLLING)</span>
           </div>
-          <div className="text-white/50 tracking-widest hidden sm:block">
+          <div className="text-white/50 tracking-widest hidden sm:block font-pencrow font-medium">
             ARCHITECTURAL ANATOMY • LEVEL 0{activeLayerIndex + 1}
           </div>
         </div>
@@ -150,13 +150,13 @@ export default function ExteriorLayers() {
           
           {/* Left: Active Level Description */}
           <div className="w-full md:max-w-md bg-black/85 backdrop-blur-md p-4 sm:p-6 md:p-8 border-l-2 border-amber-400 shadow-2xl">
-            <span className="text-[10px] font-mono-subtle text-amber-300 font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
+            <span className="text-[10px] font-pencrow text-amber-300 font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
               LEVEL 0{activeLayerIndex + 1} / 04
             </span>
             <h3 className="font-architectural text-xl sm:text-3xl md:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-2 sm:mb-3">
               {layersData[activeLayerIndex].title}
             </h3>
-            <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed">
+            <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed font-pencrow">
               {layersData[activeLayerIndex].subtitle}
             </p>
           </div>
@@ -207,7 +207,7 @@ export default function ExteriorLayers() {
                   <div className={`w-2 h-2 rounded-full transition-all ${
                     isActive ? 'bg-amber-400 scale-125 shadow-[0_0_8px_rgba(251,191,36,0.8)]' : 'bg-white/40'
                   }`} />
-                  <span className={`text-[10px] font-mono-subtle uppercase tracking-wider ${
+                  <span className={`text-[10px] font-pencrow uppercase tracking-wider ${
                     isActive ? 'text-white font-semibold' : 'text-neutral-400'
                   }`}>
                     0{idx + 1}
@@ -220,7 +220,7 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Bottom Bar Info */}
-        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pb-5 sm:pb-8 flex justify-between items-center text-[10px] sm:text-xs font-mono-subtle text-white/50">
+        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pb-5 sm:pb-8 flex justify-between items-center text-[10px] sm:text-xs font-pencrow text-white/50 font-medium">
           <span>PROGRESSIVE TECTONIC SEQUENCE</span>
           <span className="font-medium text-white/70">{layersData[activeLayerIndex].title.toUpperCase()}</span>
         </div>

@@ -18,9 +18,11 @@ export default {
         cream: '#f4f3ef',
       },
       fontFamily: {
-        pilcrow: ['Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        display: ['Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        sans: ['Pilcrow', 'Pilcrow Rounded', 'Pilcrow Soft', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        pencrow: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        display: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        sans: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        pilcrow: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       letterSpacing: {

@@ -47,7 +47,7 @@ export default function ProjectDetailModal({ project, onClose }) {
 
         {/* Modal Header */}
         <div className="mb-6 sm:mb-10 border-b border-white/[0.08] pb-5 sm:pb-6 pr-12">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-mono-subtle text-amber-400 font-medium mb-2.5 uppercase tracking-widest">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-pencrow text-amber-400 font-medium mb-2.5 uppercase tracking-widest">
             <span>{project.id || `PROJECT ${project.num}`}</span>
             <span>•</span>
             <span className="text-white/80">{project.category}</span>
@@ -63,7 +63,7 @@ export default function ProjectDetailModal({ project, onClose }) {
           <h2 id="modal-project-title" className="font-architectural text-2xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-wider">
             {project.title}
           </h2>
-          <p className="text-sm sm:text-base font-editorial italic text-white/85 tracking-wide mt-2">
+          <p className="text-sm sm:text-base font-editorial italic text-white/85 tracking-wide mt-2 font-pencrow">
             {project.subtitle}
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function ProjectDetailModal({ project, onClose }) {
                 decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-3 text-[11px] font-mono-subtle text-white/70 bg-black/60 backdrop-blur-md px-2.5 py-1 border border-white/10">
+              <div className="absolute bottom-3 left-3 text-[11px] font-pencrow font-medium text-white/70 bg-black/60 backdrop-blur-md px-2.5 py-1 border border-white/10">
                 PLATE FOCUS
               </div>
             </div>
@@ -93,7 +93,7 @@ export default function ProjectDetailModal({ project, onClose }) {
             {/* Thumbnail Selection Plates from the Brochure */}
             {project.gallery && project.gallery.length > 1 && (
               <div>
-                <div className="text-[11px] font-mono-subtle text-white/40 uppercase tracking-widest mb-2.5">
+                <div className="text-[11px] font-pencrow font-medium text-white/40 uppercase tracking-widest mb-2.5">
                   ARCHITECTURAL PLATES ({project.gallery.length}) — CLICK TO ENLARGE
                 </div>
                 <div className="grid grid-cols-3 gap-3">
@@ -121,7 +121,7 @@ export default function ProjectDetailModal({ project, onClose }) {
                           loading="lazy"
                           decoding="async"
                         />
-                        <div className="absolute bottom-1 right-1 text-[9px] font-mono-subtle text-white/80 bg-black/70 px-1 py-0.5">
+                        <div className="absolute bottom-1 right-1 text-[9px] font-pencrow font-medium text-white/80 bg-black/70 px-1 py-0.5">
                           0{i + 1}
                         </div>
                       </button>
@@ -137,17 +137,17 @@ export default function ProjectDetailModal({ project, onClose }) {
             <div className="space-y-6">
               
               {/* Concept Tagline */}
-              <div className="text-xs font-mono-subtle text-white/50 tracking-[0.2em] uppercase">
+              <div className="text-xs font-pencrow font-medium text-white/50 tracking-[0.2em] uppercase">
                 {project.tagline}
               </div>
 
               {/* Architectural Statements */}
               <div className="space-y-3">
-                <p className="text-sm font-light text-[#dfdeda] leading-relaxed">
+                <p className="text-sm font-pencrow font-normal text-[#dfdeda] leading-relaxed">
                   {project.description}
                 </p>
                 {project.secondaryText && (
-                  <p className="text-xs sm:text-sm font-light text-[#9e9e9e] leading-relaxed italic border-l-2 border-white/20 pl-3.5">
+                  <p className="text-xs sm:text-sm font-pencrow font-normal text-[#9e9e9e] leading-relaxed italic border-l-2 border-white/20 pl-3.5">
                     "{project.secondaryText}"
                   </p>
                 )}
@@ -156,17 +156,17 @@ export default function ProjectDetailModal({ project, onClose }) {
               {/* Distinct Brochure Plates (Chaiwalah & Resort) */}
               {project.distinctBlocks && project.distinctBlocks.length > 0 && (
                 <div className="space-y-3 pt-4 border-t border-white/[0.08]">
-                  <h3 className="text-xs font-mono-subtle text-white/40 tracking-[0.2em] uppercase">
+                  <h3 className="text-xs font-pencrow font-medium text-white/40 tracking-[0.2em] uppercase">
                     BROCHURE CURATION
                   </h3>
                   <div className="space-y-3">
                     {project.distinctBlocks.map((block, idx) => (
                       <div key={idx} className="bg-white/[0.03] border border-white/[0.08] p-3.5">
-                        <h4 className="text-xs font-mono-subtle text-white tracking-widest uppercase mb-1.5 flex items-center space-x-2">
+                        <h4 className="text-xs font-pencrow font-semibold text-white tracking-widest uppercase mb-1.5 flex items-center space-x-2">
                           <span className="w-1.5 h-1.5 bg-white/60 rounded-full" />
                           <span>{block.title}</span>
                         </h4>
-                        <p className="text-xs font-light text-[#b5b4af] leading-relaxed">
+                        <p className="text-xs font-pencrow font-normal text-[#b5b4af] leading-relaxed">
                           {block.text}
                         </p>
                       </div>
@@ -178,12 +178,12 @@ export default function ProjectDetailModal({ project, onClose }) {
               {/* Architectural Signatures */}
               {project.signatures && project.signatures.length > 0 && (
                 <div className="pt-4 border-t border-white/[0.08]">
-                  <h3 className="text-xs font-mono-subtle text-white/40 tracking-[0.2em] uppercase mb-3">
+                  <h3 className="text-xs font-pencrow font-medium text-white/40 tracking-[0.2em] uppercase mb-3">
                     ARCHITECTURAL SIGNATURES
                   </h3>
                   <ul className="space-y-2">
                     {project.signatures.map((feat, idx) => (
-                      <li key={idx} className="flex items-start space-x-2.5 text-xs text-[#c5c4c0]">
+                      <li key={idx} className="flex items-start space-x-2.5 text-xs text-[#c5c4c0] font-pencrow font-normal">
                         <Check className="w-3.5 h-3.5 text-white/80 mt-0.5 flex-shrink-0" />
                         <span>{feat}</span>
                       </li>
@@ -202,7 +202,7 @@ export default function ProjectDetailModal({ project, onClose }) {
                   const contactEl = document.getElementById('contact');
                   if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="w-full py-3.5 px-6 border border-white text-xs font-mono-subtle font-medium tracking-[0.2em] uppercase text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center space-x-2.5 shadow-lg"
+                className="w-full py-3.5 px-6 border border-white text-xs font-pencrow font-medium tracking-[0.2em] uppercase text-white hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center space-x-2.5 shadow-lg"
               >
                 <span>INQUIRE ABOUT THIS WORK</span>
                 <ArrowRight className="w-3.5 h-3.5" />

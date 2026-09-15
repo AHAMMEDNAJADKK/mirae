@@ -19,7 +19,7 @@ export default function ScrollProgress() {
 
   return (
     <div className="fixed right-6 top-1/2 -translate-y-1/2 z-30 hidden lg:flex flex-col items-center space-y-4 pointer-events-none">
-      <div className="text-[10px] font-mono-subtle text-white/50 tracking-widest rotate-90 my-2">
+      <div className="text-[10px] font-pencrow font-medium text-white/50 tracking-widest rotate-90 my-2">
         {String(scrollPercentage).padStart(2, '0')}%
       </div>
       
@@ -31,7 +31,7 @@ export default function ScrollProgress() {
         />
       </div>
 
-      <div className="text-[9px] font-mono-subtle text-white/30 tracking-widest rotate-90 my-2">
+      <div className="text-[9px] font-pencrow font-medium text-white/30 tracking-widest rotate-90 my-2">
         JOURNEY
       </div>
     </div>

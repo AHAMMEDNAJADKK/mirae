@@ -69,7 +69,7 @@ export default function FullscreenMenu({ isOpen, onClose }) {
         <button 
           onClick={onClose}
           aria-label="Close navigation overlay"
-          className="group flex items-center space-x-2 text-xs font-mono-subtle text-subtle hover:text-white transition-colors p-2"
+          className="group flex items-center space-x-2 text-xs font-pencrow font-medium tracking-widest text-subtle hover:text-white transition-colors p-2"
         >
           <span className="hidden sm:inline">CLOSE</span>
           <div className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-colors">
@@ -107,34 +107,34 @@ export default function FullscreenMenu({ isOpen, onClose }) {
         {/* Sidebar Info */}
         <div className="md:col-span-4 flex flex-col justify-between border-l border-white/[0.06] pl-8 sm:pl-12 hidden md:flex">
           <div>
-            <h4 className="text-xs font-mono-subtle text-subtle uppercase mb-4 tracking-widest">
+            <h4 className="text-xs font-pencrow font-medium text-subtle uppercase mb-4 tracking-widest">
               STUDIO LOCATION
             </h4>
-            <p className="text-sm font-light text-white leading-relaxed flex items-center space-x-2">
+            <p className="text-sm font-pencrow font-normal text-white leading-relaxed flex items-center space-x-2">
               <MapPin className="w-4 h-4 text-subtle" />
               <span>Malappuram, Kerala</span>
             </p>
           </div>
 
           <div className="my-8">
-            <h4 className="text-xs font-mono-subtle text-subtle uppercase mb-4 tracking-widest">
+            <h4 className="text-xs font-pencrow font-medium text-subtle uppercase mb-4 tracking-widest">
               DIRECT INQUIRIES
             </h4>
-            <p className="text-sm font-light text-white mb-2 flex items-center space-x-2">
+            <p className="text-sm font-pencrow font-normal text-white mb-2 flex items-center space-x-2">
               <Phone className="w-4 h-4 text-subtle" />
               <a href="tel:+919388330033" className="hover:underline">+91 9388330033</a>
             </p>
-            <p className="text-sm font-light text-white flex items-center space-x-2">
+            <p className="text-sm font-pencrow font-normal text-white flex items-center space-x-2">
               <Mail className="w-4 h-4 text-subtle" />
               <a href="mailto:miraearcstudio@gmail.com" className="hover:underline">miraearcstudio@gmail.com</a>
             </p>
           </div>
 
           <div>
-            <p className="text-xs font-mono-subtle text-subtle uppercase leading-relaxed">
+            <p className="text-xs font-pencrow font-normal text-subtle uppercase leading-relaxed">
               "Spaces crafted not simply to be seen, but to be experienced."
             </p>
-            <span className="text-[10px] text-white/40 block mt-2">
+            <span className="text-[10px] font-pencrow font-medium text-white/40 block mt-2 tracking-wider uppercase">
               50+ Years Of Real Construction Expertise
             </span>
           </div>
@@ -142,9 +142,9 @@ export default function FullscreenMenu({ isOpen, onClose }) {
       </div>
 
       {/* Footer Inside Menu */}
-      <div className="flex flex-col sm:flex-row justify-between items-center text-xs font-mono-subtle text-subtle border-t border-white/[0.08] pt-4 sm:pt-6 mt-4 sm:mt-0">
+      <div className="flex flex-col sm:flex-row justify-between items-center text-xs font-pencrow text-subtle border-t border-white/[0.08] pt-4 sm:pt-6 mt-4 sm:mt-0">
         <span>© {new Date().getFullYear()} MIRAE ARC STUDIO. ALL RIGHTS RESERVED.</span>
-        <span className="mt-2 sm:mt-0 tracking-widest">MIRAEARC.COM</span>
+        <span className="mt-2 sm:mt-0 tracking-widest font-pencrow font-medium">MIRAEARC.COM</span>
       </div>
     </div>
   );
