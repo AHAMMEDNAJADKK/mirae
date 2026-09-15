@@ -11,7 +11,7 @@ export default function Preloader({ onComplete }) {
 
     async function initPreload() {
       // Stage 1: Off-thread decode of primary hero image
-      const primaryHero = '/assets/images/hero/hero-drone.webp';
+      const primaryHero = '/assets/images/hero/mirae-hero-bg.jpg';
       
       // Steady, mathematically smooth progress counter over ~1.9s for a cinematic feel
       let startTime = Date.now();
@@ -83,7 +83,7 @@ export default function Preloader({ onComplete }) {
 
       {/* Preloader Content */}
       <div className="preloader-content relative z-10 w-full h-full flex flex-col justify-between p-8 md:p-16 text-[#f4f3ef]">
-        <div className="flex justify-between items-center text-xs tracking-widest uppercase text-subtle font-mono-subtle">
+        <div className="flex justify-between items-center text-xs tracking-widest uppercase text-subtle font-pencrow font-medium">
           <span>MIRAE ARC STUDIO</span>
           <span>EST. PMR INFRA</span>
         </div>
@@ -94,16 +94,16 @@ export default function Preloader({ onComplete }) {
             alt="MIRAE Arc Studio" 
             className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain mb-4 sm:mb-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]" 
           />
-          <p className="text-xs sm:text-sm tracking-[0.35em] text-neutral-300 uppercase font-medium">
+          <p className="text-xs sm:text-sm tracking-[0.35em] text-neutral-300 uppercase font-medium font-pencrow">
             Architecture Shaped By Experience
           </p>
         </div>
 
         <div className="flex justify-between items-end">
-          <div className="text-xs text-subtle font-mono-subtle">
+          <div className="text-xs text-subtle font-pencrow font-medium">
             <span>50+ YEARS OF REAL CONSTRUCTION EXPERTISE</span>
           </div>
-          <div className="font-mono text-3xl sm:text-4xl font-normal text-white">
+          <div className="font-pencrow text-3xl sm:text-4xl font-light text-white tracking-wider">
             {String(progress).padStart(2, '0')}%
           </div>
         </div>
