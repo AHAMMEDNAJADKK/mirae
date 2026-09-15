@@ -47,7 +47,7 @@ export default function ProjectDetailModal({ project, onClose }) {
 
         {/* Modal Header */}
         <div className="mb-6 sm:mb-10 border-b border-white/[0.08] pb-5 sm:pb-6 pr-12">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-pencrow text-amber-400 font-medium mb-2.5 uppercase tracking-widest">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-pencrow text-mirae-orange font-medium mb-2.5 uppercase tracking-widest">
             <span>{project.id || `PROJECT ${project.num}`}</span>
             <span>•</span>
             <span className="text-white/80">{project.category}</span>

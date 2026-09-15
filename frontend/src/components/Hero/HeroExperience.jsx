@@ -109,15 +109,15 @@ export default function HeroExperience() {
             <img 
               src="/assets/images/hero/mirae-hero-bg.jpg"
               alt="MIRAE Architectural Atelier Interior"
-              className="w-full h-full object-cover object-[center_35%] transform-gpu"
+              className="w-full h-full object-cover object-[center_40%] transform-gpu brightness-[1.02] contrast-[1.02]"
               loading="eager"
               decoding="sync"
             />
           </div>
 
-          {/* Subtle Atmospheric Vignettes for Natural Brightness & Editorial Legibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent pointer-events-none" />
+          {/* Light, Natural Architectural Atmosphere with Subtle Legibility Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Left-Aligned Editorial Headline + Explore Projects CTA */}
@@ -126,7 +126,7 @@ export default function HeroExperience() {
           className="relative z-20 w-full max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 pb-14 sm:pb-18 md:pb-22 lg:pb-26 pointer-events-auto"
         >
           <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6">
-            <h1 className="font-cormorant font-semibold text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.5rem] text-neutral-100 leading-[1.08] tracking-[-0.015em] drop-shadow-[0_4px_36px_rgba(0,0,0,0.95)]">
+            <h1 className="font-excon font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[4rem] xl:text-[4.75rem] text-white leading-[1.06] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
               Architecture<br />
               Shaped by Experience
             </h1>
@@ -140,9 +140,9 @@ export default function HeroExperience() {
               >
                 <span className="relative">
                   EXPLORE PROJECTS
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-amber-400/90 transition-all duration-300 group-hover:w-full" />
+                  <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-mirae-orange/90 transition-all duration-300 group-hover:w-full" />
                 </span>
-                <span className="text-sm sm:text-base transition-transform duration-300 ease-out group-hover:translate-x-2 text-neutral-300 group-hover:text-amber-400">
+                <span className="text-sm sm:text-base transition-transform duration-300 ease-out group-hover:translate-x-2 text-neutral-300 group-hover:text-mirae-orange">
                   →
                 </span>
               </button>
