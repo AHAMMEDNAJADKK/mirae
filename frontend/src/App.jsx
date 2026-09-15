@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
-import Preloader from './components/common/Preloader';
 import Navbar from './components/Navigation/Navbar';
 import FullscreenMenu from './components/Navigation/FullscreenMenu';
 import HeroExperience from './components/Hero/HeroExperience';
@@ -16,15 +15,13 @@ import CustomCursor from './components/common/CustomCursor';
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   // Authoritative Lenis + GSAP ScrollTrigger Synchronization
   useSmoothScroll();
 
   return (
     <div className="relative min-h-screen w-full bg-[#0a0a0a] text-[#f4f3ef] selection:bg-white selection:text-black">
-      {/* Editorial Preloader with genuine GPU decode synchronization */}
-      <Preloader onComplete={() => setIsLoaded(true)} />
 
       {/* Subtle Desktop Cursor & Telemetry */}
       <CustomCursor />

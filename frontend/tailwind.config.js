@@ -22,6 +22,7 @@ export default {
         display: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         sans: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         pilcrow: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       letterSpacing: {
