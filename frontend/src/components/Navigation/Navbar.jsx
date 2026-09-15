@@ -246,7 +246,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
                 >
                   <span>{item.label}</span>
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-amber-400/90 transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-mirae-orange/90 transition-all duration-300" />
                   )}
                 </button>
               );
@@ -257,10 +257,10 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           <button
             onClick={onOpenMenu}
             aria-label="Toggle Full Navigation Menu"
-            className="p-1.5 sm:p-2 min-w-[38px] min-h-[38px] text-white hover:text-amber-200 focus:outline-none flex flex-col items-end justify-center space-y-1.5 group cursor-pointer transition-colors duration-300"
+            className="p-1.5 sm:p-2 min-w-[38px] min-h-[38px] text-white hover:text-neutral-200 focus:outline-none flex flex-col items-end justify-center space-y-1.5 group cursor-pointer transition-colors duration-300"
           >
-            <span className="w-5 sm:w-6 h-[1.5px] bg-white transition-all duration-300 group-hover:w-6 sm:group-hover:w-7 group-hover:bg-amber-300" />
-            <span className="w-3.5 sm:w-4.5 h-[1.5px] bg-white transition-all duration-300 group-hover:w-6 sm:group-hover:w-7 group-hover:bg-amber-300" />
+            <span className="w-5 sm:w-6 h-[1.5px] bg-white transition-all duration-300 group-hover:w-6 sm:group-hover:w-7 group-hover:bg-mirae-orange" />
+            <span className="w-3.5 sm:w-4.5 h-[1.5px] bg-white transition-all duration-300 group-hover:w-6 sm:group-hover:w-7 group-hover:bg-mirae-orange" />
           </button>
         </div>
 

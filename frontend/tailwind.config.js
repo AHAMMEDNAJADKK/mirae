@@ -16,8 +16,10 @@ export default {
         subtle: '#8e8e8e',
         body: '#b0b0b0',
         cream: '#f4f3ef',
+        'mirae-orange': '#ea580c',
       },
       fontFamily: {
+        excon: ['Excon', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         pencrow: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         display: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         sans: ['Pencrow', 'Pilcrow', 'Pilcrow Rounded', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],

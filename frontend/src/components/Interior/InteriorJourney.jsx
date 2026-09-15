@@ -106,25 +106,13 @@ export default function InteriorJourney() {
       className="relative w-full h-[320vh] bg-[#080808]"
     >
       {/* Sticky Fullscreen Single-Viewport Room Presentation (100dvh) */}
-      <div className="sticky top-0 w-full h-screen h-[100dvh] min-h-0 overflow-hidden bg-[#080808] text-[#f4f3ef] flex flex-col justify-between select-none py-4 sm:py-6 md:py-8 px-5 sm:px-10 md:px-16 lg:px-20 border-t border-white/[0.08]">
+      <div className="sticky top-0 w-full h-screen h-[100dvh] min-h-0 overflow-hidden bg-[#080808] text-[#f4f3ef] flex flex-col justify-center select-none py-6 sm:py-10 md:py-12 px-5 sm:px-10 md:px-16 lg:px-20 border-t border-white/[0.08]">
         
-        {/* Top Header HUD */}
-        <div className="w-full max-w-7xl mx-auto flex items-center justify-between text-xs font-pencrow shrink-0">
-          <div className="flex items-center space-x-3">
-            <span className="text-white/70 tracking-[0.3em] uppercase font-medium">
-              04. INTERIOR ROOMS (ONE BY ONE)
-            </span>
-          </div>
-          <div className="text-white/40 tracking-widest hidden sm:block font-medium">
-            RESIDENTIAL SANCTUARY • ROOM 0{activeIndex + 1}/04
-          </div>
-        </div>
-
         {/* Main Viewport Presentation Area */}
-        <div className="w-full max-w-7xl mx-auto my-auto flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 xl:gap-14 items-center py-2 sm:py-4">
+        <div className="w-full max-w-7xl mx-auto my-auto flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-12 xl:gap-16 items-center py-2">
           
-          {/* Left Column: Full-Scale Architectural Visual */}
-          <div className="lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:h-[52vh] xl:h-[56vh] max-h-[56vh] w-full overflow-hidden bg-[#0d0d0d] border border-white/[0.1] rounded-sm shadow-2xl">
+          {/* Left Column: Full-Scale Architectural Visual (Dominant) */}
+          <div className="lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:h-[58vh] xl:h-[62vh] max-h-[62vh] w-full overflow-hidden bg-[#0d0d0d] border border-white/[0.1] rounded-sm shadow-2xl">
             {roomsData.map((room, idx) => (
               <div
                 key={room.id}
@@ -141,97 +129,64 @@ export default function InteriorJourney() {
                   loading={idx === 0 ? "eager" : "lazy"}
                   decoding="async"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
               </div>
             ))}
-
-            {/* Room Plate Badge (Top-Left) */}
-            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20 bg-black/75 backdrop-blur-md px-2.5 py-1.5 sm:px-3 sm:py-1.5 border border-white/10 flex items-center space-x-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-              <span className="text-[10px] font-pencrow text-white tracking-[0.25em] uppercase font-medium">
-                ROOM {activeRoom.number} • {activeRoom.title}
-              </span>
-            </div>
-
-            {/* Subtitle Bar (Bottom) */}
-            <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 z-20 bg-black/75 backdrop-blur-md px-3 py-2 sm:px-4 sm:py-2 border border-white/10 flex items-center justify-between text-xs font-pencrow text-white/90">
-              <span className="tracking-wider uppercase font-light text-[10px] sm:text-xs truncate mr-2">
-                {activeRoom.subtitle}
-              </span>
-              <span className="text-[9px] sm:text-[10px] text-white/50 tracking-widest shrink-0 hidden sm:inline-block font-pencrow">
-                SPATIAL STUDY
-              </span>
-            </div>
           </div>
 
-          {/* Right Column: Editorial Narrative & Controls */}
-          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-between h-auto lg:h-[52vh] xl:h-[56vh] text-left space-y-3 sm:space-y-4">
+          {/* Right Column: Refined Minimal Editorial Typography */}
+          <div className="lg:col-span-5 xl:col-span-4 flex flex-col justify-center text-left space-y-5 sm:space-y-6">
             
-            {/* Title & Description Block */}
-            <div>
-              <span className="text-[10px] sm:text-xs font-pencrow text-amber-400 font-medium tracking-[0.3em] uppercase block mb-1 sm:mb-1.5">
-                FEATURED SPACE
+            {/* Room Name & Short Supporting Sentence */}
+            <div className="space-y-3">
+              <span className="text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] uppercase block">
+                0{activeIndex + 1} / 04
               </span>
-              <h3 className="font-architectural text-xl sm:text-3xl lg:text-3xl xl:text-4xl font-bold text-white tracking-[0.04em] uppercase mb-1.5 sm:mb-2.5 leading-tight transition-colors duration-300">
+              <h3 className="font-architectural text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-[0.04em] uppercase leading-tight transition-colors duration-300">
                 {activeRoom.title}
               </h3>
-              <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed font-pencrow transition-opacity duration-300 line-clamp-3 sm:line-clamp-4">
-                {activeRoom.subtitle || activeRoom.description}
+              <p className="text-xs sm:text-sm md:text-base font-normal text-neutral-300 leading-relaxed font-pencrow max-w-md transition-opacity duration-300">
+                {activeRoom.subtitle}
               </p>
             </div>
 
-            {/* Architectural Highlights Card */}
-            <div className="bg-[#111111] p-2.5 sm:p-3.5 border border-white/[0.08] shadow-lg">
-              <span className="text-[10px] font-pencrow text-white/40 tracking-widest uppercase block mb-1.5">
-                ARCHITECTURAL HIGHLIGHTS
-              </span>
-              <ul className="space-y-1 text-[11px] sm:text-xs text-[#b8b8b8] font-pencrow">
-                {activeRoom.details ? activeRoom.details.slice(0, 2).map((detail, dIdx) => (
-                  <li key={dIdx} className="flex items-start space-x-1.5">
-                    <span className="text-amber-400/80 mt-0.5">•</span>
-                    <span className="line-clamp-1">{detail}</span>
-                  </li>
-                )) : null}
-              </ul>
-            </div>
-
-            {/* Navigation & Indicators Row */}
-            <div className="pt-2 sm:pt-3 border-t border-white/[0.08] flex items-center justify-between">
+            {/* Room Navigation Strip */}
+            <div className="pt-4 border-t border-white/[0.08] flex items-center justify-between gap-3">
               {/* Room Selector Tabs */}
-              <div className="flex items-center space-x-1.5 sm:space-x-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 {roomsData.map((room, idx) => {
                   const isActive = activeIndex === idx;
                   return (
                     <button
                       key={room.id}
                       onClick={() => scrollToRoom(idx)}
-                      className={`h-7 px-2 sm:px-2.5 text-[10px] sm:text-[11px] font-pencrow font-medium tracking-wider uppercase transition-all duration-300 flex items-center space-x-1 border cursor-pointer ${
+                      className={`h-8 px-2.5 sm:px-3 text-[11px] sm:text-xs font-pencrow font-medium tracking-wider uppercase transition-all duration-300 flex items-center space-x-1.5 border cursor-pointer rounded-sm ${
                         isActive 
-                          ? 'border-amber-400 bg-amber-400/10 text-amber-300' 
-                          : 'border-white/10 text-white/40 hover:text-white hover:border-white/30'
+                          ? 'border-mirae-orange bg-mirae-orange/10 text-white shadow-sm' 
+                          : 'border-white/10 text-white/50 hover:text-white hover:border-white/30'
                       }`}
                       aria-label={`Go to room ${room.title}`}
                     >
-                      <span>0{idx + 1}</span>
-                      <span className="hidden xl:inline text-[9px] opacity-75">{room.title.split(' ')[0]}</span>
+                      <span className={isActive ? 'text-mirae-orange' : 'text-white/40'}>0{idx + 1}</span>
+                      <span className="hidden xl:inline">{room.title.split(' ')[0]}</span>
                     </button>
                   );
                 })}
               </div>
 
-              {/* Prev / Next Buttons */}
-              <div className="flex items-center space-x-1.5 sm:space-x-2">
+              {/* Prev / Next Arrows */}
+              <div className="flex items-center space-x-1.5 shrink-0">
                 <button
                   onClick={handlePrev}
                   aria-label="Previous room"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer"
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
                 </button>
                 <button
                   onClick={handleNext}
                   aria-label="Next room"
-                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer"
                 >
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>

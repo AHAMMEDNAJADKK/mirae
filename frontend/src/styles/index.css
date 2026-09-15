@@ -100,6 +100,31 @@
   font-display: swap;
 }
 
+/* Excon Architectural Geometric Headline Font */
+@font-face {
+  font-family: 'Excon';
+  src: url('/fonts/Excon-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Excon';
+  src: url('/fonts/Excon-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Excon';
+  src: url('/fonts/Excon-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     --bg-primary: #0a0a0a;
@@ -107,7 +132,9 @@
     --text-primary: #f4f3ef;
     --text-muted: #8e8e8e;
     --accent-border: rgba(255, 255, 255, 0.08);
+    --mirae-orange: #ea580c;
     --font-pencrow: 'Pencrow', 'Pilcrow', 'Pilcrow Rounded', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-excon: 'Excon', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-pilcrow: var(--font-pencrow);
   }
 
@@ -172,6 +199,11 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #444444;
   }
+}
+
+/* Architectural Editorial Headline Sans — Excon */
+.font-excon {
+  font-family: var(--font-excon);
 }
 
 /* Editorial Architectural Headline Serif */
