@@ -158,8 +158,8 @@ export default function StudioScrollSection() {
         {/* Top Editorial Bar */}
         <div className="relative z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-b border-white/[0.08] pb-3 sm:pb-5">
           <div>
-            <div className="flex items-center space-x-2 text-xs font-pencrow text-amber-400 font-medium tracking-[0.25em] uppercase mb-1">
-              <Compass className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+            <div className="flex items-center space-x-2 text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] uppercase mb-1">
+              <Compass className="w-3.5 h-3.5 text-mirae-orange" />
               <span>THE ATELIER • SPATIAL SEQUENCE</span>
             </div>
             <h2 className="font-architectural text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white uppercase tracking-wider">
@@ -181,7 +181,7 @@ export default function StudioScrollSection() {
             {/* Architectural Progress Meter */}
             <div className="w-20 sm:w-36 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
               <div 
-                className="h-full bg-amber-400 transition-all duration-300 ease-out"
+                className="h-full bg-mirae-orange transition-all duration-300 ease-out"
                 style={{ width: `${Math.round(scrollProgress * 100)}%` }}
               />
             </div>
@@ -225,7 +225,7 @@ export default function StudioScrollSection() {
         {/* Bottom Editorial Caption Panel */}
         <div className="relative z-20 max-w-6xl mx-auto w-full pt-3 sm:pt-4 border-t border-white/[0.08] flex flex-col md:flex-row items-start md:items-end justify-between gap-3 sm:gap-4">
           <div className="max-w-2xl">
-            <div className="text-xs font-pencrow text-amber-400 font-medium tracking-widest uppercase mb-1">
+            <div className="text-xs font-pencrow text-mirae-orange font-medium tracking-widest uppercase mb-1">
               {activeItem.category} • {activeItem.subtitle}
             </div>
             <h3 className="font-architectural text-lg sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide">
@@ -238,7 +238,7 @@ export default function StudioScrollSection() {
 
           <div className="flex items-center space-x-2 text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
             <span>SCROLL TO ADVANCE</span>
-            <ArrowRight className="w-3.5 h-3.5 animate-pulse text-amber-400" />
+            <ArrowRight className="w-3.5 h-3.5 text-mirae-orange" />
           </div>
         </div>
 

@@ -8,16 +8,6 @@ export default function BrandStory() {
     >
       <div className="max-w-7xl mx-auto">
         
-        {/* Section Label */}
-        <div className="flex items-center justify-between mb-8 sm:mb-12">
-          <span className="text-xs font-pencrow text-white/60 tracking-[0.3em] uppercase font-medium">
-            06. BRAND STORY / ABOUT
-          </span>
-          <div className="hidden sm:block text-xs font-pencrow text-white/40 font-medium tracking-widest">
-            OUR PHILOSOPHY
-          </div>
-        </div>
-
         {/* Two-Column Layout (Matching Panel 06 Reference) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           
@@ -43,7 +33,7 @@ export default function BrandStory() {
                 className="group inline-flex items-center space-x-3 text-xs sm:text-sm font-pencrow font-medium tracking-[0.22em] uppercase text-white bg-white/[0.08] hover:bg-white hover:text-black border border-white/25 hover:border-white transition-all duration-300 px-5 sm:px-6 py-3 sm:py-3.5 backdrop-blur-md rounded-sm"
               >
                 <span>Our Story</span>
-                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 text-sm text-amber-400 group-hover:text-black">———→</span>
+                <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 text-sm text-mirae-orange group-hover:text-black">———→</span>
               </button>
             </div>
           </div>
