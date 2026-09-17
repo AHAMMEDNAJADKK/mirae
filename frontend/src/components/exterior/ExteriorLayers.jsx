@@ -140,10 +140,10 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Center / Right Layer Navigation Indicators */}
-        <div className="relative z-20 w-full px-4 sm:px-10 md:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-8 pt-16 sm:pt-20 md:pt-0">
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 lg:gap-8 pt-16 sm:pt-20 md:pt-0">
           
           {/* Left: Active Level Description */}
-          <div className="w-full md:max-w-md bg-black/85 backdrop-blur-md p-3.5 sm:p-6 md:p-8 border-l-2 border-mirae-orange shadow-2xl">
+          <div className="w-full md:max-w-sm lg:max-w-md bg-black/85 backdrop-blur-md p-3.5 sm:p-6 md:p-7 lg:p-8 border-l-2 border-mirae-orange shadow-2xl">
             <span className="text-[10px] font-pencrow text-mirae-orange font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
               LEVEL 0{activeLayerIndex + 1} / 04
             </span>
@@ -156,7 +156,7 @@ export default function ExteriorLayers() {
           </div>
 
           {/* Right: Architectural Cutaway Callout Indicators (Desktop / Tablet) */}
-          <div className="hidden md:flex flex-col space-y-4 sm:space-y-6 bg-black/75 backdrop-blur-md p-6 sm:p-8 border border-white/[0.1] shadow-2xl">
+          <div className="hidden md:flex flex-col space-y-3 sm:space-y-4 lg:space-y-6 bg-black/75 backdrop-blur-md p-4 sm:p-6 lg:p-8 border border-white/[0.1] shadow-2xl shrink-0">
             {layersData.map((layer, idx) => {
               const isActive = activeLayerIndex === idx;
               return (
@@ -214,7 +214,7 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Bottom Bar Info */}
-        <div className="relative z-20 w-full px-4 sm:px-10 md:px-16 pb-4 sm:pb-8 flex justify-between items-center text-[9px] sm:text-xs font-pencrow text-white/50 font-medium">
+        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-16 pb-4 sm:pb-8 flex justify-between items-center text-[9px] sm:text-xs font-pencrow text-white/50 font-medium">
           <span>PROGRESSIVE TECTONIC SEQUENCE</span>
           <span className="font-medium text-white/70">{layersData[activeLayerIndex].title.toUpperCase()}</span>
         </div>

@@ -228,16 +228,16 @@ export default function MaterialsSection() {
       className="cinematic-scroll-section bg-[#0a0a0a]"
     >
       {/* Presentation Container: Content-Proportional on Mobile/Tablet, Sticky on Desktop */}
-      <div className="cinematic-sticky-stage bg-[#0a0a0a] text-[#f4f3ef] select-none py-2.5 sm:py-6 md:py-8 lg:landscape:py-12 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] px-3.5 sm:px-8 md:px-10 lg:px-16 xl:px-20 border-t border-white/[0.08]">
+      <div className="cinematic-sticky-stage bg-[#0a0a0a] text-[#f4f3ef] select-none py-2 sm:py-5 md:py-6 lg:landscape:py-10 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 border-t border-white/[0.08]">
         
         {/* Main Viewport Presentation Area */}
-        <div className="w-full max-w-7xl mx-auto flex flex-col md:grid md:grid-cols-12 landscape:grid landscape:grid-cols-12 gap-3.5 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center justify-center py-2 sm:py-4">
+        <div className="w-full max-w-4xl lg:max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center justify-center py-2 sm:py-4">
           
           {/* Left Column: Full-Scale Material Feature Photo (Dominant with Touch Swipe) */}
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="w-full md:col-span-7 xl:col-span-8 landscape:col-span-7 relative aspect-[16/10] sm:aspect-[16/9] md:aspect-auto h-[32vh] sm:h-[36vh] md:h-[48vh] lg:landscape:h-[60vh] xl:landscape:h-[64vh] max-h-[360px] sm:max-h-[420px] md:max-h-[560px] lg:landscape:max-h-[64vh] shrink-0 md:shrink overflow-hidden bg-neutral-950 border border-white/[0.1] rounded-sm group shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
+            className="w-full lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] lg:aspect-auto h-[34vh] sm:h-[42vh] md:h-[48vh] lg:h-[58vh] xl:h-[62vh] max-h-[380px] sm:max-h-[460px] md:max-h-[520px] lg:max-h-[64vh] shrink-0 overflow-hidden bg-neutral-950 border border-white/[0.1] rounded-sm group shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
           >
             {materialsData.map((mat, idx) => (
               <div
@@ -266,7 +266,7 @@ export default function MaterialsSection() {
           </div>
 
           {/* Right Column: Refined Minimal Editorial Presentation */}
-          <div className="w-full md:col-span-5 xl:col-span-4 landscape:col-span-5 flex flex-col justify-center text-left space-y-3 sm:space-y-4 lg:space-y-6">
+          <div className="w-full lg:col-span-5 xl:col-span-4 flex flex-col justify-center text-left space-y-3 sm:space-y-4 lg:space-y-6">
             
             {/* Concept, Material Name & Short Statement */}
             <div className="space-y-1.5 sm:space-y-3">

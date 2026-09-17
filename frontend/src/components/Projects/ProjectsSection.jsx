@@ -86,7 +86,7 @@ export default function ProjectsSection() {
   }, [activeFilter]);
 
   return (
-    <section id="projects" className="relative w-full bg-[#080808] py-12 sm:py-20 md:py-32 px-4 sm:px-8 md:px-14 lg:px-20 text-[#f4f3ef] border-t border-white/[0.08]">
+    <section id="projects" className="relative w-full bg-[#080808] py-12 sm:py-20 md:py-32 px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 text-[#f4f3ef] border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto">
         
         {/* Editorial Section Header */}
