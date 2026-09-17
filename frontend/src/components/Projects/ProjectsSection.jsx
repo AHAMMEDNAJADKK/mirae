@@ -7,8 +7,9 @@ import ProjectDetailModal from './ProjectDetailModal';
 const FILTERS = ['All', 'Residential', 'Hospitality', 'Commercial', 'Interior'];
 
 // React Monograph Card Component Standard
-export const MonographCard = ({ project, onSelect }) => (
+export const MonographCard = React.forwardRef(({ project, onSelect }, ref) => (
   <motion.div 
+    ref={ref}
     layout
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -24,10 +25,10 @@ export const MonographCard = ({ project, onSelect }) => (
         onSelect && onSelect(project);
       }
     }}
-    className="group relative flex flex-col bg-neutral-950 border border-neutral-800/80 rounded-xl overflow-hidden p-5 sm:p-6 hover:border-neutral-500 transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-mirae-orange/50 shadow-xl"
+    className="group relative flex flex-col bg-neutral-950 border border-neutral-800/80 rounded-xl overflow-hidden p-4 sm:p-6 hover:border-neutral-500 transition-colors cursor-pointer focus:outline-none focus:ring-1 focus:ring-mirae-orange/50 shadow-xl"
   >
     {/* Aspect-Locked Image View */}
-    <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg bg-neutral-900 mb-5">
+    <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg bg-neutral-900 mb-4 sm:mb-5">
       <img
         src={project.image || project.imageAsset}
         alt={project.title}
@@ -44,31 +45,31 @@ export const MonographCard = ({ project, onSelect }) => (
     </div>
 
     {/* Project Meta Details */}
-    <div className="flex items-center justify-between text-xs font-pencrow text-mirae-orange font-medium tracking-wider mb-2">
+    <div className="flex items-center justify-between text-[11px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-wider mb-1.5 sm:mb-2">
       <span>{project.category.toUpperCase()}</span>
       <span className="text-neutral-400">{project.id}</span>
     </div>
 
-    <h3 className="font-architectural text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1.5 group-hover:text-neutral-100 transition-colors uppercase tracking-wide">
+    <h3 className="font-architectural text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1.5 group-hover:text-neutral-100 transition-colors uppercase tracking-wide">
       {project.title}
     </h3>
-    <p className="text-xs font-pencrow font-normal text-neutral-400 mb-2.5 tracking-wide">{project.tagline}</p>
-    <p className="text-xs sm:text-sm text-neutral-300 font-normal line-clamp-3 mb-6 leading-relaxed font-pencrow">
+    <p className="text-[11px] sm:text-xs font-pencrow font-normal text-neutral-400 mb-2 sm:mb-2.5 tracking-wide">{project.tagline}</p>
+    <p className="text-xs sm:text-sm text-neutral-300 font-normal line-clamp-3 mb-4 sm:mb-6 leading-relaxed font-pencrow">
       {project.description}
     </p>
 
     {/* Call to Action Link */}
-    <div className="mt-auto flex items-center justify-between pt-4 border-t border-neutral-800/80">
-      <span className="text-xs font-pencrow text-neutral-400 tracking-wider">
+    <div className="mt-auto flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-800/80">
+      <span className="text-[10px] sm:text-xs font-pencrow text-neutral-400 tracking-wider">
         {project.monographPlate || 'STUDIO ARCHIVE'}
       </span>
-      <span className="text-xs font-pencrow text-neutral-200 group-hover:text-mirae-orange transition-colors tracking-widest flex items-center gap-1.5 font-medium">
+      <span className="text-[11px] sm:text-xs font-pencrow text-neutral-200 group-hover:text-mirae-orange transition-colors tracking-widest flex items-center gap-1.5 font-medium">
         <span>EXPLORE STUDY</span>
         <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-mirae-orange" />
       </span>
     </div>
   </motion.div>
-);
+));
 
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -82,28 +83,28 @@ export default function ProjectsSection() {
   }, [activeFilter]);
 
   return (
-    <section id="projects" className="relative w-full bg-[#080808] py-16 sm:py-24 md:py-32 px-5 sm:px-10 md:px-16 lg:px-20 text-[#f4f3ef] border-t border-white/[0.08]">
+    <section id="projects" className="relative w-full bg-[#080808] py-12 sm:py-20 md:py-32 px-4 sm:px-8 md:px-14 lg:px-20 text-[#f4f3ef] border-t border-white/[0.08]">
       <div className="max-w-7xl mx-auto">
         
         {/* Editorial Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 border-b border-white/[0.08] pb-6 sm:pb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 sm:mb-12 border-b border-white/[0.08] pb-5 sm:pb-8">
           <div>
-            <span className="text-xs font-pencrow text-white/60 uppercase mb-2 sm:mb-3 block tracking-[0.3em] font-medium">
+            <span className="text-[10px] sm:text-xs font-pencrow text-white/60 uppercase mb-1.5 sm:mb-3 block tracking-[0.25em] sm:tracking-[0.3em] font-medium">
               SELECTED WORKS • ARCHIVE
             </span>
-            <h2 className="font-architectural text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase tracking-tight">
+            <h2 className="font-architectural text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white uppercase tracking-tight">
               BROCHURE PORTFOLIO
             </h2>
           </div>
 
           {/* Project Counter */}
-          <div className="mt-4 md:mt-0 text-xs font-pencrow text-white/50 tracking-widest uppercase font-medium">
+          <div className="mt-3 md:mt-0 text-[10px] sm:text-xs font-pencrow text-white/50 tracking-widest uppercase font-medium">
             <span>SHOWING {filteredProjects.length} OF {PORTFOLIO_MONOGRAPHS.length} MONOGRAPHS</span>
           </div>
         </div>
 
         {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-8 sm:mb-12" role="tablist" aria-label="Portfolio Filters">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-3 mb-6 sm:mb-12" role="tablist" aria-label="Portfolio Filters">
           {FILTERS.map((filter) => {
             const isActive = activeFilter === filter;
             return (
@@ -112,7 +113,7 @@ export default function ProjectsSection() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 sm:px-5 py-2 text-[11px] sm:text-xs font-pencrow font-medium tracking-wider sm:tracking-widest uppercase transition-all duration-300 border rounded-sm ${
+                className={`px-3 sm:px-5 py-1.5 sm:py-2 text-[10px] sm:text-xs font-pencrow font-medium tracking-wider sm:tracking-widest uppercase transition-all duration-300 border rounded-sm ${
                   isActive
                     ? 'border-white bg-white text-black font-semibold shadow-md'
                     : 'border-white/10 text-white/70 hover:text-white hover:border-white/30 bg-transparent'
@@ -127,7 +128,7 @@ export default function ProjectsSection() {
         {/* Responsive Architectural Projects Grid with Framer Motion layout animation */}
         <motion.div 
           layout 
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10"
+          className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 lg:gap-10"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
@@ -141,51 +142,51 @@ export default function ProjectsSection() {
         </motion.div>
 
         {/* Architectural Monograph & Brochure Compendium Card */}
-        <div className="mt-14 sm:mt-20 border border-white/[0.1] bg-[#111111] p-6 sm:p-10 md:p-14 relative overflow-hidden rounded-lg shadow-2xl">
+        <div className="mt-10 sm:mt-16 md:mt-20 border border-white/[0.1] bg-[#111111] p-4 sm:p-8 md:p-14 relative overflow-hidden rounded-lg shadow-2xl">
           <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8">
             <div className="max-w-2xl">
-              <div className="flex items-center space-x-2 text-xs font-pencrow text-mirae-orange font-medium tracking-[0.3em] uppercase mb-2 sm:mb-3">
+              <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-3">
                 <FileText className="w-3.5 h-3.5 text-mirae-orange" />
                 <span>MONOGRAPH • COMPENDIUM</span>
               </div>
-              <h3 className="font-architectural text-2xl sm:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wide leading-tight">
+              <h3 className="font-architectural text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wide leading-tight">
                 MIRAE — ARCHITECTURE PORTFOLIO
               </h3>
-              <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-3 sm:mt-4 leading-relaxed max-w-xl font-pencrow">
+              <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-2 sm:mt-4 leading-relaxed max-w-xl font-pencrow">
                 The comprehensive architectural compendium containing full portfolio monographs, detailed spatial plates, technical specifications, and masterplanning studies across our landmark projects.
               </p>
               
               {/* Monograph Details Specs */}
-              <div className="flex flex-wrap items-center gap-3 sm:gap-6 mt-5 sm:mt-6 text-xs font-pencrow text-white/60 font-medium">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-6 mt-4 sm:mt-6 text-[10px] sm:text-xs font-pencrow text-white/60 font-medium">
                 <span className="flex items-center space-x-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
                   <span>COMPLETE 22-PAGE EDITION</span>
                 </span>
                 <span>•</span>
                 <span>ORIGINAL PDF DOCUMENT</span>
-                <span>•</span>
-                <span>PMR INFRA LLP ARCHIVE</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="hidden sm:inline">PMR INFRA LLP ARCHIVE</span>
               </div>
             </div>
 
             {/* Action CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 shrink-0">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 shrink-0">
               <a
                 href="/brochure/mirae-brochure.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-2.5 px-6 sm:px-8 py-3 sm:py-3.5 text-xs font-pencrow font-medium tracking-[0.2em] uppercase border border-white/30 text-white hover:border-white hover:bg-white/5 transition-all duration-300 rounded-sm"
+                className="inline-flex items-center justify-center space-x-2 px-4 sm:px-8 py-2.5 sm:py-3.5 text-[11px] sm:text-xs font-pencrow font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase border border-white/30 text-white hover:border-white hover:bg-white/5 transition-all duration-300 rounded-sm"
               >
                 <span>View Brochure</span>
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
 
               <a
                 href="/brochure/mirae-brochure.pdf"
                 download="MIRAE-Architecture-Portfolio.pdf"
-                className="inline-flex items-center justify-center space-x-2.5 px-6 sm:px-8 py-3 sm:py-3.5 text-xs font-pencrow tracking-[0.2em] uppercase bg-white text-black font-semibold hover:bg-[#e6e4dd] transition-all duration-300 shadow-lg rounded-sm"
+                className="inline-flex items-center justify-center space-x-2 px-4 sm:px-8 py-2.5 sm:py-3.5 text-[11px] sm:text-xs font-pencrow tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-white text-black font-semibold hover:bg-[#e6e4dd] transition-all duration-300 shadow-lg rounded-sm"
               >
-                <Download className="w-4 h-4" />
+                <Download className="w-3.5 h-3.5" />
                 <span>Download Brochure</span>
               </a>
             </div>

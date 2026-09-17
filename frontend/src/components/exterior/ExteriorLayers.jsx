@@ -105,7 +105,7 @@ export default function ExteriorLayers() {
     <section 
       id="exterior-layers" 
       ref={containerRef} 
-      className="relative w-full h-[320vh] bg-[#080808]"
+      className="relative w-full h-[180vh] md:h-[220vh] lg:h-[280vh] bg-[#080808]"
     >
       {/* Sticky Viewport Scene */}
       <div className="sticky top-0 w-full h-screen h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-between select-none">
@@ -136,14 +136,14 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Center / Right Layer Navigation Indicators */}
-        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-8 pt-8 sm:pt-0">
+        <div className="relative z-20 w-full px-4 sm:px-10 md:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-8 pt-16 sm:pt-20 md:pt-0">
           
           {/* Left: Active Level Description */}
-          <div className="w-full md:max-w-md bg-black/85 backdrop-blur-md p-4 sm:p-6 md:p-8 border-l-2 border-mirae-orange shadow-2xl">
+          <div className="w-full md:max-w-md bg-black/85 backdrop-blur-md p-3.5 sm:p-6 md:p-8 border-l-2 border-mirae-orange shadow-2xl">
             <span className="text-[10px] font-pencrow text-mirae-orange font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
               LEVEL 0{activeLayerIndex + 1} / 04
             </span>
-            <h3 className="font-architectural text-xl sm:text-3xl md:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-2 sm:mb-3">
+            <h3 className="font-architectural text-lg sm:text-2xl md:text-3xl lg:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-1.5 sm:mb-3">
               {layersData[activeLayerIndex].title}
             </h3>
             <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed font-pencrow">
@@ -184,7 +184,7 @@ export default function ExteriorLayers() {
           </div>
 
           {/* Mobile Horizontal Level Switch Strip (< md) */}
-          <div className="flex md:hidden w-full items-center justify-between bg-black/80 backdrop-blur-md px-4 py-2.5 border border-white/[0.08]">
+          <div className="flex md:hidden w-full items-center justify-between bg-black/80 backdrop-blur-md px-3 py-2 border border-white/[0.08]">
             {layersData.map((layer, idx) => {
               const isActive = activeLayerIndex === idx;
               return (
@@ -210,7 +210,7 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Bottom Bar Info */}
-        <div className="relative z-20 w-full px-5 sm:px-10 md:px-16 pb-5 sm:pb-8 flex justify-between items-center text-[10px] sm:text-xs font-pencrow text-white/50 font-medium">
+        <div className="relative z-20 w-full px-4 sm:px-10 md:px-16 pb-4 sm:pb-8 flex justify-between items-center text-[9px] sm:text-xs font-pencrow text-white/50 font-medium">
           <span>PROGRESSIVE TECTONIC SEQUENCE</span>
           <span className="font-medium text-white/70">{layersData[activeLayerIndex].title.toUpperCase()}</span>
         </div>

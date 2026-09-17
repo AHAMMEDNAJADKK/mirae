@@ -55,32 +55,32 @@ export default function FullscreenMenu({ isOpen, onClose }) {
   return (
     <div 
       ref={menuRef}
-      className="fixed inset-0 z-50 bg-[#080808]/98 backdrop-blur-2xl opacity-0 pointer-events-none flex flex-col justify-between p-6 sm:p-10 md:p-14 lg:p-16 overflow-y-auto max-h-screen transition-opacity"
+      className="fixed inset-0 z-50 bg-[#080808]/98 backdrop-blur-2xl opacity-0 pointer-events-none flex flex-col justify-between p-4 sm:p-10 md:p-14 lg:p-16 overflow-y-auto max-h-[100dvh] transition-opacity"
     >
       {/* Top Header inside menu */}
-      <div className="flex justify-between items-center border-b border-white/[0.08] pb-4 sm:pb-6">
+      <div className="flex justify-between items-center border-b border-white/[0.08] pb-3 sm:pb-6">
         <div className="flex items-center">
           <img 
             src="/assets/images/mirae-logo.png" 
             alt="MIRAE Arc Studio by PMR INFRA LLP" 
-            className="h-8 sm:h-10 md:h-12 lg:h-14 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+            className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
           />
         </div>
         <button 
           onClick={onClose}
           aria-label="Close navigation overlay"
-          className="group flex items-center space-x-2 text-xs font-pencrow font-medium tracking-widest text-subtle hover:text-white transition-colors p-2"
+          className="group flex items-center space-x-2 text-xs font-pencrow font-medium tracking-widest text-subtle hover:text-white transition-colors p-2 cursor-pointer"
         >
           <span className="hidden sm:inline">CLOSE</span>
-          <div className="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-colors">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/20 flex items-center justify-center group-hover:border-white transition-colors">
             <X className="w-4 h-4 text-white" />
           </div>
         </button>
       </div>
 
       {/* Main Nav Links Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 my-auto py-6 sm:py-8">
-        <div className="md:col-span-8 flex flex-col space-y-2.5 sm:space-y-4 md:space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 my-auto py-4 sm:py-8">
+        <div className="md:col-span-8 flex flex-col space-y-1.5 sm:space-y-3 md:space-y-4">
           {[
             { label: '01 / HOME', target: 'hero' },
             { label: '02 / ARCHITECTURE', target: 'exterior-layers' },
@@ -94,12 +94,12 @@ export default function FullscreenMenu({ isOpen, onClose }) {
             <button
               key={idx}
               onClick={() => handleLinkClick(item.target)}
-              className="menu-item group text-left flex items-baseline justify-between py-1.5 sm:py-2 border-b border-white/[0.04] hover:border-white/30 transition-all duration-300"
+              className="menu-item group text-left flex items-baseline justify-between py-1 sm:py-1.5 border-b border-white/[0.04] hover:border-white/30 transition-all duration-300 cursor-pointer"
             >
-              <span className="font-architectural text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium tracking-[0.05em] text-[#d4d4d4] group-hover:text-white transition-colors duration-300">
+              <span className="font-architectural text-lg sm:text-2xl md:text-3xl lg:text-5xl font-medium tracking-[0.05em] text-[#d4d4d4] group-hover:text-white transition-colors duration-300">
                 {item.label}
               </span>
-              <ArrowUpRight className="w-5 h-5 sm:w-6 sm:h-6 text-subtle opacity-0 group-hover:opacity-100 group-hover:text-white -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
+              <ArrowUpRight className="w-4 h-4 sm:w-6 sm:h-6 text-subtle opacity-0 group-hover:opacity-100 group-hover:text-white -translate-x-2 group-hover:translate-x-0 transition-all duration-300" />
             </button>
           ))}
         </div>
