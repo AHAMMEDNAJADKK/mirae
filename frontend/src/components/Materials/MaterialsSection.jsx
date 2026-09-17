@@ -30,26 +30,42 @@ export default function MaterialsSection() {
     const total = materialsData.length;
     const mm = gsap.matchMedia();
 
-    mm.add('(min-width: 1024px) and (orientation: landscape)', () => {
-      // Master ScrollTrigger for live progress tracking across the 4 materials on desktop landscape
-      ScrollTrigger.create({
+    // Mobile, Foldable, Tablet & Portrait screens: Scroll-scrub through materials with responsive pin
+    mm.add('(max-width: 1023px), (orientation: portrait)', () => {
+      const st = ScrollTrigger.create({
         trigger: containerRef.current,
+        pin: true,
         start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.8,
+        end: () => '+=' + Math.round(window.innerHeight * 1.3),
+        scrub: 0.5,
         onUpdate: (self) => {
           const idx = Math.min(total - 1, Math.floor(self.progress * total));
-          setActiveIndex(idx);
+          setActiveIndex((prev) => (prev !== idx ? idx : prev));
+        }
+      });
+      return () => st.kill();
+    });
+
+    // Desktop Landscape: Cinematic scrub and layered crossfades
+    mm.add('(min-width: 1024px) and (orientation: landscape)', () => {
+      const st = ScrollTrigger.create({
+        trigger: containerRef.current,
+        pin: true,
+        start: 'top top',
+        end: () => '+=' + Math.round(window.innerHeight * 2.0),
+        scrub: 0.7,
+        onUpdate: (self) => {
+          const idx = Math.min(total - 1, Math.floor(self.progress * total));
+          setActiveIndex((prev) => (prev !== idx ? idx : prev));
         }
       });
 
-      // Layer Transition Timeline for material crossfades on desktop landscape
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top',
-          end: 'bottom bottom',
-          scrub: 1.0
+          end: () => '+=' + Math.round(window.innerHeight * 2.0),
+          scrub: 0.9
         }
       });
 
@@ -76,6 +92,11 @@ export default function MaterialsSection() {
           }, step - 0.4);
         }
       }
+
+      return () => {
+        st.kill();
+        tl.kill();
+      };
     });
 
     return () => mm.revert();
@@ -89,9 +110,9 @@ export default function MaterialsSection() {
     imageRefs.current.forEach((el, idx) => {
       if (!el) return;
       if (idx === activeIndex) {
-        gsap.to(el, { opacity: 1, scale: 1.0, duration: 0.45, ease: 'power2.out' });
+        gsap.to(el, { opacity: 1, scale: 1.0, duration: 0.4, ease: 'power2.out' });
       } else {
-        gsap.to(el, { opacity: 0, scale: 0.98, duration: 0.35, ease: 'power2.inOut' });
+        gsap.to(el, { opacity: 0, scale: 0.98, duration: 0.3, ease: 'power2.inOut' });
       }
     });
   }, [activeIndex]);
@@ -99,16 +120,14 @@ export default function MaterialsSection() {
   // Smooth scroll navigation to any material
   const scrollToMaterial = (index) => {
     setActiveIndex(index);
-    const isDesktopLandscape = window.matchMedia('(min-width: 1024px) and (orientation: landscape)').matches;
-    if (!isDesktopLandscape) return; // Do not scroll window on mobile/tablet
-
     if (!containerRef.current) return;
     const total = materialsData.length;
-    const containerTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
-    const scrollHeight = containerRef.current.offsetHeight - window.innerHeight;
-    // Target the center of each material's scroll segment on desktop
-    const targetScroll = containerTop + ((index + 0.5) / total) * scrollHeight;
-    scrollToPosition(targetScroll, { duration: 0.8 });
+    const allTriggers = ScrollTrigger.getAll();
+    const st = allTriggers.find((s) => s.trigger === containerRef.current);
+    if (st) {
+      const targetScroll = st.start + ((index + 0.5) / total) * (st.end - st.start);
+      scrollToPosition(targetScroll, { duration: 0.7 });
+    }
   };
 
   const handlePrev = () => {

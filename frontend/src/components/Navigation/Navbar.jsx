@@ -138,6 +138,10 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
   }, [isLoaded]);
 
   // Backscroll visibility & active section tracking
+  const pastHeroRef = useRef(false);
+  const activeSecRef = useRef('hero');
+  const isNavVisRef = useRef(true);
+
   useEffect(() => {
     let ticking = false;
 
@@ -148,29 +152,45 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           const delta = currentScrollY - lastScrollY.current;
 
           const inHero = currentScrollY <= 650;
-          setIsScrolledPastHero(!inHero);
+          const pastHero = !inHero;
+          if (pastHero !== pastHeroRef.current) {
+            pastHeroRef.current = pastHero;
+            setIsScrolledPastHero(pastHero);
+          }
 
           if (inHero) {
             // Inside Hero: always visible & transparent
-            setIsNavVisible(true);
-          } else if (delta > 4) {
+            if (!isNavVisRef.current) {
+              isNavVisRef.current = true;
+              setIsNavVisible(true);
+            }
+          } else if (delta > 6) {
             // Scrolling down past Hero: smoothly hide navbar
-            setIsNavVisible(false);
-          } else if (delta < -4) {
+            if (isNavVisRef.current) {
+              isNavVisRef.current = false;
+              setIsNavVisible(false);
+            }
+          } else if (delta < -6) {
             // Backscroll (scrolling up) past Hero: smoothly reveal navbar
-            setIsNavVisible(true);
+            if (!isNavVisRef.current) {
+              isNavVisRef.current = true;
+              setIsNavVisible(true);
+            }
           }
 
           lastScrollY.current = currentScrollY;
 
-          // Active section tracking
-          const sectionIds = ['hero', 'projects', 'about', 'contact'];
+          // Active section tracking (guarded across all sections)
+          const sectionIds = ['hero', 'exterior-layers', 'interior', 'materials', 'projects', 'studio', 'about', 'contact'];
           const scrollPos = currentScrollY + 140;
 
           for (let i = sectionIds.length - 1; i >= 0; i--) {
             const el = document.getElementById(sectionIds[i]);
             if (el && el.offsetTop <= scrollPos) {
-              setActiveSection(sectionIds[i]);
+              if (activeSecRef.current !== sectionIds[i]) {
+                activeSecRef.current = sectionIds[i];
+                setActiveSection(sectionIds[i]);
+              }
               break;
             }
           }

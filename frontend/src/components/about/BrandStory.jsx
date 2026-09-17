@@ -1,4 +1,5 @@
 import React from 'react';
+import { scrollToPosition } from '../../animations/smoothScroll';
 
 export default function BrandStory() {
   return (
@@ -26,10 +27,7 @@ export default function BrandStory() {
 
             <div className="pt-2 sm:pt-4">
               <button 
-                onClick={() => {
-                  const el = document.getElementById('contact');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
+                onClick={() => scrollToPosition('#contact', { duration: 1.0 })}
                 className="group inline-flex items-center space-x-2.5 sm:space-x-3 text-xs sm:text-sm font-pencrow font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-white bg-white/[0.08] hover:bg-white hover:text-black border border-white/25 hover:border-white transition-all duration-300 px-4 sm:px-6 py-2.5 sm:py-3.5 backdrop-blur-md rounded-sm cursor-pointer"
               >
                 <span>Our Story</span>
