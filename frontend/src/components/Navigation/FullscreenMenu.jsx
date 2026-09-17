@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { X, ArrowUpRight, MapPin, Phone, Mail } from 'lucide-react';
 import gsap from 'gsap';
+import { scrollToPosition } from '../../animations/smoothScroll';
 
 export default function FullscreenMenu({ isOpen, onClose }) {
   const menuRef = useRef(null);
@@ -44,12 +45,9 @@ export default function FullscreenMenu({ isOpen, onClose }) {
         const navbarOffset = 76;
         const elementPosition = element.getBoundingClientRect().top + window.scrollY;
         const offsetPosition = id === 'hero' ? 0 : elementPosition - navbarOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        scrollToPosition(offsetPosition, { duration: 1.0 });
       }
-    }, 400);
+    }, 350);
   };
 
   return (

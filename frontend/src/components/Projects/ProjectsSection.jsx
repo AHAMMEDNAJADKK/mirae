@@ -6,7 +6,7 @@ import ProjectDetailModal from './ProjectDetailModal';
 
 const FILTERS = ['All', 'Residential', 'Hospitality', 'Commercial', 'Interior'];
 
-// React Monograph Card Component Standard
+// React Monograph Card Component Standard — minimal default view, full details on click via modal
 export const MonographCard = React.forwardRef(({ project, onSelect }, ref) => (
   <motion.div 
     ref={ref}
@@ -44,22 +44,24 @@ export const MonographCard = React.forwardRef(({ project, onSelect }, ref) => (
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
     </div>
 
-    {/* Project Meta Details */}
+    {/* Project Meta: category + id */}
     <div className="flex items-center justify-between text-[11px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-wider mb-1.5 sm:mb-2">
       <span>{project.category.toUpperCase()}</span>
       <span className="text-neutral-400">{project.id}</span>
     </div>
 
+    {/* Project Title */}
     <h3 className="font-architectural text-lg sm:text-2xl lg:text-3xl font-bold text-white mb-1.5 group-hover:text-neutral-100 transition-colors uppercase tracking-wide">
       {project.title}
     </h3>
-    <p className="text-[11px] sm:text-xs font-pencrow font-normal text-neutral-400 mb-2 sm:mb-2.5 tracking-wide">{project.tagline}</p>
-    <p className="text-xs sm:text-sm text-neutral-300 font-normal line-clamp-3 mb-4 sm:mb-6 leading-relaxed font-pencrow">
-      {project.description}
+
+    {/* Tagline — brief subheading only; full description appears in modal on click */}
+    <p className="text-[11px] sm:text-xs font-pencrow font-normal text-neutral-400 tracking-wide">
+      {project.tagline}
     </p>
 
     {/* Call to Action Link */}
-    <div className="mt-auto flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-800/80">
+    <div className="mt-auto flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-800/80 mt-4 sm:mt-5">
       <span className="text-[10px] sm:text-xs font-pencrow text-neutral-400 tracking-wider">
         {project.monographPlate || 'STUDIO ARCHIVE'}
       </span>
@@ -74,6 +76,7 @@ export const MonographCard = React.forwardRef(({ project, onSelect }, ref) => (
 export default function ProjectsSection() {
   const [activeFilter, setActiveFilter] = useState('All');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [brochureExpanded, setBrochureExpanded] = useState(false);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return PORTFOLIO_MONOGRAPHS;
@@ -141,55 +144,89 @@ export default function ProjectsSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Architectural Monograph & Brochure Compendium Card */}
+        {/* Architectural Monograph & Brochure Compendium Card — minimal until clicked */}
         <div className="mt-10 sm:mt-16 md:mt-20 border border-white/[0.1] bg-[#111111] p-4 sm:p-8 md:p-14 relative overflow-hidden rounded-lg shadow-2xl">
-          <div className="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 sm:gap-8">
-            <div className="max-w-2xl">
-              <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-3">
-                <FileText className="w-3.5 h-3.5 text-mirae-orange" />
-                <span>MONOGRAPH • COMPENDIUM</span>
+          <div className="relative z-10 flex flex-col gap-4 sm:gap-6">
+
+            {/* Always-visible minimal heading row */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4">
+              <div>
+                <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] sm:tracking-[0.3em] uppercase mb-1.5 sm:mb-2">
+                  <FileText className="w-3.5 h-3.5 text-mirae-orange" />
+                  <span>MONOGRAPH • COMPENDIUM</span>
+                </div>
+                <h3 className="font-architectural text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wide leading-tight">
+                  MIRAE — ARCHITECTURE PORTFOLIO
+                </h3>
               </div>
-              <h3 className="font-architectural text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white uppercase tracking-wide leading-tight">
-                MIRAE — ARCHITECTURE PORTFOLIO
-              </h3>
-              <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-2 sm:mt-4 leading-relaxed max-w-xl font-pencrow">
-                The comprehensive architectural compendium containing full portfolio monographs, detailed spatial plates, technical specifications, and masterplanning studies across our landmark projects.
-              </p>
-              
-              {/* Monograph Details Specs */}
-              <div className="flex flex-wrap items-center gap-2 sm:gap-6 mt-4 sm:mt-6 text-[10px] sm:text-xs font-pencrow text-white/60 font-medium">
-                <span className="flex items-center space-x-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                  <span>COMPLETE 22-PAGE EDITION</span>
-                </span>
-                <span>•</span>
-                <span>ORIGINAL PDF DOCUMENT</span>
-                <span className="hidden sm:inline">•</span>
-                <span className="hidden sm:inline">PMR INFRA LLP ARCHIVE</span>
-              </div>
+
+              {/* Toggle button — always visible */}
+              <button
+                onClick={() => setBrochureExpanded((v) => !v)}
+                className="shrink-0 self-start sm:self-center inline-flex items-center gap-2 px-4 py-2 text-[10px] sm:text-xs font-pencrow font-medium tracking-widest uppercase border border-white/20 text-white/70 hover:text-white hover:border-white/50 transition-all duration-300 rounded-sm cursor-pointer"
+                aria-expanded={brochureExpanded}
+              >
+                {brochureExpanded ? 'COLLAPSE' : 'VIEW BROCHURE DETAILS'}
+                <ArrowUpRight className={`w-3.5 h-3.5 transition-transform duration-300 ${brochureExpanded ? 'rotate-180 text-mirae-orange' : 'text-mirae-orange'}`} />
+              </button>
             </div>
 
-            {/* Action CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 shrink-0">
-              <a
-                href="/brochure/mirae-brochure.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center space-x-2 px-4 sm:px-8 py-2.5 sm:py-3.5 text-[11px] sm:text-xs font-pencrow font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase border border-white/30 text-white hover:border-white hover:bg-white/5 transition-all duration-300 rounded-sm"
-              >
-                <span>View Brochure</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+            {/* Collapsible details — only visible after clicking */}
+            <AnimatePresence>
+              {brochureExpanded && (
+                <motion.div
+                  key="brochure-details"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 sm:gap-8 pt-4 sm:pt-6 border-t border-white/[0.08]">
+                    <div className="max-w-2xl">
+                      <p className="text-xs sm:text-sm font-normal text-neutral-300 leading-relaxed max-w-xl font-pencrow">
+                        The comprehensive architectural compendium containing full portfolio monographs, detailed spatial plates, technical specifications, and masterplanning studies across our landmark projects.
+                      </p>
+                      
+                      {/* Monograph Details Specs */}
+                      <div className="flex flex-wrap items-center gap-2 sm:gap-6 mt-4 sm:mt-6 text-[10px] sm:text-xs font-pencrow text-white/60 font-medium">
+                        <span className="flex items-center space-x-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                          <span>COMPLETE 22-PAGE EDITION</span>
+                        </span>
+                        <span>•</span>
+                        <span>ORIGINAL PDF DOCUMENT</span>
+                        <span className="hidden sm:inline">•</span>
+                        <span className="hidden sm:inline">PMR INFRA LLP ARCHIVE</span>
+                      </div>
+                    </div>
 
-              <a
-                href="/brochure/mirae-brochure.pdf"
-                download="MIRAE-Architecture-Portfolio.pdf"
-                className="inline-flex items-center justify-center space-x-2 px-4 sm:px-8 py-2.5 sm:py-3.5 text-[11px] sm:text-xs font-pencrow tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-white text-black font-semibold hover:bg-[#e6e4dd] transition-all duration-300 shadow-lg rounded-sm"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Download Brochure</span>
-              </a>
-            </div>
+                    {/* Action CTAs */}
+                    <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4 shrink-0">
+                      <a
+                        href="/brochure/mirae-brochure.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center space-x-2 px-4 sm:px-8 py-2.5 sm:py-3.5 text-[11px] sm:text-xs font-pencrow font-medium tracking-[0.15em] sm:tracking-[0.2em] uppercase border border-white/30 text-white hover:border-white hover:bg-white/5 transition-all duration-300 rounded-sm"
+                      >
+                        <span>View Brochure</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </a>
+
+                      <a
+                        href="/brochure/mirae-brochure.pdf"
+                        download="MIRAE-Architecture-Portfolio.pdf"
+                        className="inline-flex items-center justify-center space-x-2 px-4 sm:px-8 py-2.5 sm:py-3.5 text-[11px] sm:text-xs font-pencrow tracking-[0.15em] sm:tracking-[0.2em] uppercase bg-white text-black font-semibold hover:bg-[#e6e4dd] transition-all duration-300 shadow-lg rounded-sm"
+                      >
+                        <Download className="w-3.5 h-3.5" />
+                        <span>Download Brochure</span>
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
           </div>
         </div>
 

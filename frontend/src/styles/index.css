@@ -268,15 +268,14 @@
 .cinematic-scroll-section {
   position: relative;
   width: 100%;
-  height: auto;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 @media (min-width: 640px) {
   .cinematic-scroll-section {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -290,19 +289,17 @@
   justify-content: center;
 }
 
-/* Desktop Landscape Cinematic Scrub Pinning */
+/* Desktop Landscape Viewports */
 @media (min-width: 1024px) and (orientation: landscape) {
   .cinematic-scroll-section {
-    height: 280vh;
+    height: 100vh;
+    height: 100dvh;
     padding-top: 0;
     padding-bottom: 0;
   }
 
   .cinematic-sticky-stage {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    height: 100dvh;
+    height: 100%;
   }
 }
 
