@@ -289,6 +289,30 @@
   justify-content: center;
 }
 
+/* Mobile Phones (≤767px): CSS sticky replaces GSAP pin.
+   Section height is set precisely via JS (100svh + N steps).
+   The sticky stage fills the viewport and sticks while parent scrolls.
+   Zero pin-spacer. Zero dead black zone. */
+@media (max-width: 767px) {
+  .cinematic-scroll-section {
+    padding-top: 0;
+    padding-bottom: 0;
+    /* height is controlled via JS inline style */
+  }
+
+  .cinematic-sticky-stage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    height: 100dvh; /* wider browser support fallback */
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 /* Desktop Landscape Viewports */
 @media (min-width: 1024px) and (orientation: landscape) {
   .cinematic-scroll-section {
