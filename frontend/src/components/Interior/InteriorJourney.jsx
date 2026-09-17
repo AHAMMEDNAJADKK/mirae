@@ -30,22 +30,47 @@ export default function InteriorJourney() {
     const total = roomsData.length;
     const mm = gsap.matchMedia();
 
-    // Mobile Phones (< 768px): Pin section so each room gets dedicated scroll distance
-    // Each room gets ~innerHeight * 0.55 of scroll (≈470px on 852px device), 4 rooms = innerHeight * 2.2
+    // ─── Mobile Phones (≤ 767px) ───────────────────────────────────────────
+    // CSS position:sticky on .cinematic-sticky-stage handles the visual lock.
+    // We set the outer section height precisely so each room gets ~70svh of
+    // dedicated scroll distance → one controlled swipe = one room transition.
+    // No GSAP pin → no pin-spacer → no black dead zone.
     mm.add('(max-width: 767px)', () => {
-      const pinDistance = Math.round(window.innerHeight * 2.2);
+      // Use visualViewport.height when available — most accurate on mobile
+      const svh = (window.visualViewport?.height) ?? window.innerHeight;
+      // Each room gets STEP_VH of scroll distance; first room starts at 0
+      const STEP = Math.round(svh * 0.70);
+      const totalHeight = svh + (total - 1) * STEP;
+
+      // Apply section height so CSS sticky stage can scroll through it
+      if (containerRef.current) {
+        containerRef.current.style.height = totalHeight + 'px';
+      }
+
+      // Throttle index updates — only fire when the index actually changes
+      let lastIdx = -1;
+
       const st = ScrollTrigger.create({
         trigger: containerRef.current,
-        pin: true,
         start: 'top top',
-        end: () => '+=' + pinDistance,
-        scrub: 0.6,
+        end: 'bottom bottom',
+        // No pin (CSS sticky handles it), no scrub (raw progress is fine at this range)
         onUpdate: (self) => {
           const idx = Math.min(total - 1, Math.floor(self.progress * total));
-          setActiveIndex((prev) => (prev !== idx ? idx : prev));
+          if (idx !== lastIdx) {
+            lastIdx = idx;
+            setActiveIndex(idx);
+          }
         }
       });
-      return () => st.kill();
+
+      return () => {
+        st.kill();
+        // Reset inline height so other breakpoints are unaffected
+        if (containerRef.current) {
+          containerRef.current.style.height = '';
+        }
+      };
     });
 
     // Tablets (768px - 1023px) & Tablet Portrait: Keep existing tablet behavior
@@ -135,15 +160,25 @@ export default function InteriorJourney() {
     });
   }, [activeIndex]);
 
-  // Smooth navigation to any room
+  // Smooth navigation to any room (works on both mobile CSS-sticky and desktop GSAP-pin)
   const scrollToRoom = (index) => {
     setActiveIndex(index);
     if (!containerRef.current) return;
     const total = roomsData.length;
     const allTriggers = ScrollTrigger.getAll();
     const st = allTriggers.find((s) => s.trigger === containerRef.current);
+
     if (st && st.pin) {
+      // Desktop/tablet: GSAP pin — scroll within pin range
       const targetScroll = st.start + ((index + 0.5) / total) * (st.end - st.start);
+      scrollToPosition(targetScroll, { duration: 0.7 });
+    } else if (containerRef.current) {
+      // Mobile: CSS sticky — section height was set via JS inline style
+      const sectionHeight = parseFloat(containerRef.current.style.height) || containerRef.current.offsetHeight;
+      const sectionTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
+      // Place scroll at the midpoint of the target state's range
+      const perState = sectionHeight / total;
+      const targetScroll = sectionTop + (index + 0.5) * perState;
       scrollToPosition(targetScroll, { duration: 0.7 });
     }
   };
