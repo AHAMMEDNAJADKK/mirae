@@ -313,8 +313,8 @@
   }
 }
 
-/* Desktop Landscape Viewports */
-@media (min-width: 1024px) and (orientation: landscape) {
+/* All Pinned Stages (≥ 768px: Tablets, Foldables Unfolded, Laptops, Desktop) */
+@media (min-width: 768px) {
   .cinematic-scroll-section {
     height: 100vh;
     height: 100dvh;
@@ -324,6 +324,7 @@
 
   .cinematic-sticky-stage {
     height: 100%;
+    min-height: 100%;
   }
 }
 
