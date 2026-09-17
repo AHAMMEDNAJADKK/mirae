@@ -162,10 +162,10 @@ export default function HeroExperience() {
         {/* Left-Aligned Editorial Headline + Explore Projects CTA */}
         <div 
           ref={heroContentRef}
-          className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-14 md:pb-20 lg:pb-26 pointer-events-auto"
+          className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-[max(3.25rem,8vh)] sm:pb-[max(4rem,9vh)] md:pb-20 lg:pb-26 pointer-events-auto"
         >
           <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6">
-            <h1 className="font-excon font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-[4rem] xl:text-[4.75rem] text-white leading-[1.08] sm:leading-[1.06] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
+            <h1 className="font-excon font-semibold text-[clamp(1.75rem,5vw,2.25rem)] sm:text-4xl md:text-5xl lg:text-[4rem] xl:text-[4.75rem] text-white leading-[1.1] sm:leading-[1.06] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
               Architecture<br />
               Shaped by Experience
             </h1>

@@ -51,19 +51,19 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const isTablet = vw >= 640 && vw < 1024;
 
       const dockRect = logoBtnRef.current.getBoundingClientRect();
-      const dockWidth = dockRect.width || (isMobile ? 110 : (isTablet ? 140 : 200));
+      const dockWidth = dockRect.width || (isMobile ? 120 : (isTablet ? 150 : 172));
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
       // Ensure the hero logo is slightly larger, premium, readable and responsive (not oversized)
       const maxHeroWidth = isMobile 
-        ? Math.min(vw * 0.78, 305) 
-        : (isTablet ? Math.min(vw * 0.62, 440) : (vw >= 1920 ? 660 : (vw >= 1440 ? 600 : 540)));
+        ? Math.min(vw * 0.80, 320) 
+        : (isTablet ? Math.min(vw * 0.65, 460) : (vw >= 1920 ? 680 : (vw >= 1440 ? 620 : 560)));
       const heroScale = Math.max(1.25, Math.min(2.75, maxHeroWidth / dockWidth));
 
-      // Target center of viewport for initial brand introduction state (centered on mobile, slightly shifted on desktop)
-      const leftShift = isMobile ? Math.min(6, vw * 0.015) : (isTablet ? 20 : 40);
-      const targetCenterX = (vw / 2) - leftShift;
+      // Visual center of Hero composition: true optical center shifted slightly right for balanced alignment
+      const rightOffset = isMobile ? Math.min(4, vw * 0.01) : (isTablet ? 6 : 8);
+      const targetCenterX = (vw / 2) + rightOffset;
       // Optical vertical center: slightly above center for pristine visual balance with headline
       const targetCenterY = vh < 650 ? vh * 0.36 : (vh < 800 ? vh * 0.42 : vh * 0.45);
 
@@ -242,7 +242,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-10 sm:h-14 md:h-18 lg:h-22 xl:h-26 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+              className="h-11 sm:h-[50px] md:h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
               style={{ filter: 'invert(1) hue-rotate(180deg)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
