@@ -30,8 +30,26 @@ export default function InteriorJourney() {
     const total = roomsData.length;
     const mm = gsap.matchMedia();
 
-    // Mobile, Foldable, Tablet & Portrait screens: Scroll-scrub through rooms with responsive pin
-    mm.add('(max-width: 1023px), (orientation: portrait)', () => {
+    // Mobile Phones (< 768px): Pin section so each room gets dedicated scroll distance
+    // Each room gets ~innerHeight * 0.55 of scroll (≈470px on 852px device), 4 rooms = innerHeight * 2.2
+    mm.add('(max-width: 767px)', () => {
+      const pinDistance = Math.round(window.innerHeight * 2.2);
+      const st = ScrollTrigger.create({
+        trigger: containerRef.current,
+        pin: true,
+        start: 'top top',
+        end: () => '+=' + pinDistance,
+        scrub: 0.6,
+        onUpdate: (self) => {
+          const idx = Math.min(total - 1, Math.floor(self.progress * total));
+          setActiveIndex((prev) => (prev !== idx ? idx : prev));
+        }
+      });
+      return () => st.kill();
+    });
+
+    // Tablets (768px - 1023px) & Tablet Portrait: Keep existing tablet behavior
+    mm.add('(min-width: 768px) and (max-width: 1023px), (min-width: 768px) and (orientation: portrait)', () => {
       const st = ScrollTrigger.create({
         trigger: containerRef.current,
         pin: true,
@@ -124,7 +142,7 @@ export default function InteriorJourney() {
     const total = roomsData.length;
     const allTriggers = ScrollTrigger.getAll();
     const st = allTriggers.find((s) => s.trigger === containerRef.current);
-    if (st) {
+    if (st && st.pin) {
       const targetScroll = st.start + ((index + 0.5) / total) * (st.end - st.start);
       scrollToPosition(targetScroll, { duration: 0.7 });
     }
