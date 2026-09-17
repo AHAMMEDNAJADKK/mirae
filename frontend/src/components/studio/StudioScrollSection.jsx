@@ -153,33 +153,33 @@ export default function StudioScrollSection() {
       className="relative w-full h-[450vh] bg-[#080808] text-[#f4f3ef] border-t border-white/[0.08]"
     >
       {/* Sticky Cinematic Viewport */}
-      <div className="sticky top-0 h-screen h-[100svh] w-full flex flex-col justify-between p-4 sm:p-8 md:p-12 lg:p-14 overflow-hidden">
+      <div className="sticky top-0 h-screen h-[100svh] w-full flex flex-col justify-between p-3.5 sm:p-6 md:p-10 lg:p-14 overflow-hidden">
         
         {/* Top Editorial Bar */}
-        <div className="relative z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-b border-white/[0.08] pb-3 sm:pb-5">
+        <div className="relative z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2.5 sm:gap-4 border-b border-white/[0.08] pb-2.5 sm:pb-5">
           <div>
-            <div className="flex items-center space-x-2 text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] uppercase mb-1">
+            <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.2em] sm:tracking-[0.25em] uppercase mb-0.5 sm:mb-1">
               <Compass className="w-3.5 h-3.5 text-mirae-orange" />
               <span>THE ATELIER • SPATIAL SEQUENCE</span>
             </div>
-            <h2 className="font-architectural text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white uppercase tracking-wider">
+            <h2 className="font-architectural text-lg sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white uppercase tracking-wider">
               WHERE VISION TAKES FORM
             </h2>
           </div>
 
           {/* Dynamic Index & Progress Bar */}
-          <div className="flex items-center space-x-5 sm:space-x-8">
+          <div className="flex items-center space-x-4 sm:space-x-8">
             <div className="flex flex-col items-end">
-              <span className="text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
+              <span className="text-[10px] sm:text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
                 SEQUENCE
               </span>
-              <span className="text-sm sm:text-base font-pencrow font-semibold text-white tracking-widest">
+              <span className="text-xs sm:text-base font-pencrow font-semibold text-white tracking-widest">
                 {activeItem.num} <span className="text-white/30">/ 06</span>
               </span>
             </div>
 
             {/* Architectural Progress Meter */}
-            <div className="w-20 sm:w-36 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+            <div className="w-16 sm:w-28 md:w-36 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
               <div 
                 className="h-full bg-mirae-orange transition-all duration-300 ease-out"
                 style={{ width: `${Math.round(scrollProgress * 100)}%` }}
@@ -190,7 +190,7 @@ export default function StudioScrollSection() {
 
         {/* Central Display: Layered Image Canvas */}
         <div className="relative z-10 flex-grow my-2 sm:my-4 md:my-6 w-full max-w-6xl mx-auto flex items-center justify-center overflow-hidden">
-          <div className="relative w-full h-full max-h-[50vh] sm:max-h-[58vh] lg:max-h-[62vh] aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-white/[0.1] bg-[#0c0c0c] shadow-2xl">
+          <div className="relative w-full h-full max-h-[36vh] sm:max-h-[50vh] lg:max-h-[62vh] aspect-[16/10] sm:aspect-[16/9] overflow-hidden border border-white/[0.1] bg-[#0c0c0c] shadow-2xl">
             {studioImages.map((item, idx) => (
               <div
                 key={item.id}
@@ -214,7 +214,7 @@ export default function StudioScrollSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none" />
 
                 {/* Badge Tag */}
-                <div className="absolute top-4 left-4 z-10 bg-black/70 backdrop-blur-md px-3 py-1 border border-white/15 text-[11px] font-pencrow font-medium tracking-[0.2em] text-white/90 uppercase">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 bg-black/70 backdrop-blur-md px-2.5 py-1 border border-white/15 text-[9px] sm:text-[11px] font-pencrow font-medium tracking-[0.2em] text-white/90 uppercase">
                   {item.tag}
                 </div>
               </div>
@@ -223,22 +223,22 @@ export default function StudioScrollSection() {
         </div>
 
         {/* Bottom Editorial Caption Panel */}
-        <div className="relative z-20 max-w-6xl mx-auto w-full pt-3 sm:pt-4 border-t border-white/[0.08] flex flex-col md:flex-row items-start md:items-end justify-between gap-3 sm:gap-4">
+        <div className="relative z-20 max-w-6xl mx-auto w-full pt-2.5 sm:pt-4 border-t border-white/[0.08] flex flex-col md:flex-row items-start md:items-end justify-between gap-2.5 sm:gap-4">
           <div className="max-w-2xl">
-            <div className="text-xs font-pencrow text-mirae-orange font-medium tracking-widest uppercase mb-1">
+            <div className="text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-widest uppercase mb-0.5 sm:mb-1">
               {activeItem.category} • {activeItem.subtitle}
             </div>
-            <h3 className="font-architectural text-lg sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide">
+            <h3 className="font-architectural text-base sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide">
               {activeItem.title}
             </h3>
-            <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed font-pencrow">
+            <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed font-pencrow line-clamp-2 sm:line-clamp-none">
               {activeItem.description}
             </p>
           </div>
 
-          <div className="flex items-center space-x-2 text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
+          <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium shrink-0">
             <span>SCROLL TO ADVANCE</span>
-            <ArrowRight className="w-3.5 h-3.5 text-mirae-orange" />
+            <ArrowRight className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-mirae-orange" />
           </div>
         </div>
 
