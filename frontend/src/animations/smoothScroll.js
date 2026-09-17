@@ -8,6 +8,27 @@ let lenisInstance = null;
 
 export const getLenis = () => lenisInstance;
 
+export function scrollToPosition(target, options = {}) {
+  if (typeof window === 'undefined') return;
+  if (lenisInstance) {
+    lenisInstance.scrollTo(target, options);
+  } else {
+    if (typeof target === 'number') {
+      window.scrollTo({ 
+        top: target, 
+        behavior: options.immediate ? 'auto' : 'smooth' 
+      });
+    } else if (typeof target === 'string') {
+      const el = document.querySelector(target);
+      if (el) {
+        el.scrollIntoView({ behavior: options.immediate ? 'auto' : 'smooth' });
+      }
+    } else if (target instanceof HTMLElement) {
+      target.scrollIntoView({ behavior: options.immediate ? 'auto' : 'smooth' });
+    }
+  }
+}
+
 export function initSmoothScroll() {
   if (typeof window === 'undefined') return null;
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollToPosition } from '../../animations/smoothScroll';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,23 +51,28 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const isTablet = vw >= 640 && vw < 1024;
 
       const dockRect = logoBtnRef.current.getBoundingClientRect();
+      const dockWidth = dockRect.width || (isMobile ? 110 : (isTablet ? 140 : 200));
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
-      // Target center of viewport for initial brand introduction state (subtly shifted left for architectural balance)
-      const leftShift = isMobile ? 14 : (isTablet ? 28 : 52);
+      // Ensure the hero logo is slightly larger, premium, readable and responsive (not oversized)
+      const maxHeroWidth = isMobile 
+        ? Math.min(vw * 0.78, 305) 
+        : (isTablet ? Math.min(vw * 0.62, 440) : (vw >= 1920 ? 660 : (vw >= 1440 ? 600 : 540)));
+      const heroScale = Math.max(1.25, Math.min(2.75, maxHeroWidth / dockWidth));
+
+      // Target center of viewport for initial brand introduction state (centered on mobile, slightly shifted on desktop)
+      const leftShift = isMobile ? Math.min(6, vw * 0.015) : (isTablet ? 20 : 40);
       const targetCenterX = (vw / 2) - leftShift;
-      const targetCenterY = vh * 0.48; // Optical vertical center
+      // Optical vertical center: slightly above center for pristine visual balance with headline
+      const targetCenterY = vh < 650 ? vh * 0.36 : (vh < 800 ? vh * 0.42 : vh * 0.45);
 
       const deltaX = targetCenterX - dockCenterX;
       const deltaY = targetCenterY - dockCenterY;
 
-      // Prominent, dignified scaling for the new logo in the Hero
-      const heroScale = isMobile ? 1.7 : (isTablet ? 1.85 : 2.0);
-
       // Initial state based on current scroll position
       const initialScroll = window.scrollY;
-      const progress = Math.min(1, Math.max(0, initialScroll / 400));
+      const progress = Math.min(1, Math.max(0, initialScroll / 480));
       const easeP = 1 - Math.pow(1 - progress, 1.35);
 
       gsap.set(logoBtnRef.current, {
@@ -77,7 +83,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       });
 
       if (navRightRef.current) {
-        const navP = Math.max(0, (progress - 0.45) / 0.55);
+        const navP = Math.max(0, (progress - 0.4) / 0.6);
         gsap.set(navRightRef.current, {
           opacity: navP,
           y: -8 * (1 - navP),
@@ -85,11 +91,11 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
         });
       }
 
-      // Smooth scroll interpolation via ScrollTrigger (400px cinematic breathing room)
+      // Smooth scroll interpolation via ScrollTrigger matching State 1 arrival
       currentST = ScrollTrigger.create({
         trigger: document.body,
         start: 'top top',
-        end: '+=400',
+        end: '+=480',
         scrub: 0.6,
         onUpdate: (self) => {
           const p = self.progress; // 0 to 1
@@ -103,7 +109,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           });
 
           if (navRightRef.current) {
-            const navP = Math.max(0, (p - 0.45) / 0.55);
+            const navP = Math.max(0, (p - 0.4) / 0.6);
             gsap.set(navRightRef.current, {
               opacity: navP,
               y: -8 * (1 - navP),
@@ -185,17 +191,14 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const navbarOffset = 76;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = id === 'hero' ? 0 : elementPosition - navbarOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      scrollToPosition(offsetPosition, { duration: 1 });
     }
   };
 
   return (
     <header 
       ref={headerRef}
-      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-out transform ${
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ease-out transform pt-[env(safe-area-inset-top)] ${
         isScrolledPastHero
           ? 'py-1 sm:py-1.5 bg-black/80 backdrop-blur-md border-b border-white/[0.08] shadow-2xl'
           : 'py-2 sm:py-3 bg-transparent border-b border-transparent shadow-none'
@@ -205,10 +208,10 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           : '-translate-y-full opacity-0 pointer-events-none'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         
         {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (subtly shifted left) */}
-        <div className="flex items-center -translate-x-0 sm:-translate-x-2 md:-translate-x-2 lg:-translate-x-8 xl:-translate-x-10">
+        <div className="flex items-center -translate-x-0 sm:-translate-x-2 md:-translate-x-2 lg:-translate-x-6 xl:-translate-x-8">
           <button 
             ref={logoBtnRef}
             onClick={() => scrollToSection('hero')}
@@ -219,7 +222,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-16 sm:h-20 md:h-20 lg:h-24 xl:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+              className="h-10 sm:h-14 md:h-18 lg:h-22 xl:h-26 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
               style={{ filter: 'invert(1) hue-rotate(180deg)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));

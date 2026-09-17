@@ -26,28 +26,28 @@ export default function ProjectDetailModal({ project, onClose }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 bg-[#080808]/95 backdrop-blur-xl flex items-center justify-center p-3 sm:p-6 md:p-10 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-[#080808]/95 backdrop-blur-xl flex items-center justify-center p-2 sm:p-6 md:p-10 overflow-y-auto"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-project-title"
     >
       <div 
-        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-5 sm:p-8 md:p-12 my-auto shadow-2xl overflow-hidden max-h-[92vh] overflow-y-auto rounded-lg"
+        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-4 sm:p-8 md:p-12 my-auto shadow-2xl overflow-hidden max-h-[90dvh] overflow-y-auto rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close project study"
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2.5 min-w-[44px] min-h-[44px] rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 z-20 focus:outline-none flex items-center justify-center"
+          className="absolute top-3 right-3 sm:top-6 sm:right-6 p-2 min-w-[40px] min-h-[40px] rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 z-20 focus:outline-none flex items-center justify-center cursor-pointer"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
 
         {/* Modal Header */}
-        <div className="mb-6 sm:mb-10 border-b border-white/[0.08] pb-5 sm:pb-6 pr-12">
-          <div className="flex flex-wrap items-center gap-2 text-xs font-pencrow text-mirae-orange font-medium mb-2.5 uppercase tracking-widest">
+        <div className="mb-4 sm:mb-8 border-b border-white/[0.08] pb-4 sm:pb-6 pr-10 sm:pr-14">
+          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium mb-2 uppercase tracking-widest">
             <span>{project.id || `PROJECT ${project.num}`}</span>
             <span>•</span>
             <span className="text-white/80">{project.category}</span>
@@ -57,13 +57,13 @@ export default function ProjectDetailModal({ project, onClose }) {
                 <span className="text-white/60">{project.monographPlate}</span>
               </>
             )}
-            <span>•</span>
-            <span className="text-white/40">MIRAE MONOGRAPH ARCHIVE</span>
+            <span className="hidden sm:inline">•</span>
+            <span className="hidden sm:inline text-white/40">MIRAE MONOGRAPH ARCHIVE</span>
           </div>
-          <h2 id="modal-project-title" className="font-architectural text-2xl sm:text-4xl md:text-5xl font-bold text-white uppercase tracking-wider">
+          <h2 id="modal-project-title" className="font-architectural text-xl sm:text-3xl md:text-5xl font-bold text-white uppercase tracking-wider">
             {project.title}
           </h2>
-          <p className="text-sm sm:text-base font-editorial italic text-white/85 tracking-wide mt-2 font-pencrow">
+          <p className="text-xs sm:text-base font-editorial italic text-white/85 tracking-wide mt-1.5 sm:mt-2 font-pencrow">
             {project.subtitle}
           </p>
         </div>
