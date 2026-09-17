@@ -104,9 +104,13 @@ export default function ExteriorLayers() {
   return (
     <section 
       id="exterior-layers" 
+      data-section="exterior"
       ref={containerRef} 
       className="relative w-full h-[180vh] md:h-[220vh] lg:h-[280vh] bg-[#080808]"
     >
+      {/* Anchor alias for #exterior */}
+      <div id="exterior" className="absolute top-0 left-0 w-0 h-0 pointer-events-none" />
+
       {/* Sticky Viewport Scene */}
       <div className="sticky top-0 w-full h-screen h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-between select-none">
         

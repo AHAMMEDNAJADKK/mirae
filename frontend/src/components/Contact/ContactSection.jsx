@@ -1,10 +1,10 @@
 import React from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import { scrollToPosition } from '../../animations/smoothScroll';
 
 export default function ContactSection() {
   const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    scrollToPosition('#' + id, { duration: 1.0 });
   };
 
   return (

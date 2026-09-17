@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export default function ScrollProgress() {
   const [scrollPercentage, setScrollPercentage] = useState(0);
+
+  const prevPercentRef = useRef(-1);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -9,8 +11,13 @@ export default function ScrollProgress() {
       const b = document.body;
       const st = 'scrollTop';
       const sh = 'scrollHeight';
-      const percent = ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100;
-      setScrollPercentage(Math.min(100, Math.max(0, Math.round(percent))));
+      const totalScroll = (h[sh] || b[sh]) - h.clientHeight;
+      if (totalScroll <= 0) return;
+      const percent = Math.min(100, Math.max(0, Math.round(((h[st] || b[st]) / totalScroll) * 100)));
+      if (percent !== prevPercentRef.current) {
+        prevPercentRef.current = percent;
+        setScrollPercentage(percent);
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
