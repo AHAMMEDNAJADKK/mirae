@@ -13,6 +13,7 @@ export default function HeroExperience() {
 
   useEffect(() => {
     preloadSingleImage('/assets/images/hero/mirae-hero-bg.jpg');
+    preloadSingleImage('/assets/images/mirae-hero-logo.webp');
     preloadSingleImage('/assets/images/exterior/exterior-roof.webp');
   }, []);
 
@@ -43,12 +44,6 @@ export default function HeroExperience() {
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.5,
-          snap: prefersReducedMotion ? false : {
-            snapTo: [0, 0.5, 1],
-            duration: { min: 0.2, max: 0.55 },
-            delay: 0.05,
-            ease: 'power2.out'
-          },
           onUpdate: (self) => {
             const p = self.progress;
             if (heroContentRef.current) {
@@ -85,39 +80,8 @@ export default function HeroExperience() {
       }
     }, containerRef);
 
-    // Keyboard accessibility for smooth step progression without blocking native input
-    const handleKeyDown = (e) => {
-      if (!containerRef.current) return;
-      const vh = window.innerHeight;
-      const heroHeight = containerRef.current.offsetHeight;
-      const maxHeroScroll = Math.max(1, heroHeight - vh);
-      const state1 = Math.round(maxHeroScroll * 0.50);
-      const state2 = maxHeroScroll;
-      const currentY = window.scrollY;
-
-      if (currentY >= state2 + 20) return;
-
-      if (['ArrowDown', 'PageDown'].includes(e.code)) {
-        if (currentY < state1 * 0.7) {
-          e.preventDefault();
-          scrollToPosition(state1, { duration: 0.7 });
-        } else if (currentY < state2 - 40) {
-          e.preventDefault();
-          scrollToPosition(state2, { duration: 0.7 });
-        }
-      } else if (['ArrowUp', 'PageUp'].includes(e.code)) {
-        if (currentY > state1 * 0.3 && currentY <= state2 + 10) {
-          e.preventDefault();
-          scrollToPosition(currentY > state1 * 1.1 ? state1 : 0, { duration: 0.7 });
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       ctx.revert();
-      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
@@ -134,10 +98,10 @@ export default function HeroExperience() {
     <section 
       id="hero" 
       ref={containerRef} 
-      className="relative w-full h-[220vh] bg-[#070707]"
+      className="relative w-full h-[175svh] sm:h-[190svh] md:h-[220vh] bg-[#070707]"
     >
       {/* Sticky Fullscreen Cinematic Architectural Stage */}
-      <div className="sticky top-0 w-full h-screen h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-end select-none">
+      <div className="sticky top-0 w-full h-screen h-[100dvh] h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-end select-none">
         
         {/* Dominant Architectural Focus Visual: mirae-hero-bg.jpg */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
@@ -148,26 +112,29 @@ export default function HeroExperience() {
             <img 
               src="/assets/images/hero/mirae-hero-bg.jpg"
               alt="MIRAE Architectural Atelier Interior"
-              className="w-full h-full object-cover object-[center_40%] transform-gpu brightness-[1.02] contrast-[1.02]"
+              className="w-full h-full object-cover object-[center_36%] sm:object-[center_40%] transform-gpu brightness-[1.02] contrast-[1.02]"
               loading="eager"
               decoding="sync"
             />
           </div>
 
           {/* Light, Natural Architectural Atmosphere with Subtle Legibility Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-black/10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-transparent pointer-events-none" />
         </div>
 
         {/* Left-Aligned Editorial Headline + Explore Projects CTA */}
         <div 
           ref={heroContentRef}
-          className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-[max(3.25rem,8vh)] sm:pb-[max(4rem,9vh)] md:pb-20 lg:pb-26 pointer-events-auto"
+          className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-[clamp(2.25rem,8svh,5rem)] sm:pb-[clamp(3.5rem,10vh,6.5rem)] md:pb-20 lg:pb-26 landscape:pb-5 pointer-events-auto"
         >
-          <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6">
-            <h1 className="font-excon font-semibold text-[clamp(1.75rem,5vw,2.25rem)] sm:text-4xl md:text-5xl lg:text-[4rem] xl:text-[4.75rem] text-white leading-[1.1] sm:leading-[1.06] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
-              Architecture<br />
-              Shaped by Experience
+          <div className="max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6">
+            <h1 className="font-excon font-semibold text-[clamp(1.95rem,min(7.6vw,5.6vh),3.25rem)] sm:text-4xl md:text-5xl lg:text-[3.85rem] xl:text-[4.5rem] text-white leading-[1.05] sm:leading-[1.08] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
+              <span className="block sm:inline">Architecture</span>{' '}
+              <span className="inline">Shaped</span>
+              <br className="hidden sm:inline" />
+              <span className="inline"> by</span>{' '}
+              <span className="block sm:inline">Experience</span>
             </h1>
 
             {/* Premium 'EXPLORE PROJECTS →' CTA */}

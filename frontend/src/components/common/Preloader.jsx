@@ -10,8 +10,9 @@ export default function Preloader({ onComplete }) {
     let isCancelled = false;
 
     async function initPreload() {
-      // Stage 1: Off-thread decode of primary hero image
+      // Stage 1: Off-thread decode of primary hero image and logo
       const primaryHero = '/assets/images/hero/mirae-hero-bg.jpg';
+      preloadSingleImage('/assets/images/mirae-logo.webp');
       
       // Steady, mathematically smooth progress counter over ~1.9s for a cinematic feel
       let startTime = Date.now();
@@ -90,9 +91,10 @@ export default function Preloader({ onComplete }) {
 
         <div className="text-center my-auto flex flex-col items-center justify-center">
           <img 
-            src="/assets/images/mirae-logo.png" 
-            alt="MIRAE Arc Studio" 
-            className="h-12 sm:h-16 md:h-20 lg:h-24 w-auto object-contain mb-4 sm:mb-6 drop-shadow-[0_4px_24px_rgba(0,0,0,0.8)]" 
+            src="/assets/images/mirae-logo.webp" 
+            alt="MIRAE" 
+            className="h-[clamp(2.75rem,5.5vw,5.5rem)] w-auto object-contain mb-4 sm:mb-6" 
+            style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
           />
           <p className="text-xs sm:text-sm tracking-[0.35em] text-neutral-300 uppercase font-medium font-pencrow">
             Architecture Shaped By Experience
