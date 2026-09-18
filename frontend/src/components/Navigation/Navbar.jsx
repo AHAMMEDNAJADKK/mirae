@@ -186,12 +186,15 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
 
           for (let i = sectionIds.length - 1; i >= 0; i--) {
             const el = document.getElementById(sectionIds[i]);
-            if (el && el.offsetTop <= scrollPos) {
-              if (activeSecRef.current !== sectionIds[i]) {
-                activeSecRef.current = sectionIds[i];
-                setActiveSection(sectionIds[i]);
+            if (el) {
+              const topPos = el.getBoundingClientRect().top + currentScrollY;
+              if (topPos <= scrollPos) {
+                if (activeSecRef.current !== sectionIds[i]) {
+                  activeSecRef.current = sectionIds[i];
+                  setActiveSection(sectionIds[i]);
+                }
+                break;
               }
-              break;
             }
           }
 

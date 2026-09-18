@@ -39,62 +39,134 @@ const layersData = [
 export default function ExteriorLayers() {
   const containerRef = useRef(null);
   const layerRefs = useRef([]);
+  const textRefs = useRef([]);
+  const activeIdxRef = useRef(0);
   const [activeLayerIndex, setActiveLayerIndex] = useState(0);
 
   useEffect(() => {
-    // Pre-warm exterior layer images
-    layersData.forEach((layer) => preloadSingleImage(layer.image));
+    // Pre-warm all exterior layer images immediately
+    layersData.forEach((layer) => {
+      preloadSingleImage(layer.image);
+      if (layer.fallbackImage) preloadSingleImage(layer.fallbackImage);
+    });
   }, []);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const ctx = gsap.context(() => {
       const total = layersData.length;
 
-      // Master ScrollTrigger tracking progress
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: 'top top',
-        end: 'bottom bottom',
-        scrub: 0.8,
-        onUpdate: (self) => {
-          const idx = Math.min(total - 1, Math.floor(self.progress * total));
-          setActiveLayerIndex(idx);
-        }
+      // Set initial states for images and text layers
+      layerRefs.current.forEach((el, idx) => {
+        if (!el) return;
+        gsap.set(el, {
+          opacity: idx === 0 ? 1 : 0,
+          scale: prefersReducedMotion ? 1 : (idx === 0 ? 1 : 1.03),
+          transformOrigin: 'center center'
+        });
       });
 
-      // Layer Transition Timeline
+      textRefs.current.forEach((el, idx) => {
+        if (!el) return;
+        gsap.set(el, {
+          opacity: idx === 0 ? 1 : 0,
+          y: prefersReducedMotion ? 0 : (idx === 0 ? 0 : 20),
+          pointerEvents: idx === 0 ? 'auto' : 'none'
+        });
+      });
+
+      // Single authoritative timeline driving both images & text
+      // Timeline duration = 4.0 units.
+      // Layer 0: rest 0.00 -> 0.65 | transition 0 -> 1: 0.65 -> 1.00 (midpoint 0.825)
+      // Layer 1: rest 1.00 -> 1.65 | transition 1 -> 2: 1.65 -> 2.00 (midpoint 1.825)
+      // Layer 2: rest 2.00 -> 2.65 | transition 2 -> 3: 2.65 -> 3.00 (midpoint 2.825)
+      // Layer 3: rest 3.00 -> 4.00 | stable viewing moment before release
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: 'top top',
           end: 'bottom bottom',
-          scrub: 1.0
+          scrub: 0.6,
+          onUpdate: (self) => {
+            const p = self.progress;
+            // Calibrated boundary thresholds derived from transition midpoints
+            let idx = 0;
+            if (p >= 0.706) {
+              idx = 3;
+            } else if (p >= 0.456) {
+              idx = 2;
+            } else if (p >= 0.206) {
+              idx = 1;
+            } else {
+              idx = 0;
+            }
+
+            if (idx !== activeIdxRef.current) {
+              activeIdxRef.current = idx;
+              setActiveLayerIndex(idx);
+            }
+          }
         }
       });
 
+      // Sequence building: 3 transitions across the 4 layers
       for (let i = 1; i < total; i++) {
-        const prev = layerRefs.current[i - 1];
-        const curr = layerRefs.current[i];
-        const step = i * 2;
+        const prevImg = layerRefs.current[i - 1];
+        const currImg = layerRefs.current[i];
+        const prevTxt = textRefs.current[i - 1];
+        const currTxt = textRefs.current[i];
 
-        if (prev && curr) {
-          tl.to(prev, {
+        const transStart = i - 0.35; // 0.65, 1.65, 2.65
+        const transDuration = 0.35;
+
+        if (prevImg && currImg) {
+          // Crossfade images
+          tl.to(prevImg, {
             opacity: 0,
-            scale: 0.96,
+            scale: prefersReducedMotion ? 1 : 0.98,
             ease: 'power2.inOut',
-            duration: 1.2
-          }, step - 0.5)
-          .fromTo(curr, {
+            duration: transDuration
+          }, transStart)
+          .fromTo(currImg, {
             opacity: 0,
-            scale: 1.1
+            scale: prefersReducedMotion ? 1 : 1.03
           }, {
             opacity: 1,
             scale: 1.0,
             ease: 'power2.out',
-            duration: 1.2
-          }, step - 0.4);
+            duration: transDuration
+          }, transStart);
+        }
+
+        if (prevTxt && currTxt) {
+          // Crossfade texts
+          tl.to(prevTxt, {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : -16,
+            ease: 'power2.inOut',
+            duration: transDuration * 0.85,
+            onComplete: () => {
+              if (prevTxt) prevTxt.style.pointerEvents = 'none';
+            }
+          }, transStart)
+          .fromTo(currTxt, {
+            opacity: 0,
+            y: prefersReducedMotion ? 0 : 20
+          }, {
+            opacity: 1,
+            y: 0,
+            ease: 'power2.out',
+            duration: transDuration,
+            onStart: () => {
+              if (currTxt) currTxt.style.pointerEvents = 'auto';
+            }
+          }, transStart + 0.05);
         }
       }
+
+      // Hold final Layer 3 at full rest through the end of the scroll
+      tl.to({}, { duration: 1.0 }, 3.0);
 
     }, containerRef);
 
@@ -106,7 +178,7 @@ export default function ExteriorLayers() {
       id="exterior-layers" 
       data-section="exterior"
       ref={containerRef} 
-      className="relative w-full h-[180vh] md:h-[220vh] lg:h-[280vh] bg-[#080808]"
+      className="relative w-full h-[280vh] md:h-[340vh] lg:h-[380vh] bg-[#080808]"
     >
       {/* Anchor alias for #exterior */}
       <div id="exterior" className="absolute top-0 left-0 w-0 h-0 pointer-events-none" />
@@ -114,15 +186,13 @@ export default function ExteriorLayers() {
       {/* Sticky Viewport Scene */}
       <div className="sticky top-0 w-full h-screen h-[100svh] min-h-0 overflow-hidden bg-black flex flex-col justify-between select-none">
         
-        {/* Background Visual Layers */}
+        {/* Background Visual Layers (Stacked for seamless GPU crossfade) */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {layersData.map((layer, idx) => (
             <div
               key={layer.id}
               ref={(el) => (layerRefs.current[idx] = el)}
-              className={`absolute inset-0 w-full h-full will-change-transform ${
-                idx === 0 ? 'opacity-100 z-10' : 'opacity-0 z-10'
-              }`}
+              className="absolute inset-0 w-full h-full will-change-transform will-change-opacity"
             >
               <img 
                 src={layer.image}
@@ -142,17 +212,25 @@ export default function ExteriorLayers() {
         {/* Center / Right Layer Navigation Indicators */}
         <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 lg:gap-8 pt-16 sm:pt-20 md:pt-0">
           
-          {/* Left: Active Level Description */}
-          <div className="w-full md:max-w-sm lg:max-w-md bg-black/85 backdrop-blur-md p-3.5 sm:p-6 md:p-7 lg:p-8 border-l-2 border-mirae-orange shadow-2xl">
-            <span className="text-[10px] font-pencrow text-mirae-orange font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
-              LEVEL 0{activeLayerIndex + 1} / 04
-            </span>
-            <h3 className="font-architectural text-lg sm:text-2xl md:text-3xl lg:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-1.5 sm:mb-3">
-              {layersData[activeLayerIndex].title}
-            </h3>
-            <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed font-pencrow">
-              {layersData[activeLayerIndex].subtitle}
-            </p>
+          {/* Left: Active Level Description (Stacked absolute layers driven by GSAP timeline) */}
+          <div className="relative w-full md:max-w-sm lg:max-w-md min-h-[140px] sm:min-h-[160px] md:min-h-[180px] bg-black/85 backdrop-blur-md p-3.5 sm:p-6 md:p-7 lg:p-8 border-l-2 border-mirae-orange shadow-2xl overflow-hidden">
+            {layersData.map((layer, idx) => (
+              <div
+                key={layer.id}
+                ref={(el) => (textRefs.current[idx] = el)}
+                className="absolute inset-0 p-3.5 sm:p-6 md:p-7 lg:p-8 flex flex-col justify-center will-change-transform will-change-opacity"
+              >
+                <span className="text-[10px] font-pencrow text-mirae-orange font-medium tracking-[0.3em] uppercase block mb-1.5 sm:mb-2">
+                  LEVEL 0{idx + 1} / 04
+                </span>
+                <h3 className="font-architectural text-lg sm:text-2xl md:text-3xl lg:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-1.5 sm:mb-3 leading-tight">
+                  {layer.title}
+                </h3>
+                <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed font-pencrow line-clamp-3">
+                  {layer.subtitle}
+                </p>
+              </div>
+            ))}
           </div>
 
           {/* Right: Architectural Cutaway Callout Indicators (Desktop / Tablet) */}
@@ -216,7 +294,9 @@ export default function ExteriorLayers() {
         {/* Bottom Bar Info */}
         <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-16 pb-4 sm:pb-8 flex justify-between items-center text-[9px] sm:text-xs font-pencrow text-white/50 font-medium">
           <span>PROGRESSIVE TECTONIC SEQUENCE</span>
-          <span className="font-medium text-white/70">{layersData[activeLayerIndex].title.toUpperCase()}</span>
+          <span className="font-medium text-white/70 tracking-wider">
+            {layersData[activeLayerIndex].title.toUpperCase()}
+          </span>
         </div>
 
       </div>

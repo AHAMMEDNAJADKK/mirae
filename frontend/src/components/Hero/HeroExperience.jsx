@@ -43,12 +43,6 @@ export default function HeroExperience() {
           start: 'top top',
           end: 'bottom bottom',
           scrub: 0.5,
-          snap: prefersReducedMotion ? false : {
-            snapTo: [0, 0.5, 1],
-            duration: { min: 0.2, max: 0.55 },
-            delay: 0.05,
-            ease: 'power2.out'
-          },
           onUpdate: (self) => {
             const p = self.progress;
             if (heroContentRef.current) {
@@ -85,39 +79,8 @@ export default function HeroExperience() {
       }
     }, containerRef);
 
-    // Keyboard accessibility for smooth step progression without blocking native input
-    const handleKeyDown = (e) => {
-      if (!containerRef.current) return;
-      const vh = window.innerHeight;
-      const heroHeight = containerRef.current.offsetHeight;
-      const maxHeroScroll = Math.max(1, heroHeight - vh);
-      const state1 = Math.round(maxHeroScroll * 0.50);
-      const state2 = maxHeroScroll;
-      const currentY = window.scrollY;
-
-      if (currentY >= state2 + 20) return;
-
-      if (['ArrowDown', 'PageDown'].includes(e.code)) {
-        if (currentY < state1 * 0.7) {
-          e.preventDefault();
-          scrollToPosition(state1, { duration: 0.7 });
-        } else if (currentY < state2 - 40) {
-          e.preventDefault();
-          scrollToPosition(state2, { duration: 0.7 });
-        }
-      } else if (['ArrowUp', 'PageUp'].includes(e.code)) {
-        if (currentY > state1 * 0.3 && currentY <= state2 + 10) {
-          e.preventDefault();
-          scrollToPosition(currentY > state1 * 1.1 ? state1 : 0, { duration: 0.7 });
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-
     return () => {
       ctx.revert();
-      window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 
