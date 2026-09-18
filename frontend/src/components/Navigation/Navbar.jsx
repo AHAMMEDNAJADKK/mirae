@@ -47,27 +47,31 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
 
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      const isMobile = vw < 640;
-      const isTablet = vw >= 640 && vw < 1024;
+      const aspectRatio = 1024 / 381; // ~2.6877
 
       const dockRect = logoBtnRef.current.getBoundingClientRect();
-      const dockWidth = dockRect.width || (isMobile ? 120 : (isTablet ? 150 : 172));
+      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 130 : (vw < 1024 ? 150 : 180)));
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
-      // Ensure the hero logo is slightly larger, premium, readable and responsive (not oversized)
-      const maxHeroWidth = isMobile 
-        ? Math.min(vw * 0.80, 320) 
-        : (isTablet ? Math.min(vw * 0.65, 460) : (vw >= 1920 ? 680 : (vw >= 1440 ? 620 : 560)));
-      const heroScale = Math.max(1.25, Math.min(2.75, maxHeroWidth / dockWidth));
+      // Mathematically fluid hero logo sizing responding to BOTH width and height:
+      // Stronger visual presence: occupies ~84% on mobile, ~62% on tablet/foldable, up to 45% on desktop
+      const widthIdeal = vw < 640 ? vw * 0.84 : (vw < 1024 ? vw * 0.62 : Math.min(vw * 0.45, 720));
+      // Height bounds: logo height in hero should never exceed ~18% of vh (or 22% on short landscape screens)
+      const heightIdealWidth = vh * (vh < 600 ? 0.22 : 0.18) * aspectRatio;
+      // Combined fluid width constrained by both axes
+      const fluidWidth = Math.min(widthIdeal, heightIdealWidth);
+      // Absolute clamp bounds: min 240px (safe for 320px screens) to max 720px (for large desktop)
+      const targetHeroWidth = Math.max(240, Math.min(720, fluidWidth));
+      const heroScale = Math.max(1.15, targetHeroWidth / dockWidth);
 
-      // Visual center of Hero composition: true optical center shifted slightly right for balanced alignment
-      const rightOffset = isMobile ? Math.min(4, vw * 0.01) : (isTablet ? 6 : 8);
-      const targetCenterX = (vw / 2) + rightOffset;
-      // Optical vertical center: slightly above center for pristine visual balance with headline
-      const targetCenterY = vh < 650 ? vh * 0.36 : (vh < 800 ? vh * 0.42 : vh * 0.45);
+      // Continuous safe-area aware optical vertical positioning
+      const safeTop = Math.max(dockRect.top, 16);
+      const isLandscape = vw > vh && vh < 600;
+      const yRatio = isLandscape ? 0.32 : (vw < 640 ? 0.38 : (vw < 1024 ? 0.42 : 0.45));
+      const targetCenterY = safeTop + (vh - safeTop) * yRatio;
 
-      const deltaX = targetCenterX - dockCenterX;
+      const deltaX = (vw / 2) - dockCenterX;
       const deltaY = targetCenterY - dockCenterY;
 
       // Initial state based on current scroll position
@@ -245,8 +249,8 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-11 sm:h-[50px] md:h-14 lg:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02] drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
-              style={{ filter: 'invert(1) hue-rotate(180deg)', aspectRatio: '1024 / 381' }}
+              className="h-[clamp(3rem,calc(2.4rem+2vw),4.5rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
               }}

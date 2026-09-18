@@ -53,15 +53,16 @@ export default function FullscreenMenu({ isOpen, onClose }) {
   return (
     <div 
       ref={menuRef}
-      className="fixed inset-0 z-50 bg-[#080808]/98 backdrop-blur-2xl opacity-0 pointer-events-none flex flex-col justify-between p-4 sm:p-10 md:p-14 lg:p-16 overflow-y-auto max-h-[100dvh] transition-opacity"
+      className="fixed inset-0 z-50 bg-[#080808]/98 backdrop-blur-2xl opacity-0 pointer-events-none flex flex-col justify-between p-4 sm:p-10 md:p-14 lg:p-16 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] overflow-y-auto max-h-[100dvh] transition-opacity"
     >
       {/* Top Header inside menu */}
       <div className="flex justify-between items-center border-b border-white/[0.08] pb-3 sm:pb-6">
         <div className="flex items-center">
           <img 
-            src="/assets/images/mirae-logo.png" 
-            alt="MIRAE Arc Studio by PMR INFRA LLP" 
-            className="h-7 sm:h-10 md:h-12 lg:h-14 w-auto object-contain drop-shadow-[0_2px_12px_rgba(0,0,0,0.6)]" 
+            src="/assets/images/mirae-logo.webp" 
+            alt="MIRAE" 
+            className="h-[clamp(2rem,3.8vw,3.25rem)] w-auto object-contain" 
+            style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
           />
         </div>
         <button 
