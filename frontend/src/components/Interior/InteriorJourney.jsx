@@ -108,7 +108,7 @@ export default function InteriorJourney() {
           trigger: containerRef.current,
           start: 'top top',
           end: () => '+=' + Math.round(window.innerHeight * 2.0),
-          scrub: 0.9
+          scrub: 0.7
         }
       });
 
