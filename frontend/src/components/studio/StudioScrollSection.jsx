@@ -236,7 +236,7 @@ export default function StudioScrollSection() {
     <section 
       id="studio"
       ref={containerRef}
-      className="relative w-full h-[390svh] sm:h-[460vh] md:h-[500vh] lg:h-[580vh] bg-[#080808] text-[#f4f3ef] border-t border-white/[0.08]"
+      className="relative w-full h-[440svh] sm:h-[460vh] md:h-[500vh] lg:h-[580vh] bg-[#080808] text-[#f4f3ef] border-t border-white/[0.08]"
     >
       {/* Sticky Cinematic Viewport Stage */}
       <div className="sticky top-0 h-screen h-[100dvh] h-[100svh] w-full flex flex-col justify-between p-3.5 sm:p-5 md:p-7 lg:p-8 xl:p-10 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] overflow-hidden select-none">
@@ -278,7 +278,7 @@ export default function StudioScrollSection() {
         {/* Editorial Caption Panel: Upper Content on Mobile (order-2), Bottom on Desktop (lg:order-3) */}
         <div className="order-2 lg:order-3 relative z-20 max-w-6xl mx-auto w-full pt-2 sm:pt-3 lg:pt-3.5 border-b lg:border-b-0 lg:border-t border-white/[0.08] pb-2 sm:pb-3 lg:pb-0 flex flex-col md:flex-row items-start md:items-end justify-between gap-2 sm:gap-4">
           {/* Stacked Animated Captions (Driven synchronously by GSAP timeline) */}
-          <div className="relative w-full max-w-2xl min-h-[82px] sm:min-h-[90px] md:min-h-[105px] overflow-hidden">
+          <div className="relative w-full max-w-2xl min-h-[118px] sm:min-h-[98px] md:min-h-[105px] overflow-visible">
             {studioImages.map((item, idx) => (
               <div
                 key={item.id}
@@ -291,7 +291,7 @@ export default function StudioScrollSection() {
                 <h3 className="font-architectural text-base sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide leading-tight mt-0.5">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed font-pencrow line-clamp-2 sm:line-clamp-3">
+                <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed font-pencrow">
                   {item.description}
                 </p>
               </div>
@@ -307,7 +307,7 @@ export default function StudioScrollSection() {
 
         {/* Central Display: Layered Image Canvas (order-3 on mobile, lg:order-2 on desktop) */}
         <div className="order-3 lg:order-2 relative z-10 flex-grow my-1 sm:my-2 md:my-3 lg:my-4 w-full max-w-6xl mx-auto flex items-center justify-center overflow-hidden">
-          <div className="relative w-full h-full max-h-[40svh] sm:max-h-[44svh] md:max-h-[48vh] lg:max-h-[54vh] xl:max-h-[58vh] aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] overflow-hidden border border-white/[0.1] bg-[#0c0c0c] shadow-2xl">
+          <div className="relative w-full h-full max-h-[36svh] sm:max-h-[42svh] md:max-h-[48vh] lg:max-h-[54vh] xl:max-h-[58vh] aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] overflow-hidden border border-white/[0.1] bg-[#0c0c0c] shadow-2xl">
             {studioImages.map((item, idx) => (
               <div
                 key={item.id}
