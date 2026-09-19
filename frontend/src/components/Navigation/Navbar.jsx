@@ -50,7 +50,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const aspectRatio = 1024 / 381; // ~2.6877
 
       const dockRect = logoBtnRef.current.getBoundingClientRect();
-      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 130 : (vw < 1024 ? 150 : 180)));
+      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 160 : (vw < 1024 ? 190 : 230)));
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
@@ -238,7 +238,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
         
         {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (subtly shifted left) */}
-        <div className="flex items-center -translate-x-0 sm:-translate-x-2 md:-translate-x-2 lg:-translate-x-6 xl:-translate-x-8">
+        <div className="flex items-center -translate-x-1 sm:-translate-x-2 md:-translate-x-3 lg:-translate-x-6 xl:-translate-x-8">
           <button 
             ref={logoBtnRef}
             onClick={() => scrollToSection('hero')}
@@ -249,7 +249,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-[clamp(3rem,calc(2.4rem+2vw),4.5rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              className="h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
               style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
