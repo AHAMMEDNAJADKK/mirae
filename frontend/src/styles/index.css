@@ -164,6 +164,8 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    max-width: 100%;
     /* Do NOT set scroll-behavior: smooth here to avoid fighting Lenis */
   }
 
@@ -173,6 +175,7 @@
     max-width: 100%;
     position: relative;
     font-family: var(--font-pencrow);
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Lenis recommended styling */
@@ -297,7 +300,9 @@
   .cinematic-scroll-section {
     padding-top: 0;
     padding-bottom: 0;
-    /* height is controlled via JS inline style */
+    min-height: 100svh;
+    min-height: 100dvh;
+    /* height is dynamically managed via JS inline style */
   }
 
   .cinematic-sticky-stage {
@@ -310,6 +315,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: translateZ(0);
+    will-change: transform;
   }
 }
 
