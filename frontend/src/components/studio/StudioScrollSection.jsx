@@ -236,27 +236,27 @@ export default function StudioScrollSection() {
     <section 
       id="studio"
       ref={containerRef}
-      className="relative w-full h-[440svh] sm:h-[460vh] md:h-[500vh] lg:h-[580vh] bg-[#080808] text-[#f4f3ef] border-t border-white/[0.08]"
+      className="relative w-full h-[400svh] sm:h-[440vh] md:h-[480vh] lg:h-[580vh] bg-[#080808] text-[#f4f3ef] border-t border-white/[0.08]"
     >
       {/* Sticky Cinematic Viewport Stage */}
-      <div className="sticky top-0 h-screen h-[100dvh] h-[100svh] w-full flex flex-col justify-between p-3.5 sm:p-5 md:p-7 lg:p-8 xl:p-10 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] overflow-hidden select-none">
+      <div className="sticky top-0 h-screen h-[100dvh] h-[100svh] w-full flex flex-col justify-between p-3 sm:p-5 md:p-7 lg:p-8 xl:p-10 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] overflow-hidden select-none">
         
         {/* Top Editorial Bar */}
-        <div className="order-1 relative z-20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 border-b border-white/[0.08] pb-2 sm:pb-3.5">
-          <div>
-            <div className="flex items-center space-x-2 text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.2em] sm:tracking-[0.25em] uppercase mb-0.5 sm:mb-1">
-              <Compass className="w-3.5 h-3.5 text-mirae-orange" />
-              <span>THE ATELIER • SPATIAL SEQUENCE</span>
+        <div className="order-1 relative z-20 flex items-center justify-between gap-2 sm:gap-4 border-b border-white/[0.08] pb-2 sm:pb-3.5">
+          <div className="min-w-0 pr-2">
+            <div className="flex items-center space-x-1.5 sm:space-x-2 text-[9.5px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.18em] sm:tracking-[0.25em] uppercase mb-0.5 sm:mb-1">
+              <Compass className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-mirae-orange shrink-0" />
+              <span className="truncate">THE ATELIER • SPATIAL SEQUENCE</span>
             </div>
-            <h2 className="font-architectural text-base sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white uppercase tracking-wider">
+            <h2 className="font-architectural text-xs xs:text-sm sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-white uppercase tracking-wider truncate">
               WHERE VISION TAKES FORM
             </h2>
           </div>
 
           {/* Dynamic Index & Progress Bar */}
-          <div className="flex items-center space-x-3.5 sm:space-x-8 shrink-0">
+          <div className="flex items-center space-x-2.5 sm:space-x-8 shrink-0">
             <div className="flex flex-col items-end">
-              <span className="text-[9.5px] sm:text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
+              <span className="text-[9px] sm:text-xs font-pencrow text-white/50 uppercase tracking-widest font-medium">
                 SEQUENCE
               </span>
               <span className="text-xs sm:text-base font-pencrow font-semibold text-white tracking-widest">
@@ -265,7 +265,7 @@ export default function StudioScrollSection() {
             </div>
 
             {/* Architectural Progress Meter (GPU scaleX animation via GSAP) */}
-            <div className="w-14 sm:w-28 md:w-36 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
+            <div className="w-12 sm:w-28 md:w-36 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
               <div 
                 ref={progressFillRef}
                 className="h-full w-full bg-mirae-orange will-change-transform"
@@ -276,22 +276,22 @@ export default function StudioScrollSection() {
         </div>
 
         {/* Editorial Caption Panel: Upper Content on Mobile (order-2), Bottom on Desktop (lg:order-3) */}
-        <div className="order-2 lg:order-3 relative z-20 max-w-6xl mx-auto w-full pt-2 sm:pt-3 lg:pt-3.5 border-b lg:border-b-0 lg:border-t border-white/[0.08] pb-2 sm:pb-3 lg:pb-0 flex flex-col md:flex-row items-start md:items-end justify-between gap-2 sm:gap-4">
+        <div className="order-2 lg:order-3 relative z-20 max-w-6xl mx-auto w-full pt-1.5 sm:pt-3 lg:pt-3.5 border-b lg:border-b-0 lg:border-t border-white/[0.08] pb-1.5 sm:pb-3 lg:pb-0 flex flex-col md:flex-row items-start md:items-end justify-between gap-2 sm:gap-4">
           {/* Stacked Animated Captions (Driven synchronously by GSAP timeline) */}
-          <div className="relative w-full max-w-2xl min-h-[118px] sm:min-h-[98px] md:min-h-[105px] overflow-visible">
+          <div className="relative w-full max-w-2xl min-h-[102px] xs:min-h-[96px] sm:min-h-[92px] md:min-h-[105px] overflow-visible">
             {studioImages.map((item, idx) => (
               <div
                 key={item.id}
                 ref={(el) => (captionRefs.current[idx] = el)}
                 className="absolute inset-0 flex flex-col justify-start will-change-transform will-change-opacity"
               >
-                <div className="text-[9.5px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-widest uppercase mb-0.5 sm:mb-1">
+                <div className="text-[9px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-widest uppercase mb-0.5 sm:mb-1 truncate">
                   {item.category} • {item.subtitle}
                 </div>
-                <h3 className="font-architectural text-base sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide leading-tight mt-0.5">
+                <h3 className="font-architectural text-sm sm:text-xl md:text-2xl font-bold text-white uppercase tracking-wide leading-tight mt-0.5">
                   {item.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-normal text-neutral-300 mt-1 leading-relaxed font-pencrow">
+                <p className="text-[11px] sm:text-sm font-normal text-neutral-300 mt-0.5 sm:mt-1 leading-relaxed font-pencrow line-clamp-2 sm:line-clamp-3 md:line-clamp-none">
                   {item.description}
                 </p>
               </div>
@@ -307,7 +307,7 @@ export default function StudioScrollSection() {
 
         {/* Central Display: Layered Image Canvas (order-3 on mobile, lg:order-2 on desktop) */}
         <div className="order-3 lg:order-2 relative z-10 flex-grow my-1 sm:my-2 md:my-3 lg:my-4 w-full max-w-6xl mx-auto flex items-center justify-center overflow-hidden">
-          <div className="relative w-full h-full max-h-[36svh] sm:max-h-[42svh] md:max-h-[48vh] lg:max-h-[54vh] xl:max-h-[58vh] aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] overflow-hidden border border-white/[0.1] bg-[#0c0c0c] shadow-2xl">
+          <div className="relative w-full h-full max-h-[38svh] sm:max-h-[44svh] md:max-h-[50vh] lg:max-h-[54vh] xl:max-h-[58vh] aspect-[4/3] sm:aspect-[16/10] lg:aspect-[16/9] overflow-hidden border border-white/[0.1] bg-[#0c0c0c] shadow-2xl">
             {studioImages.map((item, idx) => (
               <div
                 key={item.id}

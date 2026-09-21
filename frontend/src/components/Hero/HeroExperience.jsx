@@ -126,15 +126,12 @@ export default function HeroExperience() {
         {/* Left-Aligned Editorial Headline + Explore Projects CTA */}
         <div 
           ref={heroContentRef}
-          className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-[clamp(2.25rem,8svh,5rem)] sm:pb-[clamp(3.5rem,10vh,6.5rem)] md:pb-20 lg:pb-26 landscape:pb-5 pointer-events-auto"
+          className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-[clamp(2rem,6.5svh,4.5rem)] sm:pb-[clamp(3.5rem,10vh,6.5rem)] md:pb-20 lg:pb-26 landscape:pb-4 pointer-events-auto"
         >
           <div className="max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6">
-            <h1 className="font-excon font-semibold text-[clamp(1.95rem,min(7.6vw,5.6vh),3.25rem)] sm:text-4xl md:text-5xl lg:text-[3.85rem] xl:text-[4.5rem] text-white leading-[1.05] sm:leading-[1.08] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
-              <span className="block sm:inline">Architecture</span>{' '}
-              <span className="inline">Shaped</span>
-              <br className="hidden sm:inline" />
-              <span className="inline"> by</span>{' '}
-              <span className="block sm:inline">Experience</span>
+            <h1 className="font-excon font-semibold text-[clamp(1.6rem,min(6.8vw,5.2vh),3.15rem)] sm:text-4xl md:text-5xl lg:text-[3.85rem] xl:text-[4.5rem] text-white leading-[1.06] sm:leading-[1.08] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
+              <span className="block">Architecture Shaped</span>
+              <span className="block">by Experience</span>
             </h1>
 
             {/* Premium 'EXPLORE PROJECTS →' CTA */}

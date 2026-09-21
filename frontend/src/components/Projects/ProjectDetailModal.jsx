@@ -33,14 +33,14 @@ export default function ProjectDetailModal({ project, onClose }) {
       aria-labelledby="modal-project-title"
     >
       <div 
-        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-4 sm:p-8 md:p-12 my-auto shadow-2xl overflow-hidden max-h-[90dvh] overflow-y-auto rounded-lg"
+        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-4 sm:p-8 md:p-12 my-auto shadow-2xl max-h-[90dvh] overflow-y-auto overscroll-contain rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
           aria-label="Close project study"
-          className="absolute top-3 right-3 sm:top-6 sm:right-6 p-2 min-w-[40px] min-h-[40px] rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 z-20 focus:outline-none flex items-center justify-center cursor-pointer"
+          className="absolute top-3 right-3 sm:top-6 sm:right-6 p-2 min-w-[44px] min-h-[44px] rounded-full border border-white/20 text-white/80 hover:text-white hover:border-white hover:bg-white/10 transition-all duration-300 z-20 focus:outline-none flex items-center justify-center cursor-pointer"
         >
           <X className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>

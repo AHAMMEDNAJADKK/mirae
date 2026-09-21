@@ -50,19 +50,19 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const aspectRatio = 1024 / 381; // ~2.6877
 
       const dockRect = logoBtnRef.current.getBoundingClientRect();
-      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 160 : (vw < 1024 ? 190 : 230)));
+      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 120 : (vw < 1024 ? 180 : 220)));
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
       // Mathematically fluid hero logo sizing responding to BOTH width and height:
       // Stronger visual presence: occupies ~84% on mobile, ~62% on tablet/foldable, up to 45% on desktop
-      const widthIdeal = vw < 640 ? vw * 0.84 : (vw < 1024 ? vw * 0.62 : Math.min(vw * 0.45, 720));
+      const widthIdeal = vw < 640 ? vw * 0.82 : (vw < 1024 ? vw * 0.62 : Math.min(vw * 0.45, 720));
       // Height bounds: logo height in hero should never exceed ~18% of vh (or 22% on short landscape screens)
       const heightIdealWidth = vh * (vh < 600 ? 0.22 : 0.18) * aspectRatio;
       // Combined fluid width constrained by both axes
       const fluidWidth = Math.min(widthIdeal, heightIdealWidth);
-      // Absolute clamp bounds: min 240px (safe for 320px screens) to max 720px (for large desktop)
-      const targetHeroWidth = Math.max(240, Math.min(720, fluidWidth));
+      // Absolute clamp bounds: min 200px (safe for narrow 320px screens) to max 720px (for large desktop)
+      const targetHeroWidth = Math.max(200, Math.min(Math.min(720, vw * 0.85), fluidWidth));
       const heroScale = Math.max(1.15, targetHeroWidth / dockWidth);
 
       // Continuous safe-area aware optical vertical positioning
@@ -133,11 +133,19 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
     };
 
     window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize);
+    }
 
     return () => {
       if (currentST) currentST.kill();
       clearTimeout(resizeTimer);
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+      if (window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleResize);
+      }
     };
   }, [isLoaded]);
 
@@ -249,7 +257,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              className="h-[clamp(2.75rem,calc(2.25rem+2vw),4.5rem)] sm:h-[clamp(3.5rem,calc(2.75rem+2vw),5.5rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
               style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
