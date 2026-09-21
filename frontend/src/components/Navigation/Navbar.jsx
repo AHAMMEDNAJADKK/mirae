@@ -50,7 +50,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const aspectRatio = 1024 / 381; // ~2.6877
 
       const dockRect = logoBtnRef.current.getBoundingClientRect();
-      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 120 : (vw < 1024 ? 180 : 220)));
+      const dockWidth = dockRect.width || (dockRect.height ? dockRect.height * aspectRatio : (vw < 640 ? 150 : (vw < 1024 ? 185 : 230)));
       const dockCenterX = dockRect.left + dockRect.width / 2;
       const dockCenterY = dockRect.top + dockRect.height / 2;
 
@@ -257,7 +257,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-[clamp(2.75rem,calc(2.25rem+2vw),4.5rem)] sm:h-[clamp(3.5rem,calc(2.75rem+2vw),5.5rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              className="h-[clamp(3.35rem,calc(2.9rem+1.8vw),3.95rem)] sm:h-[clamp(4rem,calc(3.4rem+1.3vw),4.85rem)] lg:h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
               style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
