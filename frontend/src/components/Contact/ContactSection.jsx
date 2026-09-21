@@ -40,7 +40,7 @@ export default function ContactSection() {
           </div>
 
           {/* Right: Contact Coordinates */}
-          <div className="md:col-span-6 flex flex-col sm:items-end space-y-3 sm:space-y-4 text-xs font-pencrow text-[#c8c8c8]">
+          <div className="md:col-span-6 flex flex-col items-start md:items-end space-y-3 sm:space-y-4 text-xs font-pencrow text-[#c8c8c8]">
             <div className="flex items-center space-x-3">
               <Phone className="w-3.5 h-3.5 text-mirae-orange shrink-0" />
               <a href="tel:+919388330033" className="hover:text-white transition-colors tracking-wider font-pencrow py-1 touch-manipulation">
@@ -60,7 +60,7 @@ export default function ContactSection() {
               <span className="font-pencrow py-1">Malappuram, Kerala, India</span>
             </div>
 
-            <div className="text-[10px] text-white/40 tracking-widest uppercase pt-1 font-pencrow">
+            <div className="text-[10px] text-white/40 tracking-widest uppercase pt-1 font-pencrow text-left md:text-right">
               50+ Years Of Real Construction Expertise • PMR INFRA LLP
             </div>
           </div>

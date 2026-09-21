@@ -36,15 +36,30 @@ export default function MaterialsSection() {
     // dedicated scroll distance → one controlled swipe = one material transition.
     // No GSAP pin → no pin-spacer → no black dead zone.
     mm.add('(max-width: 767px)', () => {
-      // Use visualViewport.height when available — most accurate on mobile
-      const svh = (window.visualViewport?.height) ?? window.innerHeight;
-      // Each material gets STEP_VH of scroll distance; first starts at 0
-      const STEP = Math.round(svh * 0.70);
-      const totalHeight = svh + (total - 1) * STEP;
+      const updateHeight = () => {
+        const svh = (window.visualViewport?.height) ?? window.innerHeight;
+        const STEP = Math.round(svh * 0.70);
+        const totalHeight = svh + (total - 1) * STEP;
+        if (containerRef.current) {
+          containerRef.current.style.height = totalHeight + 'px';
+        }
+      };
 
-      // Apply section height so CSS sticky stage can scroll through it
-      if (containerRef.current) {
-        containerRef.current.style.height = totalHeight + 'px';
+      updateHeight();
+
+      let resizeTimer = null;
+      const handleResize = () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          updateHeight();
+          ScrollTrigger.refresh();
+        }, 100);
+      };
+
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('orientationchange', handleResize);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleResize);
       }
 
       // Throttle index updates — only fire when the index actually changes
@@ -66,6 +81,12 @@ export default function MaterialsSection() {
 
       return () => {
         st.kill();
+        clearTimeout(resizeTimer);
+        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('orientationchange', handleResize);
+        if (window.visualViewport) {
+          window.visualViewport.removeEventListener('resize', handleResize);
+        }
         // Reset inline height so other breakpoints are unaffected
         if (containerRef.current) {
           containerRef.current.style.height = '';
@@ -237,7 +258,7 @@ export default function MaterialsSection() {
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="w-full lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] lg:aspect-auto h-[34vh] sm:h-[42vh] md:h-[48vh] lg:h-[58vh] xl:h-[62vh] max-h-[380px] sm:max-h-[460px] md:max-h-[520px] lg:max-h-[64vh] shrink-0 overflow-hidden bg-neutral-950 border border-white/[0.1] rounded-sm group shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
+            className="w-full lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-auto h-[32vh] sm:h-[38vh] md:h-[42vh] lg:h-[58vh] xl:h-[62vh] max-h-[340px] sm:max-h-[420px] md:max-h-[460px] lg:max-h-[64vh] shrink-0 overflow-hidden bg-neutral-950 border border-white/[0.1] rounded-sm group shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
           >
             {materialsData.map((mat, idx) => (
               <div
@@ -283,7 +304,7 @@ export default function MaterialsSection() {
 
             {/* Clean Material Selector (Stone / Wood / Concrete / Metal) & Controls */}
             <div className="pt-2.5 sm:pt-4 border-t border-white/[0.08] flex items-center justify-between gap-2">
-              <div className="grid grid-cols-4 gap-1 sm:gap-1.5 sm:flex sm:flex-wrap sm:gap-2">
+              <div className="grid grid-cols-2 xs:grid-cols-4 sm:flex sm:flex-wrap gap-1.5 sm:gap-2">
                 {materialsData.map((mat, idx) => {
                   const isSelected = activeIndex === idx;
                   return (
@@ -291,7 +312,7 @@ export default function MaterialsSection() {
                       key={mat.id}
                       type="button"
                       onClick={() => scrollToMaterial(idx)}
-                      className={`h-7 sm:h-8 px-1.5 sm:px-3 md:px-3.5 text-[9.5px] sm:text-xs font-pencrow font-medium tracking-wider uppercase transition-all duration-300 flex items-center justify-center space-x-1 sm:space-x-2 border cursor-pointer rounded-sm touch-manipulation ${
+                      className={`h-7 sm:h-8 px-2 sm:px-3 md:px-3.5 text-[10px] sm:text-xs font-pencrow font-medium tracking-wider uppercase transition-all duration-300 flex items-center justify-center space-x-1 sm:space-x-2 border cursor-pointer rounded-sm touch-manipulation ${
                         isSelected
                           ? 'border-mirae-orange bg-mirae-orange/10 text-white shadow-sm'
                           : 'border-white/10 text-white/50 hover:text-white hover:border-white/30'

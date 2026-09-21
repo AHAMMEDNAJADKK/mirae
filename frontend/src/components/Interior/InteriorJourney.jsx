@@ -36,15 +36,30 @@ export default function InteriorJourney() {
     // dedicated scroll distance → one controlled swipe = one room transition.
     // No GSAP pin → no pin-spacer → no black dead zone.
     mm.add('(max-width: 767px)', () => {
-      // Use visualViewport.height when available — most accurate on mobile
-      const svh = (window.visualViewport?.height) ?? window.innerHeight;
-      // Each room gets STEP_VH of scroll distance; first room starts at 0
-      const STEP = Math.round(svh * 0.70);
-      const totalHeight = svh + (total - 1) * STEP;
+      const updateHeight = () => {
+        const svh = (window.visualViewport?.height) ?? window.innerHeight;
+        const STEP = Math.round(svh * 0.70);
+        const totalHeight = svh + (total - 1) * STEP;
+        if (containerRef.current) {
+          containerRef.current.style.height = totalHeight + 'px';
+        }
+      };
 
-      // Apply section height so CSS sticky stage can scroll through it
-      if (containerRef.current) {
-        containerRef.current.style.height = totalHeight + 'px';
+      updateHeight();
+
+      let resizeTimer = null;
+      const handleResize = () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          updateHeight();
+          ScrollTrigger.refresh();
+        }, 100);
+      };
+
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('orientationchange', handleResize);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', handleResize);
       }
 
       // Throttle index updates — only fire when the index actually changes
@@ -66,6 +81,12 @@ export default function InteriorJourney() {
 
       return () => {
         st.kill();
+        clearTimeout(resizeTimer);
+        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('orientationchange', handleResize);
+        if (window.visualViewport) {
+          window.visualViewport.removeEventListener('resize', handleResize);
+        }
         // Reset inline height so other breakpoints are unaffected
         if (containerRef.current) {
           containerRef.current.style.height = '';
@@ -237,7 +258,7 @@ export default function InteriorJourney() {
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="w-full lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] md:aspect-[16/10] lg:aspect-auto h-[34vh] sm:h-[42vh] md:h-[48vh] lg:h-[58vh] xl:h-[62vh] max-h-[380px] sm:max-h-[460px] md:max-h-[520px] lg:max-h-[64vh] shrink-0 overflow-hidden bg-[#0d0d0d] border border-white/[0.1] rounded-sm shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
+            className="w-full lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-auto h-[32vh] sm:h-[38vh] md:h-[42vh] lg:h-[58vh] xl:h-[62vh] max-h-[340px] sm:max-h-[420px] md:max-h-[460px] lg:max-h-[64vh] shrink-0 overflow-hidden bg-[#0d0d0d] border border-white/[0.1] rounded-sm shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
           >
             {roomsData.map((room, idx) => (
               <div
