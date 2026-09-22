@@ -244,10 +244,10 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           : '-translate-y-full opacity-0 pointer-events-none'
       }`}
     >
-      <div className="max-w-6xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-12 flex items-center justify-between">
+      <div className="w-full flex items-center justify-between px-4 sm:px-8 lg:px-12 xl:px-14 2xl:px-[clamp(3.5rem,5vw,10rem)] max-w-[3840px] mx-auto">
         
-        {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (aligned to margin on 2xl) */}
-        <div className="flex items-center -translate-x-1 sm:-translate-x-2 md:-translate-x-3 lg:-translate-x-6 2xl:translate-x-0">
+        {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (aligned to margin on xl and 2xl) */}
+        <div className="flex items-center -translate-x-1 sm:-translate-x-2 md:-translate-x-3 lg:-translate-x-4 xl:translate-x-0 2xl:translate-x-0">
           <button 
             ref={logoBtnRef}
             onClick={() => scrollToSection('hero')}
