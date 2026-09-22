@@ -33,7 +33,7 @@ export default function ProjectDetailModal({ project, onClose }) {
       aria-labelledby="modal-project-title"
     >
       <div 
-        className="relative w-full max-w-6xl bg-[#111111] border border-white/10 p-4 sm:p-8 md:p-12 my-auto shadow-2xl max-h-[90dvh] overflow-y-auto overscroll-contain rounded-lg"
+        className="relative w-full max-w-6xl 2xl:max-w-7xl bg-[#111111] border border-white/10 p-4 sm:p-8 md:p-12 2xl:p-14 my-auto shadow-2xl max-h-[90dvh] overflow-y-auto overscroll-contain rounded-lg"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
