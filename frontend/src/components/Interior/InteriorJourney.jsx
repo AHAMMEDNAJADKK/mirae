@@ -249,16 +249,16 @@ export default function InteriorJourney() {
       className="cinematic-scroll-section bg-[#080808]"
     >
       {/* Presentation Container: Content-Proportional on Mobile/Tablet, Sticky on Desktop */}
-      <div className="cinematic-sticky-stage bg-[#080808] text-[#f4f3ef] select-none py-2 sm:py-5 md:py-6 lg:landscape:py-10 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 border-t border-white/[0.08]">
+      <div className="cinematic-sticky-stage bg-[#080808] text-[#f4f3ef] select-none py-2 sm:py-5 md:py-6 lg:landscape:py-10 pt-[max(1rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 2xl:px-12 border-t border-white/[0.08]">
         
         {/* Main Viewport Presentation Area */}
-        <div className="w-full max-w-4xl lg:max-w-7xl mx-auto flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 items-center justify-center py-2 sm:py-4">
+        <div className="w-full max-w-4xl lg:max-w-7xl 2xl:max-w-[1680px] mx-auto flex flex-col lg:grid lg:grid-cols-12 gap-4 sm:gap-6 md:gap-8 lg:gap-12 xl:gap-16 2xl:gap-20 items-center justify-center py-2 sm:py-4">
           
           {/* Left Column: Full-Scale Architectural Visual (Dominant with Touch Swipe) */}
           <div 
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="w-full lg:col-span-7 xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-auto h-[32vh] sm:h-[38vh] md:h-[42vh] lg:h-[58vh] xl:h-[62vh] max-h-[340px] sm:max-h-[420px] md:max-h-[460px] lg:max-h-[64vh] shrink-0 overflow-hidden bg-[#0d0d0d] border border-white/[0.1] rounded-sm shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
+            className="w-full lg:col-span-7 xl:col-span-8 2xl:col-span-8 relative aspect-[16/10] sm:aspect-[16/10] lg:aspect-auto h-[32vh] sm:h-[38vh] md:h-[42vh] lg:h-[58vh] xl:h-[62vh] 2xl:h-[66vh] max-h-[340px] sm:max-h-[420px] md:max-h-[460px] lg:max-h-[64vh] 2xl:max-h-[68vh] shrink-0 overflow-hidden bg-[#0d0d0d] border border-white/[0.1] rounded-sm shadow-2xl touch-pan-y cursor-grab active:cursor-grabbing"
           >
             {roomsData.map((room, idx) => (
               <div
@@ -283,17 +283,17 @@ export default function InteriorJourney() {
           </div>
 
           {/* Right Column: Refined Minimal Editorial Typography */}
-          <div className="w-full lg:col-span-5 xl:col-span-4 flex flex-col justify-center text-left space-y-3 sm:space-y-4 lg:space-y-6">
+          <div className="w-full lg:col-span-5 xl:col-span-4 2xl:col-span-4 flex flex-col justify-center text-left space-y-3 sm:space-y-4 lg:space-y-6 2xl:space-y-8">
             
             {/* Room Name & Short Supporting Sentence */}
             <div className="space-y-1.5 sm:space-y-3">
               <span className="text-[10px] sm:text-xs font-pencrow text-mirae-orange font-medium tracking-[0.25em] uppercase block">
                 0{activeIndex + 1} / 04
               </span>
-              <h3 className="font-architectural text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-[0.04em] uppercase leading-tight transition-colors duration-300">
+              <h3 className="font-architectural text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-[3.4rem] font-bold text-white tracking-[0.04em] uppercase leading-tight transition-colors duration-300">
                 {activeRoom.title}
               </h3>
-              <p className="text-xs sm:text-sm md:text-base font-normal text-neutral-300 leading-relaxed font-pencrow max-w-md transition-opacity duration-300 line-clamp-2 sm:line-clamp-3 md:line-clamp-none">
+              <p className="text-xs sm:text-sm md:text-base 2xl:text-lg font-normal text-neutral-300 leading-relaxed font-pencrow max-w-md 2xl:max-w-xl transition-opacity duration-300 line-clamp-2 sm:line-clamp-3 md:line-clamp-none">
                 {activeRoom.subtitle}
               </p>
             </div>
@@ -308,7 +308,7 @@ export default function InteriorJourney() {
                     <button
                       key={room.id}
                       onClick={() => scrollToRoom(idx)}
-                      className={`h-7 sm:h-8 px-2 sm:px-2.5 md:px-3 text-[10px] sm:text-xs font-pencrow font-medium tracking-wider uppercase transition-all duration-300 flex items-center space-x-1 sm:space-x-1.5 border cursor-pointer rounded-sm touch-manipulation ${
+                      className={`h-7 sm:h-8 2xl:h-9 px-2 sm:px-2.5 md:px-3 2xl:px-3.5 text-[10px] sm:text-xs 2xl:text-[13px] font-pencrow font-medium tracking-wider uppercase transition-all duration-300 flex items-center space-x-1 sm:space-x-1.5 border cursor-pointer rounded-sm touch-manipulation ${
                         isActive 
                           ? 'border-mirae-orange bg-mirae-orange/10 text-white shadow-sm' 
                           : 'border-white/10 text-white/50 hover:text-white hover:border-white/30'
@@ -327,16 +327,16 @@ export default function InteriorJourney() {
                 <button
                   onClick={handlePrev}
                   aria-label="Previous room"
-                  className="w-7 sm:w-8 h-7 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer touch-manipulation active:scale-95"
+                  className="w-7 sm:w-8 2xl:w-9 h-7 sm:h-8 2xl:h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer touch-manipulation active:scale-95"
                 >
-                  <ArrowLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  <ArrowLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5 2xl:w-4 2xl:h-4" />
                 </button>
                 <button
                   onClick={handleNext}
                   aria-label="Next room"
-                  className="w-7 sm:w-8 h-7 sm:h-8 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer touch-manipulation active:scale-95"
+                  className="w-7 sm:w-8 2xl:w-9 h-7 sm:h-8 2xl:h-9 rounded-full border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-all cursor-pointer touch-manipulation active:scale-95"
                 >
-                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 2xl:w-4 2xl:h-4" />
                 </button>
               </div>
             </div>

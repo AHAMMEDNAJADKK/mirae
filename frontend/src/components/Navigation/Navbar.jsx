@@ -56,13 +56,14 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
 
       // Mathematically fluid hero logo sizing responding to BOTH width and height:
       // Stronger visual presence: occupies ~84% on mobile, ~62% on tablet/foldable, up to 45% on desktop
-      const widthIdeal = vw < 640 ? vw * 0.82 : (vw < 1024 ? vw * 0.62 : Math.min(vw * 0.45, 720));
-      // Height bounds: logo height in hero should never exceed ~18% of vh (or 22% on short landscape screens)
-      const heightIdealWidth = vh * (vh < 600 ? 0.22 : 0.18) * aspectRatio;
+      const widthIdeal = vw < 640 ? vw * 0.82 : (vw < 1024 ? vw * 0.62 : (vw >= 1536 ? Math.min(vw * 0.42, 820) : Math.min(vw * 0.45, 720)));
+      // Height bounds: logo height in hero should never exceed ~18% of vh (or 22% on short landscape screens, up to 20% on large 1080p desktop)
+      const heightIdealWidth = vh * (vh < 600 ? 0.22 : (vw >= 1536 ? 0.20 : 0.18)) * aspectRatio;
       // Combined fluid width constrained by both axes
       const fluidWidth = Math.min(widthIdeal, heightIdealWidth);
-      // Absolute clamp bounds: min 200px (safe for narrow 320px screens) to max 720px (for large desktop)
-      const targetHeroWidth = Math.max(200, Math.min(Math.min(720, vw * 0.85), fluidWidth));
+      // Absolute clamp bounds: min 200px (safe for narrow 320px screens) to max 820px (for large desktop)
+      const maxClamp = vw >= 1536 ? 820 : 720;
+      const targetHeroWidth = Math.max(200, Math.min(Math.min(maxClamp, vw * 0.85), fluidWidth));
       const heroScale = Math.max(1.15, targetHeroWidth / dockWidth);
 
       // Continuous safe-area aware optical vertical positioning
@@ -243,10 +244,10 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           : '-translate-y-full opacity-0 pointer-events-none'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex items-center justify-between">
+      <div className="max-w-6xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-12 flex items-center justify-between">
         
-        {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (subtly shifted left) */}
-        <div className="flex items-center -translate-x-1 sm:-translate-x-2 md:-translate-x-3 lg:-translate-x-6 xl:-translate-x-8">
+        {/* Brand Logo Dock Container (Left) — Single Continuous New Logo (aligned to margin on 2xl) */}
+        <div className="flex items-center -translate-x-1 sm:-translate-x-2 md:-translate-x-3 lg:-translate-x-6 2xl:translate-x-0">
           <button 
             ref={logoBtnRef}
             onClick={() => scrollToSection('hero')}
@@ -257,7 +258,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-[clamp(3.35rem,calc(2.9rem+1.8vw),3.95rem)] sm:h-[clamp(4rem,calc(3.4rem+1.3vw),4.85rem)] lg:h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              className="h-[clamp(3.35rem,calc(2.9rem+1.8vw),3.95rem)] sm:h-[clamp(4rem,calc(3.4rem+1.3vw),4.85rem)] lg:h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] 2xl:h-[4.25rem] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
               style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
@@ -267,9 +268,9 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
         </div>
 
         {/* Right Navigation Group: PROJECTS  ABOUT  CONTACT  ☰ */}
-        <div ref={navRightRef} className="flex items-center space-x-6 sm:space-x-8 md:space-x-10 will-change-transform">
+        <div ref={navRightRef} className="flex items-center space-x-6 sm:space-x-8 md:space-x-10 2xl:space-x-12 will-change-transform">
           <nav 
-            className="hidden sm:flex items-center space-x-6 sm:space-x-8 md:space-x-10 text-xs font-pencrow font-medium" 
+            className="hidden sm:flex items-center space-x-6 sm:space-x-8 md:space-x-10 2xl:space-x-12 text-xs 2xl:text-[13px] font-pencrow font-medium" 
             aria-label="Main Navigation"
           >
             {navItems.map((item) => {
