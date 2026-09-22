@@ -5,30 +5,30 @@ export default function BrandStory() {
   return (
     <section 
       id="about" 
-      className="relative w-full bg-[#080808] text-[#f4f3ef] py-12 sm:py-18 md:py-24 px-4 sm:px-8 md:px-14 lg:px-20 border-t border-white/[0.08]"
+      className="relative w-full bg-[#080808] text-[#f4f3ef] py-12 sm:py-18 md:py-24 2xl:py-32 px-4 sm:px-8 md:px-14 lg:px-20 2xl:px-12 border-t border-white/[0.08]"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl 2xl:max-w-[1680px] mx-auto">
         
         {/* Two-Column Layout (Matching Panel 06 Reference) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 2xl:gap-20 items-center">
           
           {/* Left: Text & CTA */}
-          <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-6 text-left">
-            <h2 className="font-architectural text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.08]">
+          <div className="lg:col-span-6 flex flex-col justify-center space-y-4 sm:space-y-6 2xl:space-y-8 text-left">
+            <h2 className="font-architectural text-2xl sm:text-4xl md:text-5xl lg:text-6xl 2xl:text-[4.25rem] font-bold text-white tracking-tight leading-[1.08] 2xl:leading-[1.06]">
               More than buildings,<br />
               <span className="italic font-editorial font-normal tracking-[0.03em] text-[#f4eee4] block mt-1">
                 we create experiences.
               </span>
             </h2>
             
-            <p className="text-xs sm:text-sm md:text-base font-normal text-neutral-300 leading-relaxed max-w-lg font-pencrow">
+            <p className="text-xs sm:text-sm md:text-base 2xl:text-lg font-normal text-neutral-300 leading-relaxed max-w-lg 2xl:max-w-xl font-pencrow">
               With over 50 years of expertise, Mirae has grown into a trusted name in architecture and construction, known for its timeless designs, uncompromising quality and deep connection to nature and people.
             </p>
 
             <div className="pt-2 sm:pt-4">
               <button 
                 onClick={() => scrollToPosition('#contact', { duration: 1.0 })}
-                className="group inline-flex items-center space-x-2.5 sm:space-x-3 text-xs sm:text-sm font-pencrow font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-white bg-white/[0.08] hover:bg-white hover:text-black border border-white/25 hover:border-white transition-all duration-300 px-4 sm:px-6 py-2.5 sm:py-3.5 backdrop-blur-md rounded-sm cursor-pointer"
+                className="group inline-flex items-center space-x-2.5 sm:space-x-3 text-xs sm:text-sm 2xl:text-base font-pencrow font-medium tracking-[0.18em] sm:tracking-[0.22em] uppercase text-white bg-white/[0.08] hover:bg-white hover:text-black border border-white/25 hover:border-white transition-all duration-300 px-4 sm:px-6 2xl:px-8 py-2.5 sm:py-3.5 2xl:py-4 backdrop-blur-md rounded-sm cursor-pointer"
               >
                 <span>Our Story</span>
                 <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5 text-sm text-mirae-orange group-hover:text-black">———→</span>

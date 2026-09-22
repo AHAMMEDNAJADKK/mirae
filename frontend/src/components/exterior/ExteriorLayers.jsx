@@ -210,23 +210,23 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Center / Right Layer Navigation Indicators */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-16 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 lg:gap-8 py-4 sm:py-6 md:py-0">
+        <div className="relative z-20 w-full max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-8 md:px-10 lg:px-16 2xl:px-12 my-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-6 lg:gap-8 2xl:gap-12 py-4 sm:py-6 md:py-0">
           
           {/* Left: Active Level Description (Cohesive, fluid width with rich typography) */}
-          <div className="relative w-full max-w-2xl md:max-w-sm lg:max-w-md min-h-[150px] xs:min-h-[145px] sm:min-h-[155px] md:min-h-[175px] bg-black/85 backdrop-blur-md p-4 sm:p-6 md:p-7 lg:p-8 border-l-2 border-mirae-orange shadow-2xl overflow-hidden">
+          <div className="relative w-full max-w-2xl md:max-w-sm lg:max-w-md 2xl:max-w-lg min-h-[150px] xs:min-h-[145px] sm:min-h-[155px] md:min-h-[175px] 2xl:min-h-[200px] bg-black/85 backdrop-blur-md p-4 sm:p-6 md:p-7 lg:p-8 2xl:p-10 border-l-2 border-mirae-orange shadow-2xl overflow-hidden">
             {layersData.map((layer, idx) => (
               <div
                 key={layer.id}
                 ref={(el) => (textRefs.current[idx] = el)}
-                className="absolute inset-0 p-4 sm:p-6 md:p-7 lg:p-8 flex flex-col justify-center will-change-transform will-change-opacity"
+                className="absolute inset-0 p-4 sm:p-6 md:p-7 lg:p-8 2xl:p-10 flex flex-col justify-center will-change-transform will-change-opacity"
               >
                 <span className="text-[10px] font-pencrow text-mirae-orange font-medium tracking-[0.3em] uppercase block mb-1 sm:mb-2">
                   LEVEL 0{idx + 1} / 04
                 </span>
-                <h3 className="font-architectural text-base xs:text-lg sm:text-2xl md:text-3xl lg:text-4xl text-white font-bold tracking-[0.04em] uppercase mb-1 sm:mb-2.5 leading-tight">
+                <h3 className="font-architectural text-base xs:text-lg sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-[2.65rem] text-white font-bold tracking-[0.04em] uppercase mb-1 sm:mb-2.5 2xl:mb-3 leading-tight">
                   {layer.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-normal text-[#d4d4d4] leading-relaxed font-pencrow line-clamp-3">
+                <p className="text-xs sm:text-sm 2xl:text-base font-normal text-[#d4d4d4] leading-relaxed font-pencrow line-clamp-3">
                   {layer.subtitle}
                 </p>
               </div>
@@ -234,7 +234,7 @@ export default function ExteriorLayers() {
           </div>
 
           {/* Right: Architectural Cutaway Callout Indicators (Desktop / Tablet) */}
-          <div className="hidden md:flex flex-col space-y-3 sm:space-y-4 lg:space-y-6 bg-black/75 backdrop-blur-md p-4 sm:p-6 lg:p-8 border border-white/[0.1] shadow-2xl shrink-0">
+          <div className="hidden md:flex flex-col space-y-3 sm:space-y-4 lg:space-y-6 2xl:space-y-7 bg-black/75 backdrop-blur-md p-4 sm:p-6 lg:p-8 2xl:p-10 border border-white/[0.1] shadow-2xl shrink-0">
             {layersData.map((layer, idx) => {
               const isActive = activeLayerIndex === idx;
               return (
@@ -292,7 +292,7 @@ export default function ExteriorLayers() {
         </div>
 
         {/* Bottom Bar Info */}
-        <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 md:px-10 lg:px-16 pb-[max(1rem,env(safe-area-inset-bottom))] flex justify-between items-center text-[9px] sm:text-xs font-pencrow text-white/50 font-medium">
+        <div className="relative z-20 w-full max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-8 md:px-10 lg:px-16 2xl:px-12 pb-[max(1rem,env(safe-area-inset-bottom))] flex justify-between items-center text-[9px] sm:text-xs 2xl:text-sm font-pencrow text-white/50 font-medium">
           <span>PROGRESSIVE TECTONIC SEQUENCE</span>
           <span className="font-medium text-white/70 tracking-wider">
             {layersData[activeLayerIndex].title.toUpperCase()}
