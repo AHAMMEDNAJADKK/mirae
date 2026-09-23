@@ -258,7 +258,7 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
               ref={logoImgRef}
               src="/assets/images/mirae-hero-logo.webp" 
               alt="MIRAE" 
-              className="h-[clamp(3.35rem,calc(2.9rem+1.8vw),3.95rem)] sm:h-[clamp(4rem,calc(3.4rem+1.3vw),4.85rem)] lg:h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] 2xl:h-[4.25rem] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              className="h-[clamp(3.35rem,calc(2.9rem+1.8vw),3.95rem)] sm:h-[clamp(4rem,calc(3.4rem+1.3vw),4.85rem)] lg:h-[clamp(3.75rem,calc(3rem+2.5vw),5.75rem)] 2xl:h-[6.5rem] w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
               style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
               onLoad={() => {
                 window.dispatchEvent(new Event('resize'));
