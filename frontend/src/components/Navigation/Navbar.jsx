@@ -75,50 +75,66 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
       const deltaX = (vw / 2) - dockCenterX;
       const deltaY = targetCenterY - dockCenterY;
 
-      // Initial state based on current scroll position
+      const heroEl = document.getElementById('hero');
       const initialScroll = window.scrollY;
-      const progress = Math.min(1, Math.max(0, initialScroll / 480));
-      const easeP = 1 - Math.pow(1 - progress, 1.35);
+      const heroHeight = heroEl ? heroEl.offsetHeight : (vh * 2.2);
+      const heroScrollDist = Math.max(1, heroHeight - vh);
+      const initialProgress = Math.min(1, Math.max(0, initialScroll / heroScrollDist));
+
+      // Controlled, continuous transition:
+      // 0.00 to 0.10: Stable resting window in the hero composition (zero premature movement)
+      // 0.10 to 0.42: Smooth, graceful glide into the navbar dock (smooth power2.inOut curve)
+      // 0.42 to 1.00: Firmly docked at (0, 0, 1) in the navbar
+      const initialT = Math.min(1, Math.max(0, (initialProgress - 0.10) / 0.32));
+      const initialEaseT = initialT < 0.5 ? 2 * initialT * initialT : 1 - Math.pow(-2 * initialT + 2, 2) / 2;
 
       gsap.set(logoBtnRef.current, {
-        x: deltaX * (1 - easeP),
-        y: deltaY * (1 - easeP),
-        scale: 1 + (heroScale - 1) * (1 - easeP),
+        x: deltaX * (1 - initialEaseT),
+        y: deltaY * (1 - initialEaseT),
+        scale: 1 + (heroScale - 1) * (1 - initialEaseT),
+        opacity: 1,
         transformOrigin: 'center center'
       });
 
       if (navRightRef.current) {
-        const navP = Math.max(0, (progress - 0.4) / 0.6);
+        const initialNavT = Math.min(1, Math.max(0, (initialProgress - 0.22) / 0.20));
         gsap.set(navRightRef.current, {
-          opacity: navP,
-          y: -8 * (1 - navP),
-          pointerEvents: navP > 0.8 ? 'auto' : 'none'
+          opacity: initialNavT,
+          y: -6 * (1 - initialNavT),
+          pointerEvents: initialNavT > 0.8 ? 'auto' : 'none'
         });
       }
 
-      // Smooth scroll interpolation via ScrollTrigger matching State 1 arrival
+      // Smooth scroll interpolation synchronized directly with the Hero section progression
       currentST = ScrollTrigger.create({
-        trigger: document.body,
+        trigger: heroEl || document.body,
         start: 'top top',
-        end: '+=480',
-        scrub: 0.6,
+        end: 'bottom bottom',
+        scrub: 0.5,
         onUpdate: (self) => {
-          const p = self.progress; // 0 to 1
-          const easeProgress = 1 - Math.pow(1 - p, 1.35);
+          const p = self.progress; // 0 to 1 across the Hero section
+          
+          // Controlled, continuous transition:
+          // 0.00 to 0.10: Stable resting window in the hero (no premature drift)
+          // 0.10 to 0.42: Smooth, graceful glide into the navbar dock
+          // 0.42 to 1.00: Firmly docked at (0, 0, 1)
+          const t = Math.min(1, Math.max(0, (p - 0.10) / 0.32));
+          const easeT = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
 
           gsap.set(logoBtnRef.current, {
-            x: deltaX * (1 - easeProgress),
-            y: deltaY * (1 - easeProgress),
-            scale: 1 + (heroScale - 1) * (1 - easeProgress),
+            x: deltaX * (1 - easeT),
+            y: deltaY * (1 - easeT),
+            scale: 1 + (heroScale - 1) * (1 - easeT),
             transformOrigin: 'center center'
           });
 
           if (navRightRef.current) {
-            const navP = Math.max(0, (p - 0.4) / 0.6);
+            // Navigation links fade in seamlessly as the logo approaches the dock
+            const navT = Math.min(1, Math.max(0, (p - 0.22) / 0.20));
             gsap.set(navRightRef.current, {
-              opacity: navP,
-              y: -8 * (1 - navP),
-              pointerEvents: navP > 0.8 ? 'auto' : 'none'
+              opacity: navT,
+              y: -6 * (1 - navT),
+              pointerEvents: navT > 0.8 ? 'auto' : 'none'
             });
           }
         }
@@ -150,11 +166,31 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
     };
   }, [isLoaded]);
 
-  // Backscroll visibility & active section tracking
+  // Backscroll visibility
   const pastHeroRef = useRef(false);
-  const activeSecRef = useRef('hero');
   const isNavVisRef = useRef(true);
 
+  // Performance-optimized active section tracking via off-thread IntersectionObserver
+  useEffect(() => {
+    const sectionIds = ['hero', 'exterior-layers', 'interior', 'materials', 'projects', 'studio', 'about', 'contact'];
+    const elements = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, {
+      rootMargin: '-20% 0px -65% 0px',
+      threshold: 0
+    });
+
+    elements.forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  // Backscroll visibility (pure scroll position tracking without layout thrashing)
   useEffect(() => {
     let ticking = false;
 
@@ -164,7 +200,9 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           const currentScrollY = window.scrollY;
           const delta = currentScrollY - lastScrollY.current;
 
-          const inHero = currentScrollY <= 650;
+          const heroEl = document.getElementById('hero');
+          const heroBottom = heroEl ? heroEl.getBoundingClientRect().bottom : (window.innerHeight * 2.2 - currentScrollY);
+          const inHero = heroBottom > 80;
           const pastHero = !inHero;
           if (pastHero !== pastHeroRef.current) {
             pastHeroRef.current = pastHero;
@@ -192,25 +230,6 @@ export default function Navbar({ onOpenMenu, isLoaded }) {
           }
 
           lastScrollY.current = currentScrollY;
-
-          // Active section tracking (guarded across all sections)
-          const sectionIds = ['hero', 'exterior-layers', 'interior', 'materials', 'projects', 'studio', 'about', 'contact'];
-          const scrollPos = currentScrollY + 140;
-
-          for (let i = sectionIds.length - 1; i >= 0; i--) {
-            const el = document.getElementById(sectionIds[i]);
-            if (el) {
-              const topPos = el.getBoundingClientRect().top + currentScrollY;
-              if (topPos <= scrollPos) {
-                if (activeSecRef.current !== sectionIds[i]) {
-                  activeSecRef.current = sectionIds[i];
-                  setActiveSection(sectionIds[i]);
-                }
-                break;
-              }
-            }
-          }
-
           ticking = false;
         });
         ticking = true;
