@@ -96,9 +96,6 @@ export default function Preloader({ onComplete }) {
             className="h-[clamp(2.75rem,5.5vw,5.5rem)] w-auto object-contain mb-4 sm:mb-6" 
             style={{ filter: 'invert(1)', aspectRatio: '1024 / 381' }}
           />
-          <p className="text-xs sm:text-sm tracking-[0.35em] text-neutral-300 uppercase font-medium font-pencrow">
-            Architecture Shaped By Experience
-          </p>
         </div>
 
         <div className="flex justify-between items-end">

@@ -22,7 +22,7 @@ export default function HeroExperience() {
 
     const ctx = gsap.context(() => {
       // Set initial hidden state for headline & CTA at scroll = 0
-      gsap.set(heroContentRef.current, { opacity: 0, y: 32, pointerEvents: 'none' });
+      gsap.set(heroContentRef.current, { opacity: 0, y: 28, pointerEvents: 'none' });
 
       // 1. Initial Cinematic Image Entrance
       if (!prefersReducedMotion) {
@@ -34,10 +34,10 @@ export default function HeroExperience() {
         gsap.to(imageLayerRef.current, { opacity: 1, duration: 0.8 });
       }
 
-      // 2. Structured Cinematic Scroll Scrub Sequence with Controlled Two-Step Progression
-      // State 0 (Scroll 0): Initial Hero with large logo centered
-      // State 1 (Progress 0.38 - 0.64, snap target 0.50): Headline in focus ("Architecture Shaped by Experience")
-      // State 2 (Progress 0.64 - 1.00, snap target 1.00): Exit into ExteriorLayers
+      // 2. Structured Cinematic Scroll Scrub Sequence
+      // State 0 (Scroll 0): Initial Hero with Mirae logo centered exclusively
+      // State 1 (Progress 0.18 - 0.68): User scrolls -> "Architecture Shaped by Experience" smoothly appears
+      // State 2 (Progress 0.68 - 1.00): Exit into ExteriorLayers
       const scrollTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -47,7 +47,7 @@ export default function HeroExperience() {
           onUpdate: (self) => {
             const p = self.progress;
             if (heroContentRef.current) {
-              heroContentRef.current.style.pointerEvents = (p >= 0.30 && p <= 0.70) ? 'auto' : 'none';
+              heroContentRef.current.style.pointerEvents = (p >= 0.28 && p <= 0.68) ? 'auto' : 'none';
             }
           }
         }
@@ -55,28 +55,28 @@ export default function HeroExperience() {
 
       if (!prefersReducedMotion) {
         scrollTl
-          // Phase 1: Reveal headline & CTA gradually as logo docks into navbar (progress 0.04 -> 0.36)
+          // Phase 1: Reveal headline & CTA strictly upon scrolling (progress 0.18 -> 0.46)
           .fromTo(heroContentRef.current,
-            { opacity: 0, y: 32 },
-            { opacity: 1, y: 0, ease: 'power2.out', duration: 0.32 },
-            0.04
+            { opacity: 0, y: 28 },
+            { opacity: 1, y: 0, ease: 'power2.out', duration: 0.28 },
+            0.18
           )
-          // Phase 2: Settled viewing window across State 1 (progress 0.36 -> 0.64, snap target at 0.50)
-          .to(heroContentRef.current, { opacity: 1, y: 0, duration: 0.28 }, 0.36)
-          // Phase 3: Transition out into ExteriorLayers (progress 0.64 -> 1.0)
+          // Phase 2: Settled viewing window across State 1 (progress 0.46 -> 0.68)
+          .to(heroContentRef.current, { opacity: 1, y: 0, duration: 0.22 }, 0.46)
+          // Phase 3: Transition out into ExteriorLayers (progress 0.68 -> 1.0)
           .to(heroContentRef.current,
-            { opacity: 0, y: -28, ease: 'power2.in', duration: 0.36 },
-            0.64
+            { opacity: 0, y: -24, ease: 'power2.in', duration: 0.24 },
+            0.68
           )
           .to(imageLayerRef.current,
-            { scale: 1.08, ease: 'none', duration: 0.36 },
-            0.64
+            { scale: 1.08, ease: 'none', duration: 0.32 },
+            0.68
           );
       } else {
         scrollTl
-          .fromTo(heroContentRef.current, { opacity: 0 }, { opacity: 1, duration: 0.3 }, 0.04)
-          .to(heroContentRef.current, { opacity: 1, duration: 0.28 }, 0.36)
-          .to(heroContentRef.current, { opacity: 0, duration: 0.36 }, 0.64);
+          .fromTo(heroContentRef.current, { opacity: 0 }, { opacity: 1, duration: 0.28 }, 0.18)
+          .to(heroContentRef.current, { opacity: 1, duration: 0.22 }, 0.46)
+          .to(heroContentRef.current, { opacity: 0, duration: 0.24 }, 0.68);
       }
     }, containerRef);
 
@@ -123,10 +123,10 @@ export default function HeroExperience() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-transparent pointer-events-none" />
         </div>
 
-        {/* Left-Aligned Editorial Headline + Explore Projects CTA */}
+        {/* Left-Aligned Editorial Headline + Explore Projects CTA — Hidden initially, reveals strictly on scroll */}
         <div 
           ref={heroContentRef}
-          className="relative z-20 w-full max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-12 pb-[clamp(2rem,6.5svh,4.5rem)] sm:pb-[clamp(3.5rem,10vh,6.5rem)] md:pb-20 lg:pb-26 2xl:pb-28 landscape:pb-4 pointer-events-auto"
+          className="relative z-20 w-full max-w-7xl 2xl:max-w-[1680px] mx-auto px-4 sm:px-8 lg:px-12 2xl:px-12 pb-[clamp(2rem,6.5svh,4.5rem)] sm:pb-[clamp(3.5rem,10vh,6.5rem)] md:pb-20 lg:pb-26 2xl:pb-28 landscape:pb-4 opacity-0 pointer-events-none translate-y-8 will-change-transform will-change-opacity"
         >
           <div className="max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-4xl 2xl:max-w-5xl text-left -translate-x-0 md:-translate-x-3 lg:-translate-x-6 2xl:translate-x-0">
             <h1 className="font-excon font-semibold text-[clamp(1.6rem,min(6.8vw,5.2vh),3.15rem)] sm:text-4xl md:text-5xl lg:text-[3.85rem] xl:text-[4.5rem] 2xl:text-[4.85rem] text-white leading-[1.06] sm:leading-[1.08] 2xl:leading-[1.05] tracking-[-0.02em] drop-shadow-[0_2px_14px_rgba(0,0,0,0.6)]">
